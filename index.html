@@ -91,7 +91,7 @@
 </head>
 <body>
 <header>
-  <h1><a href="https://twitch.tv/DrPalanca" target="_blank">Juegos Terminados de DrPalanca 4</a></h1>
+  <h1><a href="https://twitch.tv/DrPalanca" target="_blank">Juegos Terminados de DrPalanca 5</a></h1>
 </header>
 <div id="games" class="games-container"></div>
 
@@ -104,28 +104,28 @@
     const text = await response.text();
     const lines = text.split('\n').map(l => l.trim()).filter(l => l !== '');
     return lines.map(line => {
-      // Ejemplo de línea:
-      // * Day of the Tentacle (Remastered) - LucasArts (1993, SE 2016)
-      // 1) Quitamos "* "
+      // Ejemplo de línea: * Day of the Tentacle (Remastered) - LucasArts (1993, SE 2016)
       let cleanLine = line.replace(/^\*\s*/, '');
-      // 2) Partimos en 2 por " - "
       let parts = cleanLine.split(' - ');
-      let gameName = parts[0].trim(); // "Day of the Tentacle (Remastered)"
+      let gistGameName = parts[0].trim();
       let publisher = null;
       let year = null;
       if (parts[1]) {
-        // parts[1] podría ser: "LucasArts (1993, SE 2016)"
+        // Buscar publisher y año
         let pubPart = parts[1];
-        // Publisher es la parte antes de la primera '('
         let pubSplit = pubPart.split(' (');
-        publisher = pubSplit[0].trim(); // "LucasArts"
-        // Intentamos extraer el año del primer paréntesis con un regex
-        let yearMatch = pubPart.match(/\((\d{4})/);
+        publisher = pubSplit[0].trim();
+        // Extraer el primer año encontrado en el string
+        let yearMatch = pubPart.match(/\b(\d{4})\b/);
         if (yearMatch) {
-          year = yearMatch[1]; // "1993"
+          year = yearMatch[1];
         }
       }
-      return { gameName, publisher, year };
+      return { 
+        gistGameName, 
+        publisher: publisher || null, 
+        year: year || null
+      };
     });
   }
 
@@ -141,8 +141,7 @@
     } catch (e) {
       console.log("Error en la traducción:", e);
     }
-    // Si falla la traducción, devolvemos el texto original
-    return text;
+    return text; // fallback si falla la traducción
   }
 
   async function fetchGameDetailsByName(queryName) {
@@ -160,48 +159,26 @@
     return gameDetail;
   }
 
-  async function fetchGameInfo({gameName, publisher, year}) {
-    const englishName = await translateToEnglish(gameName);
+  async function fetchGameInfo({gistGameName, publisher, year}) {
+    const englishName = await translateToEnglish(gistGameName);
 
-    // Intentamos búsquedas en orden de mayor especificidad a menor:
-    // 1) Título traducido + publisher + año
-    let searchQueries = [];
-    let composedQuery = englishName;
-    if (publisher) composedQuery += " " + publisher;
-    if (year) composedQuery += " " + year;
-    searchQueries.push(composedQuery.trim());
-
-    // 2) Sólo título en inglés
-    searchQueries.push(englishName);
-
-    // 3) Título original
-    searchQueries.push(gameName);
-
-    let gameDetail = null;
-    for (let q of searchQueries) {
-      gameDetail = await fetchGameDetailsByName(q);
-      if (gameDetail) break;
+    // Intentamos con el título traducido
+    let gameDetail = await fetchGameDetailsByName(englishName);
+    if (!gameDetail) {
+      // Intentamos con el título original
+      gameDetail = await fetchGameDetailsByName(gistGameName);
     }
 
+    // Si aún así no encontramos nada, devolvemos sin datos
     if (!gameDetail) {
       return {
-        name: gameName,
+        gistName: gistGameName,
+        gistPublisher: publisher,
+        gistYear: year,
         image: null,
-        publisher: null,
-        year: null,
         steamUrl: null,
         notFound: true
       };
-    }
-
-    let foundPublisher = null;
-    if (gameDetail.publishers && gameDetail.publishers.length > 0) {
-      foundPublisher = gameDetail.publishers[0].name;
-    }
-
-    let foundYear = null;
-    if (gameDetail.released) {
-      foundYear = gameDetail.released.split('-')[0];
     }
 
     // Buscar URL de Steam
@@ -210,7 +187,7 @@
       const steamStore = gameDetail.stores.find(s => s.store && s.store.slug === 'steam');
       if (steamStore && steamStore.url) {
         if (!steamStore.url.startsWith('http')) {
-          // Reconstruimos con el dominio
+          // Reconstruimos con el dominio si es relativo
           if (steamStore.store && steamStore.store.domain) {
             steamUrl = 'https://' + steamStore.store.domain + steamStore.url;
           } else {
@@ -223,10 +200,10 @@
     }
 
     return {
-      name: gameDetail.name,
-      image: gameDetail.background_image,
-      publisher: foundPublisher,
-      year: foundYear,
+      gistName: gistGameName,
+      gistPublisher: publisher,
+      gistYear: year,
+      image: gameDetail.background_image || null,
       steamUrl: steamUrl,
       notFound: false
     };
@@ -237,7 +214,7 @@
     const gamesList = await fetchGamesList();
 
     for (const gameObj of gamesList) {
-      const {name, image, publisher, year, steamUrl, notFound} = await fetchGameInfo(gameObj);
+      const {gistName, gistPublisher, gistYear, image, steamUrl, notFound} = await fetchGameInfo(gameObj);
       
       const gameDiv = document.createElement('div');
       gameDiv.classList.add('game');
@@ -245,13 +222,13 @@
       if (notFound) {
         const noResult = document.createElement('div');
         noResult.classList.add('no-results');
-        noResult.textContent = `No se encontró información para "${gameObj.gameName}".`;
+        noResult.textContent = `No se encontró información para "${gistName}".`;
         gameDiv.appendChild(noResult);
       } else {
         if (image) {
           const img = document.createElement('img');
           img.src = image;
-          img.alt = name;
+          img.alt = gistName;
           gameDiv.appendChild(img);
         } else {
           const placeholder = document.createElement('div');
@@ -262,13 +239,16 @@
 
         const title = document.createElement('div');
         title.classList.add('game-title');
-        title.textContent = name;
+        // Siempre usamos el título del Gist
+        title.textContent = gistName;
         gameDiv.appendChild(title);
 
         const info = document.createElement('div');
         info.classList.add('game-info');
-        const pubText = publisher ? `<strong>Editor:</strong> ${publisher}<br>` : '';
-        const yearText = year ? `<strong>Año:</strong> ${year}` : '';
+        
+        let pubText = gistPublisher ? `<strong>Editor:</strong> ${gistPublisher}<br>` : '';
+        let yearText = gistYear ? `<strong>Año:</strong> ${gistYear}` : '';
+        
         info.innerHTML = pubText + yearText;
         gameDiv.appendChild(info);
 
