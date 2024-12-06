@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Juegos Terminados de DrPalanca</title>
+<title>Juegos Terminados de DrPalanca 3</title>
 <style>
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -110,73 +110,60 @@
     });
   }
 
-  // Función para normalizar y comparar nombres
-  function normalize(str) {
-    return str.toLowerCase().replace(/[^a-z0-9\s]/gi, '').trim();
+  // Función para traducir texto al inglés usando MyMemory
+  async function translateToEnglish(text) {
+    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=es|en`;
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      if (data && data.responseData && data.responseData.translatedText) {
+        return data.responseData.translatedText.trim();
+      }
+    } catch (e) {
+      console.log("Error en la traducción:", e);
+    }
+    // Si falla la traducción, devolvemos el texto original
+    return text;
   }
 
-  function findBestMatch(gameName, results) {
-    const normalizedQuery = normalize(gameName);
-    let best = null;
-    let bestScore = -1;
-    
-    for (const r of results) {
-      const normalizedName = normalize(r.name);
-      // Estrategia simple: puntuamos si el nombre del juego buscado aparece en el nombre del resultado
-      let score = 0;
-      if (normalizedName.includes(normalizedQuery)) {
-        score += 10; 
-      }
-      // Puedes añadir más lógica, por ahora mantenemos simple
-      if (score > bestScore) {
-        bestScore = score;
-        best = r;
-      }
-    }
-    // Si no hay score > -1, no hay coincidencia buena
-    if (bestScore <= 0) {
-      return null;
-    }
-    return best;
-  }
-
-  async function fetchGameInfo(gameName) {
-    // Buscar el juego
-    let urlSearch = `https://api.rawg.io/api/games?key=${RAWG_API_KEY}&search=${encodeURIComponent(gameName)}`;
+  async function fetchGameDetailsByName(queryName) {
+    let urlSearch = `https://api.rawg.io/api/games?key=${RAWG_API_KEY}&search=${encodeURIComponent(queryName)}`;
     const resSearch = await fetch(urlSearch);
     const dataSearch = await resSearch.json();
-
     if (!dataSearch.results || dataSearch.results.length === 0) {
-      return {
-        name: gameName,
-        image: null,
-        publisher: null,
-        year: null,
-        steamUrl: null,
-        notFound: true,
-        mismatch: false
-      };
+      return null;
     }
-
-    // Intentar encontrar el mejor match
-    const bestResult = findBestMatch(gameName, dataSearch.results);
-    if (!bestResult) {
-      // No se encontró un match adecuado
-      return {
-        name: gameName,
-        image: null,
-        publisher: null,
-        year: null,
-        steamUrl: null,
-        notFound: true,
-        mismatch: true
-      };
-    }
-
-    const gameId = bestResult.id;
+    // Tomamos el primer resultado
+    const game = dataSearch.results[0];
+    const gameId = game.id;
     let urlDetail = `https://api.rawg.io/api/games/${gameId}?key=${RAWG_API_KEY}`;
     const resDetail = await fetch(urlDetail);
     const gameDetail = await resDetail.json();
+    return gameDetail;
+  }
+
+  async function fetchGameInfo(gameName) {
+    // Primero intentamos traducir el título al inglés
+    const englishName = await translateToEnglish(gameName);
+
+    // Intentamos buscar por el nombre en inglés
+    let gameDetail = await fetchGameDetailsByName(englishName);
+    if (!gameDetail) {
+      // Si no se encontró, intentamos con el nombre original
+      gameDetail = await fetchGameDetailsByName(gameName);
+    }
+
+    if (!gameDetail) {
+      // No se encontró con ninguno de los dos
+      return {
+        name: gameName,
+        image: null,
+        publisher: null,
+        year: null,
+        steamUrl: null,
+        notFound: true
+      };
+    }
 
     let publisher = null;
     if (gameDetail.publishers && gameDetail.publishers.length > 0) {
@@ -193,7 +180,6 @@
     if (gameDetail.stores && gameDetail.stores.length > 0) {
       const steamStore = gameDetail.stores.find(s => s.store && s.store.slug === 'steam');
       if (steamStore) {
-        // Intentar url_en primero
         if (steamStore.url_en) {
           steamUrl = steamStore.url_en;
         } else if (steamStore.url) {
@@ -202,7 +188,6 @@
             if (steamStore.store && steamStore.store.domain) {
               steamUrl = 'https://' + steamStore.store.domain + steamStore.url;
             } else {
-              // fallback genérico
               steamUrl = 'https://store.steampowered.com' + steamStore.url;
             }
           } else {
@@ -218,8 +203,7 @@
       publisher: publisher,
       year: year,
       steamUrl: steamUrl,
-      notFound: false,
-      mismatch: false
+      notFound: false
     };
   }
 
@@ -228,7 +212,7 @@
     const gamesList = await fetchGamesList();
 
     for (const gameName of gamesList) {
-      const {name, image, publisher, year, steamUrl, notFound, mismatch} = await fetchGameInfo(gameName);
+      const {name, image, publisher, year, steamUrl, notFound} = await fetchGameInfo(gameName);
       
       const gameDiv = document.createElement('div');
       gameDiv.classList.add('game');
@@ -236,11 +220,7 @@
       if (notFound) {
         const noResult = document.createElement('div');
         noResult.classList.add('no-results');
-        if (mismatch) {
-          noResult.textContent = `No se encontró una coincidencia adecuada para "${name}".`;
-        } else {
-          noResult.textContent = `No se encontró información para "${name}".`;
-        }
+        noResult.textContent = `No se encontró información para "${name}".`;
         gameDiv.appendChild(noResult);
       } else {
         if (image) {
@@ -285,4 +265,3 @@
 </script>
 </body>
 </html>
-
