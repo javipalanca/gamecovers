@@ -18,192 +18,108 @@
   }
   .game-title {
     font-weight: bold;
+    margin-bottom: 5px;
   }
-  .no-results {
+  textarea {
+    width: 100%;
+    height: 300px;
+  }
+  .actions {
+    margin-top: 20px;
+  }
+  .info {
     font-style: italic;
-    color: #555;
-  }
-  .login, .admin-panel {
-    max-width: 400px;
-    margin: auto;
-  }
-  .admin-panel {
-    display: none;
-  }
-  .overrides-status {
     margin-bottom: 20px;
-    font-style: italic;
     color: #333;
-  }
-  button {
-    margin-top: 5px;
   }
 </style>
 </head>
 <body>
 
-<div class="login">
-  <h1>Admin Login</h1>
-  <input type="password" id="adminPassword" placeholder="Contraseña"/><br/><br/>
-  <button id="loginBtn">Acceder</button>
+<h1>Admin Overrides</h1>
+<p class="info">
+  Esta página te permite editar las portadas override. Cuando termines, pulsa "Generar JSON" para obtener el contenido completo de <code>overrides.json</code>, luego ve a GitHub y pégalo manualmente allí.
+</p>
+
+<div id="games"></div>
+
+<div class="actions">
+  <button id="generateJsonBtn">Generar JSON</button>
 </div>
 
-<div class="admin-panel">
-  <h1>Editor de Overrides</h1>
-  <div class="overrides-status" id="overridesStatus">Cargando datos...</div>
-  <div id="games"></div>
-  <button id="saveOverrides">Guardar Cambios en Overrides</button>
+<div id="outputContainer" style="margin-top:20px;display:none;">
+  <h2>JSON Actualizado</h2>
+  <p>Copia este JSON y pégalo manualmente en el repositorio (overrides.json).</p>
+  <textarea id="outputJson"></textarea>
 </div>
 
 <script>
-// Ajusta estas URLs a tus ficheros reales:
-const GIST_GAMES_URL = 'https://gist.githubusercontent.com/javipalanca/8c5861a606318afba3d94573836c5212/raw/juegosterminados.txt';
-const OVERRIDES_URL = 'https://raw.githubusercontent.com/javipalanca/gamecovers/main/overrides.json'; 
-// Nota: Reemplaza con la URL real de overrides.json en tu repositorio (versión RAW).
-// OJO: Para actualizar overrides.json necesitarás la API de GitHub, no basta con el raw URL.
+  const GIST_GAMES_URL = 'https://gist.githubusercontent.com/javipalanca/8c5861a606318afba3d94573836c5212/raw/juegosterminados.txt';
+  //const OVERRIDES_URL = 'overrides.json'; // Ajustar a la ubicación real del overrides.json, p.ej. en el mismo repo (debe poder ser cargado por fetch)
+  const OVERRIDES_URL = 'https://raw.githubusercontent.com/javipalanca/gamecovers/main/overrides.json'; 
 
-// Hash de la contraseña admin:
-// Esto es un ejemplo. Supongamos que la contraseña es "adminSecret" y su SHA-256 lo obtienes con alguna herramienta.
-// Por ejemplo, SHA-256 de "adminSecret" (ficticio): "ae2f0b60157f72c2fb4bdadcd7136c5acdbcb5fa92f0755028d46a3cf2355e4b"
-// Debes calcularlo y reemplazarlo.
-const ADMIN_PASS_HASH = "47f2596b2fac5649f4df5de41a65c27db2d06d71307c3237898cf6c7d8dc0eb6";
+  let originalGames = [];
+  let overrides = {};
 
-// Función para hashear en SHA-256 (necesitamos Web Crypto API)
-async function sha256(str) {
-  const enc = new TextEncoder().encode(str);
-  const digest = await crypto.subtle.digest('SHA-256', enc);
-  const arr = Array.from(new Uint8Array(digest));
-  return arr.map(b => b.toString(16).padStart(2, '0')).join('');
-}
+  async function loadData() {
+    const [gamesText, overridesData] = await Promise.all([
+      fetch(GIST_GAMES_URL).then(r => r.text()),
+      fetch(OVERRIDES_URL).then(r => r.json())
+    ]);
 
-let originalGames = [];
-let overrides = {};
-
-// Al cargar
-document.getElementById('loginBtn').addEventListener('click', async () => {
-  const pass = document.getElementById('adminPassword').value;
-  const hash = await sha256(pass);
-  if (hash === ADMIN_PASS_HASH) {
-    document.querySelector('.login').style.display = 'none';
-    document.querySelector('.admin-panel').style.display = 'block';
-    loadData();
-  } else {
-    alert('Contraseña incorrecta');
-  }
-});
-
-async function loadData() {
-  document.getElementById('overridesStatus').textContent = "Cargando lista de juegos...";
-  
-  const gamesRes = await fetch(GIST_GAMES_URL);
-  const gamesText = await gamesRes.text();
-  
-  const lines = gamesText.split('\n').map(l => l.trim()).filter(l => l !== '');
-  originalGames = lines.map(line => {
-    let cleanLine = line.replace(/^\*\s*/, '');
-    let parts = cleanLine.split(' - ');
-    let gistGameName = parts[0].trim();
-    return gistGameName;
-  });
-
-  document.getElementById('overridesStatus').textContent = "Cargando overrides...";
-  const overridesRes = await fetch(OVERRIDES_URL);
-  overrides = await overridesRes.json();
-
-  renderGames();
-}
-
-function renderGames() {
-  document.getElementById('overridesStatus').textContent = "Listo. Puedes cambiar portadas.";
-  const container = document.getElementById('games');
-  container.innerHTML = '';
-
-  originalGames.forEach(gName => {
-    const div = document.createElement('div');
-    div.classList.add('game');
-    const title = document.createElement('div');
-    title.classList.add('game-title');
-    title.textContent = gName;
-    div.appendChild(title);
-
-    const currentOverride = overrides[gName];
-    const info = document.createElement('div');
-    info.innerHTML = currentOverride 
-      ? `Portada actual (override): <br><img src="${currentOverride}" style="max-width:100px;display:block;margin:5px 0;">` 
-      : '<i>Sin override, se usa la portada por defecto</i>';
-    div.appendChild(info);
-
-    const btn = document.createElement('button');
-    btn.textContent = 'Cambiar portada override';
-    btn.addEventListener('click', async () => {
-      const newUrl = prompt(`Introduce la nueva URL de la portada para "${gName}":`, currentOverride || '');
-      if (newUrl !== null && newUrl.trim() !== '') {
-        overrides[gName] = newUrl.trim();
-        renderGames(); // refresh
-      }
+    overrides = overridesData;
+    const lines = gamesText.split('\n').map(l => l.trim()).filter(l => l !== '');
+    originalGames = lines.map(line => {
+      let cleanLine = line.replace(/^\*\s*/, '');
+      let parts = cleanLine.split(' - ');
+      let gistGameName = parts[0].trim();
+      return gistGameName;
     });
-    div.appendChild(btn);
 
-    container.appendChild(div);
-  });
-}
-
-// Guardar cambios
-document.getElementById('saveOverrides').addEventListener('click', async () => {
-  // Para guardar cambios en overrides.json en el repositorio, necesitamos usar la API de GitHub.
-  // Aquí simplificamos: pedimos al admin un token de GitHub con permisos de commit.
-  // Debes tener en cuenta que este token expone permisos. Lo ideal es hacerlo en backend.
-  
-  const token = prompt("Introduce tu token de GitHub con permisos de escritura en el repositorio:");
-  if (!token) return;
-
-  // Necesitamos saber la ubicación exacta del fichero en GitHub y hacer un commit a través de la API.
-  // Supongamos que overrides.json está en el repo "tu_usuario/tu_repo" en la rama "main".
-  // Usaremos la API de GitHub para obtener el sha del fichero actual, luego hacer un PUT para actualizarlo.
-
-  const owner = "javipalanca"; // Cambia por tu usuario
-  const repo = "gamecovers"; // Cambia por tu repo
-  const path = "overrides.json";
-  const branch = "main";
-
-  // 1) Obtener SHA actual del archivo
-  const fileRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${encodeURIComponent(path)}?ref=${branch}`, {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  });
-  if (!fileRes.ok) {
-    alert("No se pudo obtener la información del archivo. Verifica el token y la ruta.");
-    return;
-  }
-  const fileData = await fileRes.json();
-  const sha = fileData.sha;
-
-  const updatedContent = btoa(JSON.stringify(overrides, null, 2));
-
-  // 2) Actualizar el archivo
-  const updateRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${encodeURIComponent(path)}`, {
-    method: 'PUT',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      message: "Update overrides.json from admin panel",
-      content: updatedContent,
-      sha: sha,
-      branch: branch
-    })
-  });
-
-  if (updateRes.ok) {
-    alert("Overrides guardados con éxito.");
-  } else {
-    alert("Error al guardar overrides. Revisa el token y permisos.");
+    renderGames();
   }
 
-});
+  function renderGames() {
+    const container = document.getElementById('games');
+    container.innerHTML = '';
+    
+    originalGames.forEach(gName => {
+      const div = document.createElement('div');
+      div.classList.add('game');
+
+      const title = document.createElement('div');
+      title.classList.add('game-title');
+      title.textContent = gName;
+      div.appendChild(title);
+
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.placeholder = 'URL portada override';
+      input.style.width = '100%';
+      input.value = overrides[gName] || '';
+      input.addEventListener('change', () => {
+        const val = input.value.trim();
+        if (val) {
+          overrides[gName] = val;
+        } else {
+          delete overrides[gName];
+        }
+      });
+
+      div.appendChild(input);
+      container.appendChild(div);
+    });
+  }
+
+  document.getElementById('generateJsonBtn').addEventListener('click', () => {
+    const outputContainer = document.getElementById('outputContainer');
+    const outputJson = document.getElementById('outputJson');
+    const finalJson = JSON.stringify(overrides, null, 2);
+    outputJson.value = finalJson;
+    outputContainer.style.display = 'block';
+  });
+
+  loadData();
 </script>
-
 </body>
 </html>
