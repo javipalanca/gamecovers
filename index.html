@@ -91,7 +91,7 @@
 </head>
 <body>
 <header>
-  <h1><a href="https://twitch.tv/DrPalanca" target="_blank">Juegos Terminados de DrPalanca 3</a></h1>
+  <h1><a href="https://twitch.tv/DrPalanca" target="_blank">Juegos Terminados de DrPalanca 4</a></h1>
 </header>
 <div id="games" class="games-container"></div>
 
@@ -104,9 +104,28 @@
     const text = await response.text();
     const lines = text.split('\n').map(l => l.trim()).filter(l => l !== '');
     return lines.map(line => {
+      // Ejemplo de línea:
+      // * Day of the Tentacle (Remastered) - LucasArts (1993, SE 2016)
+      // 1) Quitamos "* "
       let cleanLine = line.replace(/^\*\s*/, '');
-      let gameName = cleanLine.split(' - ')[0];
-      return gameName.trim();
+      // 2) Partimos en 2 por " - "
+      let parts = cleanLine.split(' - ');
+      let gameName = parts[0].trim(); // "Day of the Tentacle (Remastered)"
+      let publisher = null;
+      let year = null;
+      if (parts[1]) {
+        // parts[1] podría ser: "LucasArts (1993, SE 2016)"
+        let pubPart = parts[1];
+        // Publisher es la parte antes de la primera '('
+        let pubSplit = pubPart.split(' (');
+        publisher = pubSplit[0].trim(); // "LucasArts"
+        // Intentamos extraer el año del primer paréntesis con un regex
+        let yearMatch = pubPart.match(/\((\d{4})/);
+        if (yearMatch) {
+          year = yearMatch[1]; // "1993"
+        }
+      }
+      return { gameName, publisher, year };
     });
   }
 
@@ -133,7 +152,6 @@
     if (!dataSearch.results || dataSearch.results.length === 0) {
       return null;
     }
-    // Tomamos el primer resultado
     const game = dataSearch.results[0];
     const gameId = game.id;
     let urlDetail = `https://api.rawg.io/api/games/${gameId}?key=${RAWG_API_KEY}`;
@@ -142,19 +160,30 @@
     return gameDetail;
   }
 
-  async function fetchGameInfo(gameName) {
-    // Primero intentamos traducir el título al inglés
+  async function fetchGameInfo({gameName, publisher, year}) {
     const englishName = await translateToEnglish(gameName);
 
-    // Intentamos buscar por el nombre en inglés
-    let gameDetail = await fetchGameDetailsByName(englishName);
-    if (!gameDetail) {
-      // Si no se encontró, intentamos con el nombre original
-      gameDetail = await fetchGameDetailsByName(gameName);
+    // Intentamos búsquedas en orden de mayor especificidad a menor:
+    // 1) Título traducido + publisher + año
+    let searchQueries = [];
+    let composedQuery = englishName;
+    if (publisher) composedQuery += " " + publisher;
+    if (year) composedQuery += " " + year;
+    searchQueries.push(composedQuery.trim());
+
+    // 2) Sólo título en inglés
+    searchQueries.push(englishName);
+
+    // 3) Título original
+    searchQueries.push(gameName);
+
+    let gameDetail = null;
+    for (let q of searchQueries) {
+      gameDetail = await fetchGameDetailsByName(q);
+      if (gameDetail) break;
     }
 
     if (!gameDetail) {
-      // No se encontró con ninguno de los dos
       return {
         name: gameName,
         image: null,
@@ -165,34 +194,30 @@
       };
     }
 
-    let publisher = null;
+    let foundPublisher = null;
     if (gameDetail.publishers && gameDetail.publishers.length > 0) {
-      publisher = gameDetail.publishers[0].name;
+      foundPublisher = gameDetail.publishers[0].name;
     }
 
-    let year = null;
+    let foundYear = null;
     if (gameDetail.released) {
-      year = gameDetail.released.split('-')[0];
+      foundYear = gameDetail.released.split('-')[0];
     }
 
     // Buscar URL de Steam
     let steamUrl = null;
     if (gameDetail.stores && gameDetail.stores.length > 0) {
       const steamStore = gameDetail.stores.find(s => s.store && s.store.slug === 'steam');
-      if (steamStore) {
-        if (steamStore.url_en) {
-          steamUrl = steamStore.url_en;
-        } else if (steamStore.url) {
-          // Si url es relativa, construirla con el dominio
-          if (!steamStore.url.startsWith('http')) {
-            if (steamStore.store && steamStore.store.domain) {
-              steamUrl = 'https://' + steamStore.store.domain + steamStore.url;
-            } else {
-              steamUrl = 'https://store.steampowered.com' + steamStore.url;
-            }
+      if (steamStore && steamStore.url) {
+        if (!steamStore.url.startsWith('http')) {
+          // Reconstruimos con el dominio
+          if (steamStore.store && steamStore.store.domain) {
+            steamUrl = 'https://' + steamStore.store.domain + steamStore.url;
           } else {
-            steamUrl = steamStore.url;
+            steamUrl = 'https://store.steampowered.com' + steamStore.url;
           }
+        } else {
+          steamUrl = steamStore.url;
         }
       }
     }
@@ -200,8 +225,8 @@
     return {
       name: gameDetail.name,
       image: gameDetail.background_image,
-      publisher: publisher,
-      year: year,
+      publisher: foundPublisher,
+      year: foundYear,
       steamUrl: steamUrl,
       notFound: false
     };
@@ -211,8 +236,8 @@
     const gamesContainer = document.getElementById('games');
     const gamesList = await fetchGamesList();
 
-    for (const gameName of gamesList) {
-      const {name, image, publisher, year, steamUrl, notFound} = await fetchGameInfo(gameName);
+    for (const gameObj of gamesList) {
+      const {name, image, publisher, year, steamUrl, notFound} = await fetchGameInfo(gameObj);
       
       const gameDiv = document.createElement('div');
       gameDiv.classList.add('game');
@@ -220,7 +245,7 @@
       if (notFound) {
         const noResult = document.createElement('div');
         noResult.classList.add('no-results');
-        noResult.textContent = `No se encontró información para "${name}".`;
+        noResult.textContent = `No se encontró información para "${gameObj.gameName}".`;
         gameDiv.appendChild(noResult);
       } else {
         if (image) {
