@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Portadas de Videojuegos</title>
+<title>Juegos Terminados de DrPalanca</title>
 <style>
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -83,27 +83,26 @@
   .steam-link:hover {
     background: #66c0f4;
   }
+  .no-results {
+    font-style: italic;
+    color: #eee;
+  }
 </style>
 </head>
 <body>
 <header>
-  <h1><a href="https://twitch.tv/DrPalanca" target="_blank">Portadas de Videojuegos (DrPalanca)</a></h1>
+  <h1><a href="https://twitch.tv/DrPalanca" target="_blank">Juegos Terminados de DrPalanca</a></h1>
 </header>
 <div id="games" class="games-container"></div>
 
 <script>
-  // URL del Gist con la lista de juegos
   const GIST_URL = 'https://gist.githubusercontent.com/javipalanca/8c5861a606318afba3d94573836c5212/raw/juegosterminados.txt';
-  
-  // Clave de la API de RAWG
   const RAWG_API_KEY = 'eacbfbc149fe4f4a90fff776bb18be1b';
 
   async function fetchGamesList() {
     const response = await fetch(GIST_URL);
     const text = await response.text();
-    // Cada línea comienza con '* ' y luego el nombre del juego, un " - " y el resto
     const lines = text.split('\n').map(l => l.trim()).filter(l => l !== '');
-    // Extraemos solo el nombre del juego antes del primer " - "
     return lines.map(line => {
       let cleanLine = line.replace(/^\*\s*/, '');
       let gameName = cleanLine.split(' - ')[0];
@@ -111,8 +110,38 @@
     });
   }
 
+  // Función para normalizar y comparar nombres
+  function normalize(str) {
+    return str.toLowerCase().replace(/[^a-z0-9\s]/gi, '').trim();
+  }
+
+  function findBestMatch(gameName, results) {
+    const normalizedQuery = normalize(gameName);
+    let best = null;
+    let bestScore = -1;
+    
+    for (const r of results) {
+      const normalizedName = normalize(r.name);
+      // Estrategia simple: puntuamos si el nombre del juego buscado aparece en el nombre del resultado
+      let score = 0;
+      if (normalizedName.includes(normalizedQuery)) {
+        score += 10; 
+      }
+      // Puedes añadir más lógica, por ahora mantenemos simple
+      if (score > bestScore) {
+        bestScore = score;
+        best = r;
+      }
+    }
+    // Si no hay score > -1, no hay coincidencia buena
+    if (bestScore <= 0) {
+      return null;
+    }
+    return best;
+  }
+
   async function fetchGameInfo(gameName) {
-    // Primero hacemos la búsqueda
+    // Buscar el juego
     let urlSearch = `https://api.rawg.io/api/games?key=${RAWG_API_KEY}&search=${encodeURIComponent(gameName)}`;
     const resSearch = await fetch(urlSearch);
     const dataSearch = await resSearch.json();
@@ -123,45 +152,62 @@
         image: null,
         publisher: null,
         year: null,
-        steamUrl: null
+        steamUrl: null,
+        notFound: true,
+        mismatch: false
       };
     }
 
-    // Tomamos el primer resultado
-    const game = dataSearch.results[0];
-    const gameId = game.id;
+    // Intentar encontrar el mejor match
+    const bestResult = findBestMatch(gameName, dataSearch.results);
+    if (!bestResult) {
+      // No se encontró un match adecuado
+      return {
+        name: gameName,
+        image: null,
+        publisher: null,
+        year: null,
+        steamUrl: null,
+        notFound: true,
+        mismatch: true
+      };
+    }
 
-    // Ahora consultamos el detalle del juego
+    const gameId = bestResult.id;
     let urlDetail = `https://api.rawg.io/api/games/${gameId}?key=${RAWG_API_KEY}`;
     const resDetail = await fetch(urlDetail);
     const gameDetail = await resDetail.json();
 
-    // Extraer publisher (si existe)
     let publisher = null;
     if (gameDetail.publishers && gameDetail.publishers.length > 0) {
       publisher = gameDetail.publishers[0].name;
     }
 
-    // Extraer año de lanzamiento del campo released (YYYY-MM-DD)
     let year = null;
     if (gameDetail.released) {
       year = gameDetail.released.split('-')[0];
     }
 
-    // Buscar store de Steam
+    // Buscar URL de Steam
     let steamUrl = null;
     if (gameDetail.stores && gameDetail.stores.length > 0) {
       const steamStore = gameDetail.stores.find(s => s.store && s.store.slug === 'steam');
       if (steamStore) {
-        // El campo "url" en "stores" es relativo, se combina con la base store domain.
-        // Según la API de RAWG, "url" es la URL parcial. De la doc: 
-        // "The URL might be partial (like '/store/app/12345'). You might need to prepend the base store URL."
-        // Sin embargo, en muchos casos url es completa, si no, podemos asumir una URL básica de Steam:
-        // Checamos si es URL absoluta, si no, añadimos https://store.steampowered.com
-        if (!steamStore.url.startsWith('http')) {
-          steamUrl = 'https://store.steampowered.com' + steamStore.url;
-        } else {
-          steamUrl = steamStore.url;
+        // Intentar url_en primero
+        if (steamStore.url_en) {
+          steamUrl = steamStore.url_en;
+        } else if (steamStore.url) {
+          // Si url es relativa, construirla con el dominio
+          if (!steamStore.url.startsWith('http')) {
+            if (steamStore.store && steamStore.store.domain) {
+              steamUrl = 'https://' + steamStore.store.domain + steamStore.url;
+            } else {
+              // fallback genérico
+              steamUrl = 'https://store.steampowered.com' + steamStore.url;
+            }
+          } else {
+            steamUrl = steamStore.url;
+          }
         }
       }
     }
@@ -171,7 +217,9 @@
       image: gameDetail.background_image,
       publisher: publisher,
       year: year,
-      steamUrl: steamUrl
+      steamUrl: steamUrl,
+      notFound: false,
+      mismatch: false
     };
   }
 
@@ -180,43 +228,53 @@
     const gamesList = await fetchGamesList();
 
     for (const gameName of gamesList) {
-      const {name, image, publisher, year, steamUrl} = await fetchGameInfo(gameName);
+      const {name, image, publisher, year, steamUrl, notFound, mismatch} = await fetchGameInfo(gameName);
       
       const gameDiv = document.createElement('div');
       gameDiv.classList.add('game');
       
-      if (image) {
-        const img = document.createElement('img');
-        img.src = image;
-        img.alt = name;
-        gameDiv.appendChild(img);
+      if (notFound) {
+        const noResult = document.createElement('div');
+        noResult.classList.add('no-results');
+        if (mismatch) {
+          noResult.textContent = `No se encontró una coincidencia adecuada para "${name}".`;
+        } else {
+          noResult.textContent = `No se encontró información para "${name}".`;
+        }
+        gameDiv.appendChild(noResult);
       } else {
-        const placeholder = document.createElement('div');
-        placeholder.textContent = 'Sin imagen disponible';
-        placeholder.style.fontStyle = 'italic';
-        placeholder.style.color = '#eee';
-        gameDiv.appendChild(placeholder);
-      }
+        if (image) {
+          const img = document.createElement('img');
+          img.src = image;
+          img.alt = name;
+          gameDiv.appendChild(img);
+        } else {
+          const placeholder = document.createElement('div');
+          placeholder.textContent = 'Sin imagen disponible';
+          placeholder.classList.add('no-results');
+          gameDiv.appendChild(placeholder);
+        }
 
-      const title = document.createElement('div');
-      title.classList.add('game-title');
-      title.textContent = name;
-      gameDiv.appendChild(title);
+        const title = document.createElement('div');
+        title.classList.add('game-title');
+        title.textContent = name;
+        gameDiv.appendChild(title);
 
-      const info = document.createElement('div');
-      info.classList.add('game-info');
-      const pubText = publisher ? `<strong>Editor:</strong> ${publisher}<br>` : '';
-      const yearText = year ? `<strong>Año:</strong> ${year}` : '';
-      info.innerHTML = pubText + yearText;
-      gameDiv.appendChild(info);
+        const info = document.createElement('div');
+        info.classList.add('game-info');
+        const pubText = publisher ? `<strong>Editor:</strong> ${publisher}<br>` : '';
+        const yearText = year ? `<strong>Año:</strong> ${year}` : '';
+        info.innerHTML = pubText + yearText;
+        gameDiv.appendChild(info);
 
-      if (steamUrl) {
-        const steamLink = document.createElement('a');
-        steamLink.classList.add('steam-link');
-        steamLink.href = steamUrl;
-        steamLink.target = '_blank';
-        steamLink.textContent = 'Ver en Steam';
-        gameDiv.appendChild(steamLink);
+        if (steamUrl) {
+          const steamLink = document.createElement('a');
+          steamLink.classList.add('steam-link');
+          steamLink.href = steamUrl;
+          steamLink.target = '_blank';
+          steamLink.textContent = 'Ver en Steam';
+          gameDiv.appendChild(steamLink);
+        }
       }
 
       gamesContainer.appendChild(gameDiv);
@@ -227,3 +285,4 @@
 </script>
 </body>
 </html>
+
