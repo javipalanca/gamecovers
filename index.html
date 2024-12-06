@@ -91,12 +91,13 @@
 </head>
 <body>
 <header>
-  <h1><a href="https://twitch.tv/DrPalanca" target="_blank">Juegos Terminados de DrPalanca 5</a></h1>
+  <h1><a href="https://twitch.tv/DrPalanca" target="_blank">Juegos Terminados de DrPalanca</a></h1>
 </header>
 <div id="games" class="games-container"></div>
 
 <script>
   const GIST_URL = 'https://gist.githubusercontent.com/javipalanca/8c5861a606318afba3d94573836c5212/raw/juegosterminados.txt';
+  const OVERRIDES_URL = 'https://raw.githubusercontent.com/javipalanca/gamecovers/main/overrides.json';
   const RAWG_API_KEY = 'eacbfbc149fe4f4a90fff776bb18be1b';
 
   async function fetchGamesList() {
@@ -104,32 +105,29 @@
     const text = await response.text();
     const lines = text.split('\n').map(l => l.trim()).filter(l => l !== '');
     return lines.map(line => {
-      // Ejemplo de línea: * Day of the Tentacle (Remastered) - LucasArts (1993, SE 2016)
+      // Ejemplo: "* Day of the Tentacle (Remastered) - LucasArts (1993, SE 2016)"
       let cleanLine = line.replace(/^\*\s*/, '');
       let parts = cleanLine.split(' - ');
-      let gistGameName = parts[0].trim();
+      let gistGameName = parts[0].trim(); 
       let publisher = null;
       let year = null;
       if (parts[1]) {
-        // Buscar publisher y año
         let pubPart = parts[1];
         let pubSplit = pubPart.split(' (');
         publisher = pubSplit[0].trim();
-        // Extraer el primer año encontrado en el string
         let yearMatch = pubPart.match(/\b(\d{4})\b/);
         if (yearMatch) {
           year = yearMatch[1];
         }
       }
       return { 
-        gistGameName, 
-        publisher: publisher || null, 
-        year: year || null
+        gistName: gistGameName, 
+        gistPublisher: publisher || null, 
+        gistYear: year || null
       };
     });
   }
 
-  // Función para traducir texto al inglés usando MyMemory
   async function translateToEnglish(text) {
     const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=es|en`;
     try {
@@ -141,7 +139,7 @@
     } catch (e) {
       console.log("Error en la traducción:", e);
     }
-    return text; // fallback si falla la traducción
+    return text;
   }
 
   async function fetchGameDetailsByName(queryName) {
@@ -159,35 +157,43 @@
     return gameDetail;
   }
 
-  async function fetchGameInfo({gistGameName, publisher, year}) {
-    const englishName = await translateToEnglish(gistGameName);
-
-    // Intentamos con el título traducido
-    let gameDetail = await fetchGameDetailsByName(englishName);
-    if (!gameDetail) {
-      // Intentamos con el título original
-      gameDetail = await fetchGameDetailsByName(gistGameName);
+  async function fetchGameInfo({gistName, gistPublisher, gistYear}, overrides) {
+    // Primero comprobar si hay un override
+    if (overrides[gistName]) {
+      // Tenemos portada override directamente
+      return {
+        gistName,
+        gistPublisher,
+        gistYear,
+        image: overrides[gistName],
+        steamUrl: null,
+        notFound: false
+      };
     }
 
-    // Si aún así no encontramos nada, devolvemos sin datos
+    // Si no hay override, intentamos con el nombre traducido y original para RAWG
+    const englishName = await translateToEnglish(gistName);
+    let gameDetail = await fetchGameDetailsByName(englishName);
+    if (!gameDetail) {
+      gameDetail = await fetchGameDetailsByName(gistName);
+    }
+
     if (!gameDetail) {
       return {
-        gistName: gistGameName,
-        gistPublisher: publisher,
-        gistYear: year,
+        gistName,
+        gistPublisher,
+        gistYear,
         image: null,
         steamUrl: null,
         notFound: true
       };
     }
 
-    // Buscar URL de Steam
     let steamUrl = null;
     if (gameDetail.stores && gameDetail.stores.length > 0) {
       const steamStore = gameDetail.stores.find(s => s.store && s.store.slug === 'steam');
       if (steamStore && steamStore.url) {
         if (!steamStore.url.startsWith('http')) {
-          // Reconstruimos con el dominio si es relativo
           if (steamStore.store && steamStore.store.domain) {
             steamUrl = 'https://' + steamStore.store.domain + steamStore.url;
           } else {
@@ -200,9 +206,9 @@
     }
 
     return {
-      gistName: gistGameName,
-      gistPublisher: publisher,
-      gistYear: year,
+      gistName,
+      gistPublisher,
+      gistYear,
       image: gameDetail.background_image || null,
       steamUrl: steamUrl,
       notFound: false
@@ -211,15 +217,18 @@
 
   async function showGames() {
     const gamesContainer = document.getElementById('games');
-    const gamesList = await fetchGamesList();
+    const [gamesList, overrides] = await Promise.all([
+      fetchGamesList(),
+      fetch(OVERRIDES_URL).then(r => r.json())
+    ]);
 
     for (const gameObj of gamesList) {
-      const {gistName, gistPublisher, gistYear, image, steamUrl, notFound} = await fetchGameInfo(gameObj);
+      const {gistName, gistPublisher, gistYear, image, steamUrl, notFound} = await fetchGameInfo(gameObj, overrides);
       
       const gameDiv = document.createElement('div');
       gameDiv.classList.add('game');
       
-      if (notFound) {
+      if (notFound && !image) {
         const noResult = document.createElement('div');
         noResult.classList.add('no-results');
         noResult.textContent = `No se encontró información para "${gistName}".`;
@@ -239,8 +248,7 @@
 
         const title = document.createElement('div');
         title.classList.add('game-title');
-        // Siempre usamos el título del Gist
-        title.textContent = gistName;
+        title.textContent = gistName; // Siempre el nombre del gist
         gameDiv.appendChild(title);
 
         const info = document.createElement('div');
