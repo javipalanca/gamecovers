@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Portadas de Videojuegos</title>
+<style>
+  body {
+    font-family: sans-serif;
+    padding: 20px;
+    background: #f9f9f9;
+  }
+  h1 {
+    text-align: center;
+  }
+  .games-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+  }
+  .game {
+    background: #fff;
+    border-radius: 4px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  .game img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+  .game-title {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+<h1>Portadas de Videojuegos</h1>
+<div id="games" class="games-container"></div>
+
+<script>
+  // URL del Gist con la lista de juegos (ajusta con tu gist real)
+  const GIST_URL = 'https://gist.githubusercontent.com/javipalanca/8c5861a606318afba3d94573836c5212/raw/juegosterminados.txt';
+  
+  // Clave de la API de RAWG (obtén la tuya en https://rawg.io/apidocs)
+  const RAWG_API_KEY = 'eacbfbc149fe4f4a90fff776bb18be1b';
+
+  async function fetchGamesList() {
+    const response = await fetch(GIST_URL);
+    const text = await response.text();
+    // Cada línea comienza con '* ' y luego el nombre del juego, un " - " y el resto de info
+    const lines = text.split('\n').map(l => l.trim()).filter(l => l !== '');
+    // Extraemos solo el nombre del juego antes del primer " - "
+    return lines.map(line => {
+      // Remover el '* ' inicial
+      let cleanLine = line.replace(/^\*\s*/, '');
+      // Tomar la parte antes de " - "
+      let gameName = cleanLine.split(' - ')[0];
+      return gameName.trim();
+    });
+  }
+
+  async function fetchGameCover(gameName) {
+    const url = `https://api.rawg.io/api/games?key=${RAWG_API_KEY}&search=${encodeURIComponent(gameName)}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    
+    if (data.results && data.results.length > 0) {
+      return {
+        name: data.results[0].name,
+        image: data.results[0].background_image
+      };
+    } else {
+      return { name: gameName, image: null };
+    }
+  }
+
+  async function showGames() {
+    const gamesContainer = document.getElementById('games');
+    const gamesList = await fetchGamesList();
+
+    for (const gameName of gamesList) {
+      const {name, image} = await fetchGameCover(gameName);
+      
+      const gameDiv = document.createElement('div');
+      gameDiv.classList.add('game');
+      
+      if (image) {
+        const img = document.createElement('img');
+        img.src = image;
+        img.alt = name;
+        gameDiv.appendChild(img);
+      } else {
+        const placeholder = document.createElement('div');
+        placeholder.textContent = 'Sin imagen disponible';
+        placeholder.style.fontStyle = 'italic';
+        placeholder.style.color = '#666';
+        gameDiv.appendChild(placeholder);
+      }
+
+      const title = document.createElement('div');
+      title.classList.add('game-title');
+      title.textContent = name;
+      gameDiv.appendChild(title);
+
+      gamesContainer.appendChild(gameDiv);
+    }
+  }
+
+  showGames();
+</script>
+</body>
+</html>
