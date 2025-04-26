@@ -91,186 +91,86 @@
 <body>
 <header>
   <h1><a href="https://twitch.tv/DrPalanca" target="_blank">Juegos Terminados de DrPalanca</a></h1>
+  <div id="stats" class="stats"></div>
+  <input type="text" id="search" placeholder="Buscar juegos..." oninput="filterGames()" />
 </header>
 <div id="games" class="games-container"></div>
 
 <script>
-  const GIST_URL = 'https://gist.githubusercontent.com/javipalanca/8c5861a606318afba3d94573836c5212/raw/juegosterminados.txt';
-  const OVERRIDES_URL = 'https://raw.githubusercontent.com/javipalanca/gamecovers/main/overrides.json';
-  const RAWG_API_KEY = 'eacbfbc149fe4f4a90fff776bb18be1b';
+  const GAMES_JSON_URL = 'https://gist.githubusercontent.com/javipalanca/b38d04ce3719759e33d75acc7e1752b7/raw/16b457594ccb4c56e1bab59b3201f2bf5904044f/juegosterminados.json';
+  let gamesList = []; // To store the fetched games
 
   async function fetchGamesList() {
-    const response = await fetch(GIST_URL);
-    const text = await response.text();
-    const lines = text.split('\n').map(l => l.trim()).filter(l => l !== '');
-    return lines.map(line => {
-      // Ejemplo: "* Day of the Tentacle (Remastered) - LucasArts (1993, SE 2016)"
-      let cleanLine = line.replace(/^\*\s*/, '');
-      let parts = cleanLine.split(' - ');
-      let gistGameName = parts[0].trim(); 
-      let publisher = null;
-      let year = null;
-      if (parts[1]) {
-        let pubPart = parts[1];
-        let pubSplit = pubPart.split(' (');
-        publisher = pubSplit[0].trim();
-        let yearMatch = pubPart.match(/\b(\d{4})\b/);
-        if (yearMatch) {
-          year = yearMatch[1];
-        }
-      }
-      return { 
-        gistName: gistGameName, 
-        gistPublisher: publisher || null, 
-        gistYear: year || null
-      };
-    });
-  }
-
-  async function translateToEnglish(text) {
-    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=es|en`;
-    try {
-      const res = await fetch(url);
-      const data = await res.json();
-      if (data && data.responseData && data.responseData.translatedText) {
-        return data.responseData.translatedText.trim();
-      }
-    } catch (e) {
-      console.log("Error en la traducción:", e);
-    }
-    return text;
-  }
-
-  async function fetchGameDetailsByName(queryName) {
-    let urlSearch = `https://api.rawg.io/api/games?key=${RAWG_API_KEY}&search=${encodeURIComponent(queryName)}`;
-    const resSearch = await fetch(urlSearch);
-    const dataSearch = await resSearch.json();
-    if (!dataSearch.results || dataSearch.results.length === 0) {
-      return null;
-    }
-    const game = dataSearch.results[0];
-    const gameId = game.id;
-    let urlDetail = `https://api.rawg.io/api/games/${gameId}?key=${RAWG_API_KEY}`;
-    const resDetail = await fetch(urlDetail);
-    const gameDetail = await resDetail.json();
-    return gameDetail;
-  }
-
-  async function fetchGameInfo({gistName, gistPublisher, gistYear}, overrides) {
-    // Primero comprobar si hay un override
-    if (overrides[gistName]) {
-      // Tenemos portada override directamente
-      return {
-        gistName,
-        gistPublisher,
-        gistYear,
-        image: overrides[gistName],
-        steamUrl: null,
-        notFound: false
-      };
-    }
-
-    // Si no hay override, intentamos con el nombre traducido y original para RAWG
-    const englishName = await translateToEnglish(gistName);
-    let gameDetail = await fetchGameDetailsByName(englishName);
-    if (!gameDetail) {
-      gameDetail = await fetchGameDetailsByName(gistName);
-    }
-
-    if (!gameDetail) {
-      return {
-        gistName,
-        gistPublisher,
-        gistYear,
-        image: null,
-        steamUrl: null,
-        notFound: true
-      };
-    }
-
-    let steamUrl = null;
-    if (gameDetail.stores && gameDetail.stores.length > 0) {
-      const steamStore = gameDetail.stores.find(s => s.store && s.store.slug === 'steam');
-      if (steamStore && steamStore.url) {
-        if (!steamStore.url.startsWith('http')) {
-          if (steamStore.store && steamStore.store.domain) {
-            steamUrl = 'https://' + steamStore.store.domain + steamStore.url;
-          } else {
-            steamUrl = 'https://store.steampowered.com' + steamStore.url;
-          }
-        } else {
-          steamUrl = steamStore.url;
-        }
-      }
-    }
-
-    return {
-      gistName,
-      gistPublisher,
-      gistYear,
-      image: gameDetail.background_image || null,
-      steamUrl: steamUrl,
-      notFound: false
-    };
+    const response = await fetch(GAMES_JSON_URL);
+    const games = await response.json();
+    return games;
   }
 
   async function showGames() {
     const gamesContainer = document.getElementById('games');
-    const [gamesList, overrides] = await Promise.all([
-      fetchGamesList(),
-      fetch(OVERRIDES_URL).then(r => r.json())
-    ]);
+    const statsContainer = document.getElementById('stats');
+    gamesList = await fetchGamesList();
 
-    for (const gameObj of gamesList) {
-      const {gistName, gistPublisher, gistYear, image, steamUrl, notFound} = await fetchGameInfo(gameObj, overrides);
-      
+    // Display the number of games
+    const playedCount = gamesList.filter(game => game.played).length;
+    statsContainer.textContent = `Juegos jugados: ${gamesList.length}`;
+
+    // Render games
+    renderGames(gamesList);
+  }
+
+  function renderGames(games) {
+    const gamesContainer = document.getElementById('games');
+    gamesContainer.innerHTML = ''; // Clear previous content
+
+    for (const game of games) {
+      const { name, editor, year, cover, played } = game;
+
       const gameDiv = document.createElement('div');
       gameDiv.classList.add('game');
-      
-      if (notFound && !image) {
-        const noResult = document.createElement('div');
-        noResult.classList.add('no-results');
-        noResult.textContent = `No se encontró información para "${gistName}".`;
-        gameDiv.appendChild(noResult);
+
+      if (cover) {
+        const img = document.createElement('img');
+        img.src = cover;
+        img.alt = name;
+        gameDiv.appendChild(img);
       } else {
-        if (image) {
-          const img = document.createElement('img');
-          img.src = image;
-          img.alt = gistName;
-          gameDiv.appendChild(img);
-        } else {
-          const placeholder = document.createElement('div');
-          placeholder.textContent = 'Sin imagen disponible';
-          placeholder.classList.add('no-results');
-          gameDiv.appendChild(placeholder);
-        }
-
-        const title = document.createElement('div');
-        title.classList.add('game-title');
-        title.textContent = gistName; // Siempre el nombre del gist
-        gameDiv.appendChild(title);
-
-        const info = document.createElement('div');
-        info.classList.add('game-info');
-        
-        let pubText = gistPublisher ? `<strong>Editor:</strong> ${gistPublisher}<br>` : '';
-        let yearText = gistYear ? `<strong>Año:</strong> ${gistYear}` : '';
-        
-        info.innerHTML = pubText + yearText;
-        gameDiv.appendChild(info);
-
-        if (steamUrl) {
-          const steamLink = document.createElement('a');
-          steamLink.classList.add('steam-link');
-          steamLink.href = steamUrl;
-          steamLink.target = '_blank';
-          steamLink.textContent = 'Ver en Steam';
-          gameDiv.appendChild(steamLink);
-        }
+        const placeholder = document.createElement('div');
+        placeholder.textContent = 'Sin imagen disponible';
+        placeholder.classList.add('no-results');
+        gameDiv.appendChild(placeholder);
       }
+
+      const title = document.createElement('div');
+      title.classList.add('game-title');
+      title.textContent = name;
+      gameDiv.appendChild(title);
+
+      const info = document.createElement('div');
+      info.classList.add('game-info');
+
+      let pubText = editor ? `<strong>Editor:</strong> ${editor}<br>` : '';
+      let yearText = year ? `<strong>Año:</strong> ${year}` : '';
+      info.innerHTML = pubText + yearText;
+      gameDiv.appendChild(info);
+
+      const playedText = document.createElement('div');
+      playedText.classList.add('game-info');
+      playedText.innerHTML = `<strong>Fecha:</strong> ${played ? played : 'No especificado'}`;
+      gameDiv.appendChild(playedText);
 
       gamesContainer.appendChild(gameDiv);
     }
+  }
+
+  function filterGames() {
+    const searchInput = document.getElementById('search').value.toLowerCase();
+    const filteredGames = gamesList.filter(game =>
+      game.name.toLowerCase().includes(searchInput) ||
+      (game.editor && game.editor.toLowerCase().includes(searchInput)) ||
+      (game.year && game.year.toString().includes(searchInput))
+    );
+    renderGames(filteredGames);
   }
 
   showGames();
