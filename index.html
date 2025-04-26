@@ -1,3 +1,4 @@
+index.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -86,19 +87,231 @@
     font-style: italic;
     color: #eee;
   }
+  
+  /* Modal Styles */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+  }
+  
+  .modal-content {
+    position: relative;
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 1000px;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    animation: modalFadeIn 0.3s;
+  }
+  
+  @keyframes modalFadeIn {
+    from {opacity: 0; transform: translateY(-50px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+  
+  .close-modal {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #aaa;
+    transition: color 0.2s;
+    z-index: 10;
+  }
+  
+  .close-modal:hover {
+    color: #fff;
+  }
+  
+  .modal-header {
+    position: sticky;
+    top: 0;
+    background: inherit;
+    padding: 10px 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  
+  .modal-title {
+    color: #ffd700;
+    margin: 0;
+    padding-right: 30px;
+    font-size: 24px;
+  }
+  
+  .videos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  
+  .video-item {
+    background: rgba(0,0,0,0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s;
+  }
+  
+  .video-item:hover {
+    transform: scale(1.02);
+  }
+  
+  .video-thumbnail {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    overflow: hidden;
+  }
+  
+  .video-thumbnail img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+  }
+  
+  .video-play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(0,0,0,0.7);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .video-play-icon:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 12px 0 12px 20px;
+    border-color: transparent transparent transparent #fff;
+    margin-left: 5px;
+  }
+  
+  .video-info {
+    padding: 12px;
+  }
+  
+  .video-title {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .has-videos {
+    position: relative;
+  }
+  
+  .has-videos:after {
+    content: "▶";
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 25px;
+    height: 25px;
+    background: rgba(255, 0, 0, 0.8);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  .search-bar {
+    margin: 20px auto;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+  }
+  
+  .search-bar input {
+    width: 100%;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 50px;
+    background: rgba(255,255,255,0.15);
+    color: white;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s;
+  }
+  
+  .search-bar input:focus {
+    background: rgba(255,255,255,0.25);
+    box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.5);
+  }
+  
+  .search-bar input::placeholder {
+    color: rgba(255,255,255,0.7);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .modal-content {
+      width: 95%;
+      margin: 10% auto;
+    }
+    
+    .videos-container {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+  }
 </style>
 </head>
 <body>
 <header>
   <h1><a href="https://twitch.tv/DrPalanca" target="_blank">Juegos Terminados de DrPalanca</a></h1>
   <div id="stats" class="stats"></div>
-  <input type="text" id="search" placeholder="Buscar juegos..." oninput="filterGames()" />
+  <div class="search-bar">
+    <input type="text" id="search" placeholder="Buscar juegos..." oninput="filterGames()" />
+  </div>
 </header>
 <div id="games" class="games-container"></div>
 
+<!-- Modal for videos -->
+<div id="videosModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal" onclick="closeModal()">&times;</span>
+    <div class="modal-header">
+      <h2 id="modalTitle" class="modal-title">Título del Juego</h2>
+    </div>
+    <div id="videosContainer" class="videos-container"></div>
+  </div>
+</div>
+
 <script>
-  const GAMES_JSON_URL = 'https://gist.githubusercontent.com/javipalanca/b38d04ce3719759e33d75acc7e1752b7/raw/16b457594ccb4c56e1bab59b3201f2bf5904044f/juegosterminados.json';
+  const GAMES_JSON_URL = 'https://gist.githubusercontent.com/javipalanca/b38d04ce3719759e33d75acc7e1752b7/raw/d1776b713ac31a63b5605259ce6f08809bfe781c/juegosterminados.json'
   let gamesList = []; // To store the fetched games
+  const modal = document.getElementById('videosModal');
 
   async function fetchGamesList() {
     const response = await fetch(GAMES_JSON_URL);
@@ -113,6 +326,7 @@
 
     // Display the number of games
     const playedCount = gamesList.filter(game => game.played).length;
+    const videosCount = gamesList.filter(game => game.videos && game.videos.length > 0).length;
     statsContainer.textContent = `Juegos jugados: ${gamesList.length}`;
 
     // Render games
@@ -123,16 +337,27 @@
     const gamesContainer = document.getElementById('games');
     gamesContainer.innerHTML = ''; // Clear previous content
 
+    console.log(games);
+
     for (const game of games) {
-      const { name, editor, year, cover, played } = game;
+      const { name, editor, year, cover, played, videos } = game;
+      //console.log(name, year, played, videos);
 
       const gameDiv = document.createElement('div');
       gameDiv.classList.add('game');
+      
+      // Add class for games with videos
+      if (videos && videos.length > 0) {
+        gameDiv.classList.add('has-videos');
+        // Add click event to show videos modal
+        gameDiv.addEventListener('click', () => showVideosModal(game));
+      }
 
       if (cover) {
         const img = document.createElement('img');
         img.src = cover;
         img.alt = name;
+        img.loading = "lazy"; // Add lazy loading for performance
         gameDiv.appendChild(img);
       } else {
         const placeholder = document.createElement('div');
@@ -159,8 +384,98 @@
       playedText.innerHTML = `<strong>Fecha:</strong> ${played ? played : 'No especificado'}`;
       gameDiv.appendChild(playedText);
 
+      // Add video count if available
+      if (videos && videos.length > 0) {
+        const videosText = document.createElement('div');
+        videosText.classList.add('game-info');
+        videosText.innerHTML = `<strong>Videos:</strong> ${videos.length}`;
+        gameDiv.appendChild(videosText);
+      }
+
       gamesContainer.appendChild(gameDiv);
     }
+  }
+
+  function showVideosModal(game) {
+    const { name, videos, lista_youtube } = game;
+    
+    // Set modal title
+    document.getElementById('modalTitle').textContent = name;
+    
+    // Get videos container
+    const videosContainer = document.getElementById('videosContainer');
+    videosContainer.innerHTML = '';
+    
+    // Check if we have videos
+    if (videos && videos.length > 0) {
+      // Clone the videos array to avoid modifying the original
+      const reversedVideos = [...videos]; //.reverse();
+      
+      // Create video elements
+      for (const video of reversedVideos) {
+        const { title, url, thumbnail } = video;
+        
+        const videoItem = document.createElement('div');
+        videoItem.classList.add('video-item');
+        
+        const thumbnailDiv = document.createElement('div');
+        thumbnailDiv.classList.add('video-thumbnail');
+        
+        const thumbnailImg = document.createElement('img');
+        thumbnailImg.src = thumbnail;
+        thumbnailImg.alt = title;
+        thumbnailImg.loading = "lazy";
+        
+        const playIcon = document.createElement('div');
+        playIcon.classList.add('video-play-icon');
+        
+        thumbnailDiv.appendChild(thumbnailImg);
+        thumbnailDiv.appendChild(playIcon);
+        
+        const videoInfo = document.createElement('div');
+        videoInfo.classList.add('video-info');
+        
+        const videoTitle = document.createElement('h3');
+        videoTitle.classList.add('video-title');
+        videoTitle.textContent = title;
+        
+        videoInfo.appendChild(videoTitle);
+        
+        // Make the whole item clickable
+        videoItem.appendChild(thumbnailDiv);
+        videoItem.appendChild(videoInfo);
+        videoItem.addEventListener('click', () => {
+          window.open(url, '_blank');
+        });
+        
+        videosContainer.appendChild(videoItem);
+      }
+      
+      // Show playlist title if available
+      if (lista_youtube && lista_youtube.title) {
+        const playlistInfo = document.createElement('div');
+        playlistInfo.style.gridColumn = "1 / -1";
+        playlistInfo.style.textAlign = "center";
+        playlistInfo.style.marginBottom = "20px";
+        playlistInfo.innerHTML = `<strong>Lista de reproducción:</strong> ${lista_youtube.title}`;
+        videosContainer.insertBefore(playlistInfo, videosContainer.firstChild);
+      }
+      
+    } else {
+      videosContainer.innerHTML = '<div class="no-results">No hay videos disponibles para este juego.</div>';
+    }
+    
+    // Show the modal
+    modal.style.display = 'block';
+    
+    // Prevent scrolling on the body
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
+    // Re-enable scrolling
+    document.body.style.overflow = 'auto';
   }
 
   function filterGames() {
@@ -172,6 +487,20 @@
     );
     renderGames(filteredGames);
   }
+
+  // Close modal when clicking outside of it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      closeModal();
+    }
+  };
+  
+  // Close modal with Escape key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === "Escape") {
+      closeModal();
+    }
+  });
 
   showGames();
 </script>
