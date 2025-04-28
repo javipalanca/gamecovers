@@ -87,6 +87,48 @@
     color: #eee;
   }
   
+  /* Genre styles */
+  .genre-tag {
+    display: inline-block;
+    background: rgba(255,215,0,0.2);
+    color: #ffd700;
+    padding: 3px 6px;
+    border-radius: 4px;
+    margin: 2px;
+    font-size: 9px;
+    white-space: nowrap;
+  }
+  
+  .genres-container {
+    margin-top: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  /* Stats button */
+  .stats-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .stats-button {
+    background: rgba(255,215,0,0.3);
+    border: 1px solid #ffd700;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .stats-button:hover {
+    background: rgba(255,215,0,0.5);
+  }
+  
   /* Modal Styles */
   .modal {
     display: none;
@@ -289,7 +331,10 @@
 <body>
 <header>
   <h1><a href="https://twitch.tv/DrPalanca" target="_blank">Juegos Terminados de DrPalanca</a></h1>
-  <div id="stats" class="stats"></div>
+  <div class="stats-container">
+    <div id="stats" class="stats"></div>
+    <button id="showStatsButton" class="stats-button">Ver Estadísticas</button>
+  </div>
   <div class="search-bar">
     <input type="text" id="search" placeholder="Buscar juegos..." oninput="filterGames()" />
   </div>
@@ -299,7 +344,7 @@
 <!-- Modal for videos -->
 <div id="videosModal" class="modal">
   <div class="modal-content">
-    <span class="close-modal" onclick="closeModal()">&times;</span>
+    <span class="close-modal" onclick="closeModal('videosModal')">&times;</span>
     <div class="modal-header">
       <h2 id="modalTitle" class="modal-title">Título del Juego</h2>
     </div>
@@ -307,10 +352,37 @@
   </div>
 </div>
 
+<!-- Modal for stats -->
+<div id="statsModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal" onclick="closeModal('statsModal')">&times;</span>
+    <div class="modal-header">
+      <h2 class="modal-title">Estadísticas</h2>
+    </div>
+    <div id="statsContainer" class="chart-container">
+      <h3>Juegos por género</h3>
+      <canvas id="genresChart"></canvas>
+    </div>
+    <div class="chart-container">
+      <h3>Juegos por año de lanzamiento</h3>
+      <canvas id="yearsChart"></canvas>
+    </div>
+    <div class="chart-container">
+      <h3>Juegos completados por año</h3>
+      <canvas id="playedYearsChart"></canvas>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
   const GAMES_JSON_URL = 'https://gist.githubusercontent.com/javipalanca/b38d04ce3719759e33d75acc7e1752b7/raw/juegosterminados.json';
   let gamesList = []; // To store the fetched games
-  const modal = document.getElementById('videosModal');
+  const videosModal = document.getElementById('videosModal');
+  const statsModal = document.getElementById('statsModal');
+  let genresChart = null;
+  let yearsChart = null;
+  let playedYearsChart = null;
 
   async function fetchGamesList() {
     const response = await fetch(GAMES_JSON_URL);
@@ -324,23 +396,32 @@
     gamesList = await fetchGamesList();
 
     // Display the number of games
-    const playedCount = gamesList.filter(game => game.played).length;
-    const videosCount = gamesList.filter(game => game.videos && game.videos.length > 0).length;
     statsContainer.textContent = `Juegos jugados: ${gamesList.length}`;
 
     // Render games
     renderGames(gamesList);
+    
+    // Setup stats button
+    document.getElementById('showStatsButton').addEventListener('click', showStatsModal);
   }
 
   function renderGames(games) {
     const gamesContainer = document.getElementById('games');
     gamesContainer.innerHTML = ''; // Clear previous content
 
-    console.log(games);
+    if (games.length === 0) {
+      const noResults = document.createElement('div');
+      noResults.className = 'no-results';
+      noResults.textContent = 'No se encontraron juegos';
+      noResults.style.gridColumn = '1 / -1';
+      noResults.style.textAlign = 'center';
+      noResults.style.padding = '50px';
+      gamesContainer.appendChild(noResults);
+      return;
+    }
 
     for (const game of games) {
-      const { name, editor, year, cover, played, videos } = game;
-      //console.log(name, year, played, videos);
+      const { name, editor, year, cover, played, videos, genres } = game;
 
       const gameDiv = document.createElement('div');
       gameDiv.classList.add('game');
@@ -383,12 +464,19 @@
       playedText.innerHTML = `<strong>Fecha:</strong> ${played ? played : 'No especificado'}`;
       gameDiv.appendChild(playedText);
 
-      // Add video count if available
-      if (videos && videos.length > 0) {
-        const videosText = document.createElement('div');
-        videosText.classList.add('game-info');
-        videosText.innerHTML = `<strong>Videos:</strong> ${videos.length}`;
-        gameDiv.appendChild(videosText);
+      // Add genres if available
+      if (genres && genres.length > 0) {
+        const genresContainer = document.createElement('div');
+        genresContainer.classList.add('genres-container');
+        
+        genres.forEach(genre => {
+          const genreTag = document.createElement('span');
+          genreTag.classList.add('genre-tag');
+          genreTag.textContent = genre;
+          genresContainer.appendChild(genreTag);
+        });
+        
+        gameDiv.appendChild(genresContainer);
       }
 
       gamesContainer.appendChild(gameDiv);
@@ -465,14 +553,270 @@
     }
     
     // Show the modal
-    modal.style.display = 'block';
+    videosModal.style.display = 'block';
     
     // Prevent scrolling on the body
     document.body.style.overflow = 'hidden';
   }
+  
+  function showStatsModal() {
+    // Count games by genre
+    const genreCounts = {};
+    
+    gamesList.forEach(game => {
+      if (game.genres && game.genres.length > 0) {
+        game.genres.forEach(genre => {
+          genreCounts[genre] = (genreCounts[genre] || 0) + 1;
+        });
+      }
+    });
+    
+    // Sort genres by count
+    const sortedGenres = Object.keys(genreCounts).sort((a, b) => genreCounts[b] - genreCounts[a]);
+    const topGenres = sortedGenres.slice(0, 15); // Show top 15 genres
+    
+    // Prepare genres chart data
+    const genresChartData = {
+      labels: topGenres,
+      datasets: [{
+        label: 'Número de juegos',
+        data: topGenres.map(genre => genreCounts[genre]),
+        backgroundColor: [
+          'rgba(255, 215, 0, 0.6)',
+          'rgba(255, 99, 132, 0.6)',
+          'rgba(54, 162, 235, 0.6)',
+          'rgba(75, 192, 192, 0.6)',
+          'rgba(153, 102, 255, 0.6)',
+          'rgba(255, 159, 64, 0.6)',
+          'rgba(199, 199, 199, 0.6)',
+          'rgba(83, 102, 255, 0.6)',
+          'rgba(78, 205, 196, 0.6)',
+          'rgba(255, 184, 108, 0.6)',
+          'rgba(153, 51, 255, 0.6)',
+          'rgba(255, 99, 71, 0.6)',
+          'rgba(144, 238, 144, 0.6)',
+          'rgba(255, 218, 185, 0.6)',
+          'rgba(170, 130, 180, 0.6)',
+        ],
+        borderColor: 'rgba(255, 255, 255, 0.8)',
+        borderWidth: 1
+      }]
+    };
+    
+    // Count games by release year
+    const yearCounts = {};
+    
+    gamesList.forEach(game => {
+      if (game.year) {
+        const year = game.year.toString();
+        yearCounts[year] = (yearCounts[year] || 0) + 1;
+      }
+    });
+    
+    // Sort years chronologically
+    const sortedYears = Object.keys(yearCounts).sort();
+    
+    // Prepare release years chart data
+    const yearsChartData = {
+      labels: sortedYears,
+      datasets: [{
+        label: 'Número de juegos',
+        data: sortedYears.map(year => yearCounts[year]),
+        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 1
+      }]
+    };
+    
+    // Count games by played year
+    const playedYearCounts = {};
+    
+    gamesList.forEach(game => {
+      if (game.played) {
+        // Extract year from played date (format could be "DD/MM/YYYY" or other formats)
+        let playedYear;
+        
+        // Try to extract year from different date formats
+        if (game.played.includes('/')) {
+          // Format: DD/MM/YYYY or MM/DD/YYYY
+          const parts = game.played.split('/');
+          if (parts.length === 3) {
+            // Get the last part which should be the year
+            playedYear = parts[2].trim();
+            
+            // If it's a two-digit year, convert to four digits
+            if (playedYear.length === 2) {
+              const century = parseInt(playedYear) < 50 ? '20' : '19';
+              playedYear = century + playedYear;
+            }
+          }
+        } else if (game.played.match(/\d{4}/)) {
+          // If there's a 4-digit number anywhere, assume it's a year
+          playedYear = game.played.match(/\d{4}/)[0];
+        } else {
+          // Try to extract any year-like number
+          const yearMatch = game.played.match(/\d+/);
+          if (yearMatch) {
+            playedYear = yearMatch[0];
+            
+            // If it's a two-digit year, convert to four digits
+            if (playedYear.length === 2) {
+              const century = parseInt(playedYear) < 50 ? '20' : '19';
+              playedYear = century + playedYear;
+            }
+          }
+        }
+        
+        if (playedYear && !isNaN(playedYear)) {
+          playedYearCounts[playedYear] = (playedYearCounts[playedYear] || 0) + 1;
+        }
+      }
+    });
+    
+    // Sort played years chronologically
+    const sortedPlayedYears = Object.keys(playedYearCounts).sort();
+    
+    // Prepare played years chart data
+    const playedYearsChartData = {
+      labels: sortedPlayedYears,
+      datasets: [{
+        label: 'Juegos completados',
+        data: sortedPlayedYears.map(year => playedYearCounts[year]),
+        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1
+      }]
+    };
+    
+    // Destroy previous charts if they exist
+    if (genresChart) {
+      genresChart.destroy();
+    }
+    
+    if (yearsChart) {
+      yearsChart.destroy();
+    }
+    
+    if (playedYearsChart) {
+      playedYearsChart.destroy();
+    }
+    
+    // Create genres chart
+    const genresCtx = document.getElementById('genresChart').getContext('2d');
+    genresChart = new Chart(genresCtx, {
+      type: 'bar',
+      data: genresChartData,
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            beginAtZero: true,
+            grid: {
+              color: 'rgba(255, 255, 255, 0.1)'
+            },
+            ticks: {
+              color: 'rgba(255, 255, 255, 0.7)'
+            }
+          },
+          y: {
+            grid: {
+              color: 'rgba(255, 255, 255, 0.1)'
+            },
+            ticks: {
+              color: 'rgba(255, 255, 255, 0.7)'
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              color: 'rgba(255, 255, 255, 0.7)'
+            }
+          }
+        }
+      }
+    });
+    
+    // Create release years chart
+    const yearsCtx = document.getElementById('yearsChart').getContext('2d');
+    yearsChart = new Chart(yearsCtx, {
+      type: 'bar',
+      data: yearsChartData,
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            grid: {
+              color: 'rgba(255, 255, 255, 0.1)'
+            },
+            ticks: {
+              color: 'rgba(255, 255, 255, 0.7)'
+            }
+          },
+          y: {
+            beginAtZero: true,
+            grid: {
+              color: 'rgba(255, 255, 255, 0.1)'
+            },
+            ticks: {
+              color: 'rgba(255, 255, 255, 0.7)'
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              color: 'rgba(255, 255, 255, 0.7)'
+            }
+          }
+        }
+      }
+    });
+    
+    // Create played years chart
+    const playedYearsCtx = document.getElementById('playedYearsChart').getContext('2d');
+    playedYearsChart = new Chart(playedYearsCtx, {
+      type: 'bar',
+      data: playedYearsChartData,
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            grid: {
+              color: 'rgba(255, 255, 255, 0.1)'
+            },
+            ticks: {
+              color: 'rgba(255, 255, 255, 0.7)'
+            }
+          },
+          y: {
+            beginAtZero: true,
+            grid: {
+              color: 'rgba(255, 255, 255, 0.1)'
+            },
+            ticks: {
+              color: 'rgba(255, 255, 255, 0.7)'
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              color: 'rgba(255, 255, 255, 0.7)'
+            }
+          }
+        }
+      }
+    });
+    
+    // Show modal
+    statsModal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
 
-  function closeModal() {
-    modal.style.display = 'none';
+  function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
     // Re-enable scrolling
     document.body.style.overflow = 'auto';
   }
@@ -482,22 +826,29 @@
     const filteredGames = gamesList.filter(game =>
       game.name.toLowerCase().includes(searchInput) ||
       (game.editor && game.editor.toLowerCase().includes(searchInput)) ||
-      (game.year && game.year.toString().includes(searchInput))
+      (game.year && game.year.toString().includes(searchInput)) ||
+      (game.genres && game.genres.some(genre => genre.toLowerCase().includes(searchInput)))
     );
     renderGames(filteredGames);
   }
 
   // Close modal when clicking outside of it
   window.onclick = function(event) {
-    if (event.target == modal) {
-      closeModal();
+    if (event.target == videosModal) {
+      closeModal('videosModal');
+    } else if (event.target == statsModal) {
+      closeModal('statsModal');
     }
   };
   
   // Close modal with Escape key
   document.addEventListener('keydown', function(event) {
     if (event.key === "Escape") {
-      closeModal();
+      if (videosModal.style.display === 'block') {
+        closeModal('videosModal');
+      } else if (statsModal.style.display === 'block') {
+        closeModal('statsModal');
+      }
     }
   });
 

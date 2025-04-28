@@ -6,6 +6,15 @@ import time
 # ==== CONFIGURACIÓN ====
 # Archivo para almacenar tokens
 TOKEN_FILE = 'youtube_tokens.json'
+# Ir a: https://developers.google.com/oauthplayground/
+# En el panel izquierdo, busca "YouTube Data API v3"
+# Selecciona el scope https://www.googleapis.com/auth/youtube.readonly
+# Haz clic en "Authorize APIs"
+# Sigue el proceso de autorización
+# Obtén los tokens:
+# En el paso 2, haz clic en "Exchange authorization code for tokens"
+# En el panel derecho, verás tanto el access_token como el refresh_token
+# Copia estos valores cuando el script te los solicite
 
 # Tus credenciales de OAuth (reemplaza con las tuyas)
 with open("client_tokens.json", 'r') as f:
