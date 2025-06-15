@@ -385,15 +385,39 @@
   let playedYearsChart = null;
 
   async function fetchGamesList() {
+    try {
+      // Intentar cargar desde el archivo local
+      const localResponse = await fetch('juegos.json');
+      if (localResponse.ok) {
+        console.log('Cargando juegos desde juegos.json local.');
+        return await localResponse.json();
+      }
+    } catch (error) {
+      console.warn('No se pudo cargar juegos.json local:', error);
+    }
+
+    // Si no está disponible, cargar desde el Gist
+    console.log('Cargando juegos desde el Gist.');
     const response = await fetch(GAMES_JSON_URL);
-    const games = await response.json();
-    return games;
+    if (response.ok) {
+      return await response.json();
+    } else {
+      console.error('Error al cargar juegos desde el Gist:', response.status);
+      return [];
+    }
   }
 
   async function showGames() {
     const gamesContainer = document.getElementById('games');
     const statsContainer = document.getElementById('stats');
     gamesList = await fetchGamesList();
+
+    // Ordenar juegos por fecha de "played" ascendente
+    gamesList.sort((a, b) => {
+      const dateA = a.played ? new Date(a.played) : new Date(0);
+      const dateB = b.played ? new Date(b.played) : new Date(0);
+      return dateA - dateB;
+    });
 
     // Display the number of games
     statsContainer.textContent = `Juegos jugados: ${gamesList.length}`;

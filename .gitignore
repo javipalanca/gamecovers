@@ -1,0 +1,51 @@
+# Entorno virtual de Python
+venv/
+env/
+ENV/
+
+# Archivos de caché de Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Archivos de distribución
+dist/
+build/
+*.egg-info/
+
+# Archivos de tokens y credenciales
+youtube_tokens.json
+client_tokens.json
+*.key
+*.pem
+*.env
+
+# Archivos temporales
+*.tmp
+*.bak
+*.swp
+*~
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de IDE
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Archivos grandes de datos
+*.csv
+*.xlsx
+*.log
+
+# Directorios específicos del proyecto
+.ipynb_checkpoints/
+
+client_secret.json
+secret.txt
+token.json
+listas_ignoradas.json
