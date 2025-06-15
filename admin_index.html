@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Administración de Juegos</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background: linear-gradient(135deg, #4c669f, #3b5998, #192f6a);
+    background-size: cover;
+    min-height: 100vh;
+    color: #fff;
+  }
+  header {
+    text-align: center;
+    padding: 20px;
+  }
+  header h1 {
+    margin: 0;
+    font-size: 2em;
+    letter-spacing: 1px;
+  }
+  .games-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  .game {
+    background: rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .game input, .game textarea {
+    width: 100%;
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 4px;
+    border: none;
+  }
+  .game button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #ffd700;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #000;
+    font-weight: bold;
+  }
+  .game button:hover {
+    background-color: #fff;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Administración de Juegos</h1>
+</header>
+<div class="games-container" id="games"></div>
+<script>
+  async function fetchGamesList() {
+    const response = await fetch('juegos.json');
+    if (response.ok) {
+      return await response.json();
+    } else {
+      console.error('Error al cargar juegos:', response.status);
+      return [];
+    }
+  }
+
+  async function saveGameChanges(game) {
+    try {
+      const response = await fetch('juegos.json', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(game)
+      });
+
+      if (response.ok) {
+        console.log('Cambios guardados correctamente para el juego:', game.name);
+      } else {
+        console.error('Error al guardar cambios:', response.status);
+      }
+    } catch (error) {
+      console.error('Error al intentar guardar los cambios:', error);
+    }
+  }
+
+  async function showGames() {
+    const gamesContainer = document.getElementById('games');
+    const gamesList = await fetchGamesList();
+
+    gamesContainer.innerHTML = '';
+
+    for (const game of gamesList) {
+      const { name, cover, played, genres } = game;
+
+      const gameDiv = document.createElement('div');
+      gameDiv.classList.add('game');
+
+      const title = document.createElement('h3');
+      title.textContent = name;
+      gameDiv.appendChild(title);
+
+      const coverInput = document.createElement('input');
+      coverInput.type = 'text';
+      coverInput.value = cover || '';
+      coverInput.placeholder = 'URL de la carátula';
+      gameDiv.appendChild(coverInput);
+
+      const coverPreview = document.createElement('img');
+      coverPreview.src = cover || '';
+      coverPreview.alt = 'Vista previa de la carátula';
+      coverPreview.style.maxWidth = '100%';
+      coverPreview.style.marginTop = '10px';
+      gameDiv.appendChild(coverPreview);
+
+      coverInput.addEventListener('input', () => {
+        coverPreview.src = coverInput.value;
+      });
+
+      const playedInput = document.createElement('input');
+      playedInput.type = 'text';
+      playedInput.value = played || '';
+      playedInput.placeholder = 'Fecha de jugado (YYYY-MM-DD)';
+      gameDiv.appendChild(playedInput);
+
+      const genresTextarea = document.createElement('textarea');
+      genresTextarea.value = genres ? genres.join(', ') : '';
+      genresTextarea.placeholder = 'Etiquetas separadas por comas';
+      gameDiv.appendChild(genresTextarea);
+
+      gamesContainer.appendChild(gameDiv);
+    }
+
+    const header = document.querySelector('header');
+    const exportButton = document.createElement('button');
+    exportButton.textContent = 'Exportar JSON';
+    exportButton.style.marginTop = '10px';
+    exportButton.style.marginLeft = '10px';
+    exportButton.addEventListener('click', () => {
+      const updatedGames = [];
+      document.querySelectorAll('.game').forEach((gameDiv, index) => {
+        const name = gameDiv.querySelector('h3').textContent;
+        const inputs = gameDiv.querySelectorAll('input[type="text"]');
+        const cover = inputs[0].value; // Primer input es para la carátula
+        const played = inputs[1].value; // Segundo input es para la fecha de jugado
+        const genres = gameDiv.querySelector('textarea').value.split(',').map(tag => tag.trim());
+
+        // Mantener los campos originales y actualizar solo los editables
+        const originalGame = gamesList[index];
+        updatedGames.push({
+          ...originalGame,
+          name,
+          cover,
+          played,
+          genres
+        });
+      });
+
+      const jsonOutput = JSON.stringify(updatedGames, null, 2);
+      const blob = new Blob([jsonOutput], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+
+      const downloadLink = document.createElement('a');
+      downloadLink.href = url;
+      downloadLink.download = 'juegos.json';
+      downloadLink.textContent = 'Descargar JSON';
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+    });
+
+    header.appendChild(exportButton);
+  }
+
+  showGames();
+</script>
+</body>
+</html>
