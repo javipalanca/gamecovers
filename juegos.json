@@ -8998,6 +8998,13 @@
     },
     {
         "name": "The Room Two",
+        "editor": "Fireproof Games",
+        "played": "2025-07",
+        "cover": "https://m.media-amazon.com/images/M/MV5BYTUxMjViNzAtNDliNi00MjRlLTlhODktNjcxNjc0NmQ3NTliXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+        "genres": [
+            "Puzzle",
+            "Adventure",
+        ],
         "lista_youtube": {
             "id": "PLPTCy7OVkjTwoxGgNexJ2w3CKQSYyNSg8",
             "title": "The Room Two"
@@ -9025,6 +9032,14 @@
     },
     {
         "name": "MolecuLand",
+        "editor": "Biologia desde Cero y Los Profes de Ciencias",
+        "played": "2025-07",
+        "cover": "https://pbs.twimg.com/profile_images/1910406701431312384/plwVMd9m_400x400.jpg",
+        "genres": [
+            "Simulation",
+            "Adventure",
+            "Sandbox"
+        ],
         "lista_youtube": {
             "id": "PLPTCy7OVkjTw4iXDPSYl0lcv4df4WTgFv",
             "title": "MolecuLand"
