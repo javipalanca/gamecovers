@@ -1,882 +1,1026 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Juegos Terminados de DrPalanca</title>
-<style>
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    background: linear-gradient(135deg, #4c669f, #3b5998, #192f6a);
-    background-size: cover;
-    min-height: 100vh;
-    color: #fff;
-  }
-  header {
-    text-align: center;
-    padding: 20px;
-  }
-  header h1 {
-    margin: 0;
-    font-size: 2em;
-    letter-spacing: 1px;
-  }
-  header h1 a {
-    color: #ffd700;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  header h1 a:hover {
-    color: #fff;
-  }
-  .games-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 10px;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  .game {
-    background: rgba(255,255,255,0.1);
-    border-radius: 8px;
-    padding: 15px;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-  }
-  .game:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-  }
-  .game img {
-    max-width: 100%;
-    height: 250px;
-    border-radius: 4px;
-  }
-  .game-title {
-    margin-top: 5px;
-    font-size: 15px;
-    font-weight: bold;
-  }
-  .game-info {
-    margin-top: 5px;
-    font-size: 10px;
-    line-height: 1.4em;
-  }
-  .game-info strong {
-    font-weight: bold;
-    color: #ffd700;
-  }
-  .steam-link {
-    display: inline-block;
-    margin-top: 10px;
-    background: #1b2838;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-size: 14px;
-    transition: background 0.3s;
-  }
-  .steam-link:hover {
-    background: #66c0f4;
-  }
-  .no-results {
-    font-style: italic;
-    color: #eee;
-  }
-  
-  /* Genre styles */
-  .genre-tag {
-    display: inline-block;
-    background: rgba(255,215,0,0.2);
-    color: #ffd700;
-    padding: 3px 6px;
-    border-radius: 4px;
-    margin: 2px;
-    font-size: 9px;
-    white-space: nowrap;
-  }
-  
-  .genres-container {
-    margin-top: 5px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  /* Stats button */
-  .stats-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-top: 10px;
-  }
-  
-  .stats-button {
-    background: rgba(255,215,0,0.3);
-    border: 1px solid #ffd700;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-  
-  .stats-button:hover {
-    background: rgba(255,215,0,0.5);
-  }
-  
-  /* Modal Styles */
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 100;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.9);
-  }
-  
-  .modal-content {
-    position: relative;
-    background: linear-gradient(135deg, #2c3e50, #34495e);
-    margin: 5% auto;
-    padding: 20px;
-    border-radius: 10px;
-    width: 80%;
-    max-width: 1000px;
-    max-height: 85vh;
-    overflow-y: auto;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    animation: modalFadeIn 0.3s;
-  }
-  
-  @keyframes modalFadeIn {
-    from {opacity: 0; transform: translateY(-50px);}
-    to {opacity: 1; transform: translateY(0);}
-  }
-  
-  .close-modal {
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    font-size: 28px;
-    cursor: pointer;
-    color: #aaa;
-    transition: color 0.2s;
-    z-index: 10;
-  }
-  
-  .close-modal:hover {
-    color: #fff;
-  }
-  
-  .modal-header {
-    position: sticky;
-    top: 0;
-    background: inherit;
-    padding: 10px 0;
-    margin-bottom: 15px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-  }
-  
-  .modal-title {
-    color: #ffd700;
-    margin: 0;
-    padding-right: 30px;
-    font-size: 24px;
-  }
-  
-  .videos-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
-  }
-  
-  .video-item {
-    background: rgba(0,0,0,0.2);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.2s;
-  }
-  
-  .video-item:hover {
-    transform: scale(1.02);
-  }
-  
-  .video-thumbnail {
-    position: relative;
-    width: 100%;
-    padding-top: 56.25%; /* 16:9 Aspect Ratio */
-    overflow: hidden;
-  }
-  
-  .video-thumbnail img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 8px 8px 0 0;
-  }
-  
-  .video-play-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60px;
-    height: 60px;
-    background: rgba(0,0,0,0.7);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .video-play-icon:after {
-    content: "";
-    display: block;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 12px 0 12px 20px;
-    border-color: transparent transparent transparent #fff;
-    margin-left: 5px;
-  }
-  
-  .video-info {
-    padding: 12px;
-  }
-  
-  .video-title {
-    margin: 0;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.3;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  
-  .has-videos {
-    position: relative;
-  }
-  
-  .has-videos:after {
-    content: "▶";
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 25px;
-    height: 25px;
-    background: rgba(255, 0, 0, 0.8);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: bold;
-  }
-  
-  .search-bar {
-    margin: 20px auto;
-    width: 80%;
-    max-width: 500px;
-    position: relative;
-  }
-  
-  .search-bar input {
-    width: 100%;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 50px;
-    background: rgba(255,255,255,0.15);
-    color: white;
-    font-size: 16px;
-    outline: none;
-    transition: all 0.3s;
-  }
-  
-  .search-bar input:focus {
-    background: rgba(255,255,255,0.25);
-    box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.5);
-  }
-  
-  .search-bar input::placeholder {
-    color: rgba(255,255,255,0.7);
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .modal-content {
-      width: 95%;
-      margin: 10% auto;
-    }
-    
-    .videos-container {
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    }
-  }
-</style>
-</head>
-<body>
-<header>
-  <h1><a href="https://twitch.tv/DrPalanca" target="_blank">Juegos Terminados de DrPalanca</a></h1>
-  <div class="stats-container">
-    <div id="stats" class="stats"></div>
-    <button id="showStatsButton" class="stats-button">Ver Estadísticas</button>
-  </div>
-  <div class="search-bar">
-    <input type="text" id="search" placeholder="Buscar juegos..." oninput="filterGames()" />
-  </div>
-</header>
-<div id="games" class="games-container"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Juegos Terminados de DrPalanca</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        background: linear-gradient(135deg, #4c669f, #3b5998, #192f6a);
+        background-size: cover;
+        min-height: 100vh;
+        color: #fff;
+      }
+      header {
+        text-align: center;
+        padding: 20px;
+      }
+      header h1 {
+        margin: 0;
+        font-size: 2em;
+        letter-spacing: 1px;
+      }
+      header h1 a {
+        color: #ffd700;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+      header h1 a:hover {
+        color: #fff;
+      }
+      .games-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 10px;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      .game {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 15px;
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+        cursor: pointer;
+      }
+      .game:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      }
+      .game img {
+        max-width: 100%;
+        height: 250px;
+        border-radius: 4px;
+      }
+      .game-title {
+        margin-top: 5px;
+        font-size: 15px;
+        font-weight: bold;
+      }
+      .game-info {
+        margin-top: 5px;
+        font-size: 10px;
+        line-height: 1.4em;
+      }
+      .game-info strong {
+        font-weight: bold;
+        color: #ffd700;
+      }
+      .steam-link {
+        display: inline-block;
+        margin-top: 10px;
+        background: #1b2838;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 14px;
+        transition: background 0.3s;
+      }
+      .steam-link:hover {
+        background: #66c0f4;
+      }
+      .no-results {
+        font-style: italic;
+        color: #eee;
+      }
 
-<!-- Modal for videos -->
-<div id="videosModal" class="modal">
-  <div class="modal-content">
-    <span class="close-modal" onclick="closeModal('videosModal')">&times;</span>
-    <div class="modal-header">
-      <h2 id="modalTitle" class="modal-title">Título del Juego</h2>
+      /* Genre styles */
+      .genre-tag {
+        display: inline-block;
+        background: rgba(255, 215, 0, 0.2);
+        color: #ffd700;
+        padding: 3px 6px;
+        border-radius: 4px;
+        margin: 2px;
+        font-size: 9px;
+        white-space: nowrap;
+      }
+
+      .genres-container {
+        margin-top: 5px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      /* Stats button */
+      .stats-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .stats-button {
+        background: rgba(255, 215, 0, 0.3);
+        border: 1px solid #ffd700;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .stats-button:hover {
+        background: rgba(255, 215, 0, 0.5);
+      }
+
+      /* Modal Styles */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 100;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.9);
+      }
+
+      .modal-content {
+        position: relative;
+        background: linear-gradient(135deg, #2c3e50, #34495e);
+        margin: 5% auto;
+        padding: 20px;
+        border-radius: 10px;
+        width: 80%;
+        max-width: 1000px;
+        max-height: 85vh;
+        overflow-y: auto;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        animation: modalFadeIn 0.3s;
+      }
+
+      @keyframes modalFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .close-modal {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        font-size: 28px;
+        cursor: pointer;
+        color: #aaa;
+        transition: color 0.2s;
+        z-index: 10;
+      }
+
+      .close-modal:hover {
+        color: #fff;
+      }
+
+      .modal-header {
+        position: sticky;
+        top: 0;
+        background: inherit;
+        padding: 10px 0;
+        margin-bottom: 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .modal-title {
+        color: #ffd700;
+        margin: 0;
+        padding-right: 30px;
+        font-size: 24px;
+      }
+
+      .videos-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+      }
+
+      .video-item {
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        overflow: hidden;
+        transition: transform 0.2s;
+      }
+
+      .video-item:hover {
+        transform: scale(1.02);
+      }
+
+      .video-thumbnail {
+        position: relative;
+        width: 100%;
+        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        overflow: hidden;
+      }
+
+      .video-thumbnail img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 8px 8px 0 0;
+      }
+
+      .video-play-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 60px;
+        height: 60px;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .video-play-icon:after {
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 12px 0 12px 20px;
+        border-color: transparent transparent transparent #fff;
+        margin-left: 5px;
+      }
+
+      .video-info {
+        padding: 12px;
+      }
+
+      .video-title {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.3;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .has-videos {
+        position: relative;
+      }
+
+      .has-videos:after {
+        content: "▶";
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 25px;
+        height: 25px;
+        background: rgba(255, 0, 0, 0.8);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: bold;
+      }
+
+      .search-bar {
+        margin: 20px auto;
+        width: 80%;
+        max-width: 500px;
+        position: relative;
+      }
+
+      .search-bar input {
+        width: 100%;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 50px;
+        background: rgba(255, 255, 255, 0.15);
+        color: white;
+        font-size: 16px;
+        outline: none;
+        transition: all 0.3s;
+      }
+
+      .search-bar input:focus {
+        background: rgba(255, 255, 255, 0.25);
+        box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.5);
+      }
+
+      .search-bar input::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .modal-content {
+          width: 95%;
+          margin: 10% auto;
+        }
+
+        .videos-container {
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>
+        <a href="https://twitch.tv/DrPalanca" target="_blank"
+          >Juegos Terminados de DrPalanca</a
+        >
+      </h1>
+      <div class="stats-container">
+        <div id="stats" class="stats"></div>
+        <button id="showStatsButton" class="stats-button">
+          Ver Estadísticas
+        </button>
+      </div>
+      <div class="search-bar">
+        <input
+          type="text"
+          id="search"
+          placeholder="Buscar juegos..."
+          oninput="filterGames()"
+        />
+      </div>
+    </header>
+    <div id="games" class="games-container"></div>
+
+    <!-- Modal for videos -->
+    <div id="videosModal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('videosModal')"
+          >&times;</span
+        >
+        <div class="modal-header">
+          <h2 id="modalTitle" class="modal-title">Título del Juego</h2>
+        </div>
+        <div id="videosContainer" class="videos-container"></div>
+      </div>
     </div>
-    <div id="videosContainer" class="videos-container"></div>
-  </div>
-</div>
 
-<!-- Modal for stats -->
-<div id="statsModal" class="modal">
-  <div class="modal-content">
-    <span class="close-modal" onclick="closeModal('statsModal')">&times;</span>
-    <div class="modal-header">
-      <h2 class="modal-title">Estadísticas</h2>
+    <!-- Modal for stats -->
+    <div id="statsModal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('statsModal')"
+          >&times;</span
+        >
+        <div class="modal-header">
+          <h2 class="modal-title">Estadísticas</h2>
+        </div>
+        <div id="statsContainer" class="chart-container">
+          <h3>Juegos por género</h3>
+          <canvas id="genresChart"></canvas>
+        </div>
+        <div class="chart-container">
+          <h3>Juegos por año de lanzamiento</h3>
+          <canvas id="yearsChart"></canvas>
+        </div>
+        <div class="chart-container">
+          <h3>Juegos completados por año</h3>
+          <canvas id="playedYearsChart"></canvas>
+        </div>
+        <div class="chart-container">
+          <h3>Editores con más juegos</h3>
+          <canvas id="editorsChart"></canvas>
+        </div>
+      </div>
     </div>
-    <div id="statsContainer" class="chart-container">
-      <h3>Juegos por género</h3>
-      <canvas id="genresChart"></canvas>
-    </div>
-    <div class="chart-container">
-      <h3>Juegos por año de lanzamiento</h3>
-      <canvas id="yearsChart"></canvas>
-    </div>
-    <div class="chart-container">
-      <h3>Juegos completados por año</h3>
-      <canvas id="playedYearsChart"></canvas>
-    </div>
-  </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-  const GAMES_JSON_URL = 'https://gist.githubusercontent.com/javipalanca/b38d04ce3719759e33d75acc7e1752b7/raw/juegosterminados.json';
-  let gamesList = []; // To store the fetched games
-  const videosModal = document.getElementById('videosModal');
-  const statsModal = document.getElementById('statsModal');
-  let genresChart = null;
-  let yearsChart = null;
-  let playedYearsChart = null;
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      const GAMES_JSON_URL =
+        "https://gist.githubusercontent.com/javipalanca/b38d04ce3719759e33d75acc7e1752b7/raw/juegosterminados.json";
+      let gamesList = []; // To store the fetched games
+      const videosModal = document.getElementById("videosModal");
+      const statsModal = document.getElementById("statsModal");
+      let genresChart = null;
+      let yearsChart = null;
+      let playedYearsChart = null;
+      let editorsChart = null;
 
-  async function fetchGamesList() {
-    try {
-      // Intentar cargar desde el archivo local
-      const localResponse = await fetch('juegos.json');
-      if (localResponse.ok) {
-        console.log('Cargando juegos desde juegos.json local.');
-        return await localResponse.json();
-      }
-    } catch (error) {
-      console.warn('No se pudo cargar juegos.json local:', error);
-    }
-
-    // Si no está disponible, cargar desde el Gist
-    console.log('Cargando juegos desde el Gist.');
-    const response = await fetch(GAMES_JSON_URL);
-    if (response.ok) {
-      return await response.json();
-    } else {
-      console.error('Error al cargar juegos desde el Gist:', response.status);
-      return [];
-    }
-  }
-
-  async function showGames() {
-    const gamesContainer = document.getElementById('games');
-    const statsContainer = document.getElementById('stats');
-    gamesList = await fetchGamesList();
-
-    // Ordenar juegos por fecha de "played" ascendente
-    gamesList.sort((a, b) => {
-      const dateA = a.played ? new Date(a.played) : new Date(0);
-      const dateB = b.played ? new Date(b.played) : new Date(0);
-      return dateA - dateB;
-    });
-
-    // Display the number of games
-    statsContainer.textContent = `Juegos jugados: ${gamesList.length}`;
-
-    // Render games
-    renderGames(gamesList);
-    
-    // Setup stats button
-    document.getElementById('showStatsButton').addEventListener('click', showStatsModal);
-  }
-
-  function renderGames(games) {
-    const gamesContainer = document.getElementById('games');
-    gamesContainer.innerHTML = ''; // Clear previous content
-
-    if (games.length === 0) {
-      const noResults = document.createElement('div');
-      noResults.className = 'no-results';
-      noResults.textContent = 'No se encontraron juegos';
-      noResults.style.gridColumn = '1 / -1';
-      noResults.style.textAlign = 'center';
-      noResults.style.padding = '50px';
-      gamesContainer.appendChild(noResults);
-      return;
-    }
-
-    for (const game of games) {
-      const { name, editor, year, cover, played, videos, genres } = game;
-
-      const gameDiv = document.createElement('div');
-      gameDiv.classList.add('game');
-      
-      // Add class for games with videos
-      if (videos && videos.length > 0) {
-        gameDiv.classList.add('has-videos');
-        // Add click event to show videos modal
-        gameDiv.addEventListener('click', () => showVideosModal(game));
-      }
-
-      if (cover) {
-        const img = document.createElement('img');
-        img.src = cover;
-        img.alt = name;
-        img.loading = "lazy"; // Add lazy loading for performance
-        gameDiv.appendChild(img);
-      } else {
-        const placeholder = document.createElement('div');
-        placeholder.textContent = 'Sin imagen disponible';
-        placeholder.classList.add('no-results');
-        gameDiv.appendChild(placeholder);
-      }
-
-      const title = document.createElement('div');
-      title.classList.add('game-title');
-      title.textContent = name;
-      gameDiv.appendChild(title);
-
-      const info = document.createElement('div');
-      info.classList.add('game-info');
-
-      let pubText = editor ? `<strong>Editor:</strong> ${editor}<br>` : '';
-      let yearText = year ? `<strong>Año:</strong> ${year}` : '';
-      info.innerHTML = pubText + yearText;
-      gameDiv.appendChild(info);
-
-      const playedText = document.createElement('div');
-      playedText.classList.add('game-info');
-      playedText.innerHTML = `<strong>Fecha:</strong> ${played ? played : 'No especificado'}`;
-      gameDiv.appendChild(playedText);
-
-      // Add genres if available
-      if (genres && genres.length > 0) {
-        const genresContainer = document.createElement('div');
-        genresContainer.classList.add('genres-container');
-        
-        genres.forEach(genre => {
-          const genreTag = document.createElement('span');
-          genreTag.classList.add('genre-tag');
-          genreTag.textContent = genre;
-          genresContainer.appendChild(genreTag);
-        });
-        
-        gameDiv.appendChild(genresContainer);
-      }
-
-      gamesContainer.appendChild(gameDiv);
-    }
-  }
-
-  function showVideosModal(game) {
-    const { name, videos, lista_youtube } = game;
-    
-    // Set modal title
-    document.getElementById('modalTitle').textContent = name;
-    
-    // Get videos container
-    const videosContainer = document.getElementById('videosContainer');
-    videosContainer.innerHTML = '';
-    
-    // Check if we have videos
-    if (videos && videos.length > 0) {
-      // Clone the videos array to avoid modifying the original
-      const reversedVideos = [...videos]; //.reverse();
-      
-      // Create video elements
-      for (const video of reversedVideos) {
-        const { title, url, thumbnail } = video;
-        
-        const videoItem = document.createElement('div');
-        videoItem.classList.add('video-item');
-        
-        const thumbnailDiv = document.createElement('div');
-        thumbnailDiv.classList.add('video-thumbnail');
-        
-        const thumbnailImg = document.createElement('img');
-        thumbnailImg.src = thumbnail;
-        thumbnailImg.alt = title;
-        thumbnailImg.loading = "lazy";
-        
-        const playIcon = document.createElement('div');
-        playIcon.classList.add('video-play-icon');
-        
-        thumbnailDiv.appendChild(thumbnailImg);
-        thumbnailDiv.appendChild(playIcon);
-        
-        const videoInfo = document.createElement('div');
-        videoInfo.classList.add('video-info');
-        
-        const videoTitle = document.createElement('h3');
-        videoTitle.classList.add('video-title');
-        videoTitle.textContent = title;
-        
-        videoInfo.appendChild(videoTitle);
-        
-        // Make the whole item clickable
-        videoItem.appendChild(thumbnailDiv);
-        videoItem.appendChild(videoInfo);
-        videoItem.addEventListener('click', () => {
-          window.open(url, '_blank');
-        });
-        
-        videosContainer.appendChild(videoItem);
-      }
-      
-      // Show playlist title if available
-      if (lista_youtube && lista_youtube.title) {
-        const playlistInfo = document.createElement('div');
-        playlistInfo.style.gridColumn = "1 / -1";
-        playlistInfo.style.textAlign = "center";
-        playlistInfo.style.marginBottom = "20px";
-        playlistInfo.innerHTML = `<strong>Lista de reproducción:</strong> ${lista_youtube.title}`;
-        videosContainer.insertBefore(playlistInfo, videosContainer.firstChild);
-      }
-      
-    } else {
-      videosContainer.innerHTML = '<div class="no-results">No hay videos disponibles para este juego.</div>';
-    }
-    
-    // Show the modal
-    videosModal.style.display = 'block';
-    
-    // Prevent scrolling on the body
-    document.body.style.overflow = 'hidden';
-  }
-  
-  function showStatsModal() {
-    // Count games by genre
-    const genreCounts = {};
-    
-    gamesList.forEach(game => {
-      if (game.genres && game.genres.length > 0) {
-        game.genres.forEach(genre => {
-          genreCounts[genre] = (genreCounts[genre] || 0) + 1;
-        });
-      }
-    });
-    
-    // Sort genres by count
-    const sortedGenres = Object.keys(genreCounts).sort((a, b) => genreCounts[b] - genreCounts[a]);
-    const topGenres = sortedGenres.slice(0, 15); // Show top 15 genres
-    
-    // Prepare genres chart data
-    const genresChartData = {
-      labels: topGenres,
-      datasets: [{
-        label: 'Número de juegos',
-        data: topGenres.map(genre => genreCounts[genre]),
-        backgroundColor: [
-          'rgba(255, 215, 0, 0.6)',
-          'rgba(255, 99, 132, 0.6)',
-          'rgba(54, 162, 235, 0.6)',
-          'rgba(75, 192, 192, 0.6)',
-          'rgba(153, 102, 255, 0.6)',
-          'rgba(255, 159, 64, 0.6)',
-          'rgba(199, 199, 199, 0.6)',
-          'rgba(83, 102, 255, 0.6)',
-          'rgba(78, 205, 196, 0.6)',
-          'rgba(255, 184, 108, 0.6)',
-          'rgba(153, 51, 255, 0.6)',
-          'rgba(255, 99, 71, 0.6)',
-          'rgba(144, 238, 144, 0.6)',
-          'rgba(255, 218, 185, 0.6)',
-          'rgba(170, 130, 180, 0.6)',
-        ],
-        borderColor: 'rgba(255, 255, 255, 0.8)',
-        borderWidth: 1
-      }]
-    };
-    
-    // Count games by release year
-    const yearCounts = {};
-    
-    gamesList.forEach(game => {
-      if (game.year) {
-        const year = game.year.toString();
-        yearCounts[year] = (yearCounts[year] || 0) + 1;
-      }
-    });
-    
-    // Sort years chronologically
-    const sortedYears = Object.keys(yearCounts).sort();
-    
-    // Prepare release years chart data
-    const yearsChartData = {
-      labels: sortedYears,
-      datasets: [{
-        label: 'Número de juegos',
-        data: sortedYears.map(year => yearCounts[year]),
-        backgroundColor: 'rgba(54, 162, 235, 0.6)',
-        borderColor: 'rgba(54, 162, 235, 1)',
-        borderWidth: 1
-      }]
-    };
-    
-    // Count games by played year
-    const playedYearCounts = {};
-    
-    gamesList.forEach(game => {
-      if (game.played) {
-        // Extract year from played date (format could be "DD/MM/YYYY" or other formats)
-        let playedYear;
-        
-        // Try to extract year from different date formats
-        if (game.played.includes('/')) {
-          // Format: DD/MM/YYYY or MM/DD/YYYY
-          const parts = game.played.split('/');
-          if (parts.length === 3) {
-            // Get the last part which should be the year
-            playedYear = parts[2].trim();
-            
-            // If it's a two-digit year, convert to four digits
-            if (playedYear.length === 2) {
-              const century = parseInt(playedYear) < 50 ? '20' : '19';
-              playedYear = century + playedYear;
-            }
+      async function fetchGamesList() {
+        try {
+          // Intentar cargar desde el archivo local
+          const localResponse = await fetch("juegos.json");
+          if (localResponse.ok) {
+            console.log("Cargando juegos desde juegos.json local.");
+            return await localResponse.json();
           }
-        } else if (game.played.match(/\d{4}/)) {
-          // If there's a 4-digit number anywhere, assume it's a year
-          playedYear = game.played.match(/\d{4}/)[0];
+        } catch (error) {
+          console.warn("No se pudo cargar juegos.json local:", error);
+        }
+
+        // Si no está disponible, cargar desde el Gist
+        console.log("Cargando juegos desde el Gist.");
+        const response = await fetch(GAMES_JSON_URL);
+        if (response.ok) {
+          return await response.json();
         } else {
-          // Try to extract any year-like number
-          const yearMatch = game.played.match(/\d+/);
-          if (yearMatch) {
-            playedYear = yearMatch[0];
-            
-            // If it's a two-digit year, convert to four digits
-            if (playedYear.length === 2) {
-              const century = parseInt(playedYear) < 50 ? '20' : '19';
-              playedYear = century + playedYear;
-            }
-          }
-        }
-        
-        if (playedYear && !isNaN(playedYear)) {
-          playedYearCounts[playedYear] = (playedYearCounts[playedYear] || 0) + 1;
+          console.error(
+            "Error al cargar juegos desde el Gist:",
+            response.status
+          );
+          return [];
         }
       }
-    });
-    
-    // Sort played years chronologically
-    const sortedPlayedYears = Object.keys(playedYearCounts).sort();
-    
-    // Prepare played years chart data
-    const playedYearsChartData = {
-      labels: sortedPlayedYears,
-      datasets: [{
-        label: 'Juegos completados',
-        data: sortedPlayedYears.map(year => playedYearCounts[year]),
-        backgroundColor: 'rgba(75, 192, 192, 0.6)',
-        borderColor: 'rgba(75, 192, 192, 1)',
-        borderWidth: 1
-      }]
-    };
-    
-    // Destroy previous charts if they exist
-    if (genresChart) {
-      genresChart.destroy();
-    }
-    
-    if (yearsChart) {
-      yearsChart.destroy();
-    }
-    
-    if (playedYearsChart) {
-      playedYearsChart.destroy();
-    }
-    
-    // Create genres chart
-    const genresCtx = document.getElementById('genresChart').getContext('2d');
-    genresChart = new Chart(genresCtx, {
-      type: 'bar',
-      data: genresChartData,
-      options: {
-        indexAxis: 'y',
-        responsive: true,
-        scales: {
-          x: {
-            beginAtZero: true,
-            grid: {
-              color: 'rgba(255, 255, 255, 0.1)'
+
+      async function showGames() {
+        const gamesContainer = document.getElementById("games");
+        const statsContainer = document.getElementById("stats");
+        gamesList = await fetchGamesList();
+
+        // Ordenar juegos por fecha de "played" ascendente
+        gamesList.sort((a, b) => {
+          const dateA = a.played ? new Date(a.played) : new Date(0);
+          const dateB = b.played ? new Date(b.played) : new Date(0);
+          return dateA - dateB;
+        });
+
+        // Display the number of games
+        statsContainer.textContent = `Juegos jugados: ${gamesList.length}`;
+
+        // Render games
+        renderGames(gamesList);
+
+        // Setup stats button
+        document
+          .getElementById("showStatsButton")
+          .addEventListener("click", showStatsModal);
+      }
+
+      function renderGames(games) {
+        const gamesContainer = document.getElementById("games");
+        gamesContainer.innerHTML = ""; // Clear previous content
+
+        if (games.length === 0) {
+          const noResults = document.createElement("div");
+          noResults.className = "no-results";
+          noResults.textContent = "No se encontraron juegos";
+          noResults.style.gridColumn = "1 / -1";
+          noResults.style.textAlign = "center";
+          noResults.style.padding = "50px";
+          gamesContainer.appendChild(noResults);
+          return;
+        }
+
+        for (const game of games) {
+          const { name, editor, year, cover, played, videos, genres } = game;
+
+          const gameDiv = document.createElement("div");
+          gameDiv.classList.add("game");
+
+          // Add class for games with videos
+          if (videos && videos.length > 0) {
+            gameDiv.classList.add("has-videos");
+            // Add click event to show videos modal
+            gameDiv.addEventListener("click", () => showVideosModal(game));
+          }
+
+          if (cover) {
+            const img = document.createElement("img");
+            img.src = cover;
+            img.alt = name;
+            img.loading = "lazy"; // Add lazy loading for performance
+            gameDiv.appendChild(img);
+          } else {
+            const placeholder = document.createElement("div");
+            placeholder.textContent = "Sin imagen disponible";
+            placeholder.classList.add("no-results");
+            gameDiv.appendChild(placeholder);
+          }
+
+          const title = document.createElement("div");
+          title.classList.add("game-title");
+          title.textContent = name;
+          gameDiv.appendChild(title);
+
+          const info = document.createElement("div");
+          info.classList.add("game-info");
+
+          let pubText = editor ? `<strong>Editor:</strong> ${editor}<br>` : "";
+          let yearText = year ? `<strong>Año:</strong> ${year}` : "";
+          info.innerHTML = pubText + yearText;
+          gameDiv.appendChild(info);
+
+          const playedText = document.createElement("div");
+          playedText.classList.add("game-info");
+          playedText.innerHTML = `<strong>Fecha:</strong> ${
+            played ? played : "No especificado"
+          }`;
+          gameDiv.appendChild(playedText);
+
+          // Add genres if available
+          if (genres && genres.length > 0) {
+            const genresContainer = document.createElement("div");
+            genresContainer.classList.add("genres-container");
+
+            genres.forEach((genre) => {
+              const genreTag = document.createElement("span");
+              genreTag.classList.add("genre-tag");
+              genreTag.textContent = genre;
+              genresContainer.appendChild(genreTag);
+            });
+
+            gameDiv.appendChild(genresContainer);
+          }
+
+          gamesContainer.appendChild(gameDiv);
+        }
+      }
+
+      function showVideosModal(game) {
+        const { name, videos, lista_youtube } = game;
+
+        // Set modal title
+        document.getElementById("modalTitle").textContent = name;
+
+        // Get videos container
+        const videosContainer = document.getElementById("videosContainer");
+        videosContainer.innerHTML = "";
+
+        // Check if we have videos
+        if (videos && videos.length > 0) {
+          // Clone the videos array to avoid modifying the original
+          const reversedVideos = [...videos]; //.reverse();
+
+          // Create video elements
+          for (const video of reversedVideos) {
+            const { title, url, thumbnail } = video;
+
+            const videoItem = document.createElement("div");
+            videoItem.classList.add("video-item");
+
+            const thumbnailDiv = document.createElement("div");
+            thumbnailDiv.classList.add("video-thumbnail");
+
+            const thumbnailImg = document.createElement("img");
+            thumbnailImg.src = thumbnail;
+            thumbnailImg.alt = title;
+            thumbnailImg.loading = "lazy";
+
+            const playIcon = document.createElement("div");
+            playIcon.classList.add("video-play-icon");
+
+            thumbnailDiv.appendChild(thumbnailImg);
+            thumbnailDiv.appendChild(playIcon);
+
+            const videoInfo = document.createElement("div");
+            videoInfo.classList.add("video-info");
+
+            const videoTitle = document.createElement("h3");
+            videoTitle.classList.add("video-title");
+            videoTitle.textContent = title;
+
+            videoInfo.appendChild(videoTitle);
+
+            // Make the whole item clickable
+            videoItem.appendChild(thumbnailDiv);
+            videoItem.appendChild(videoInfo);
+            videoItem.addEventListener("click", () => {
+              window.open(url, "_blank");
+            });
+
+            videosContainer.appendChild(videoItem);
+          }
+
+          // Show playlist title if available
+          if (lista_youtube && lista_youtube.title) {
+            const playlistInfo = document.createElement("div");
+            playlistInfo.style.gridColumn = "1 / -1";
+            playlistInfo.style.textAlign = "center";
+            playlistInfo.style.marginBottom = "20px";
+            playlistInfo.innerHTML = `<strong>Lista de reproducción:</strong> ${lista_youtube.title}`;
+            videosContainer.insertBefore(
+              playlistInfo,
+              videosContainer.firstChild
+            );
+          }
+        } else {
+          videosContainer.innerHTML =
+            '<div class="no-results">No hay videos disponibles para este juego.</div>';
+        }
+
+        // Show the modal
+        videosModal.style.display = "block";
+
+        // Prevent scrolling on the body
+        document.body.style.overflow = "hidden";
+      }
+
+      function showStatsModal() {
+        // Count games by genre
+        const genreCounts = {};
+
+        gamesList.forEach((game) => {
+          if (game.genres && game.genres.length > 0) {
+            game.genres.forEach((genre) => {
+              genreCounts[genre] = (genreCounts[genre] || 0) + 1;
+            });
+          }
+        });
+
+        // Sort genres by count
+        const sortedGenres = Object.keys(genreCounts).sort(
+          (a, b) => genreCounts[b] - genreCounts[a]
+        );
+        const topGenres = sortedGenres.slice(0, 15); // Show top 15 genres
+
+        // Prepare genres chart data
+        const genresChartData = {
+          labels: topGenres,
+          datasets: [
+            {
+              label: "Número de juegos",
+              data: topGenres.map((genre) => genreCounts[genre]),
+              backgroundColor: [
+                "rgba(255, 215, 0, 0.6)",
+                "rgba(255, 99, 132, 0.6)",
+                "rgba(54, 162, 235, 0.6)",
+                "rgba(75, 192, 192, 0.6)",
+                "rgba(153, 102, 255, 0.6)",
+                "rgba(255, 159, 64, 0.6)",
+                "rgba(199, 199, 199, 0.6)",
+                "rgba(83, 102, 255, 0.6)",
+                "rgba(78, 205, 196, 0.6)",
+                "rgba(255, 184, 108, 0.6)",
+                "rgba(153, 51, 255, 0.6)",
+                "rgba(255, 99, 71, 0.6)",
+                "rgba(144, 238, 144, 0.6)",
+                "rgba(255, 218, 185, 0.6)",
+                "rgba(170, 130, 180, 0.6)",
+              ],
+              borderColor: "rgba(255, 255, 255, 0.8)",
+              borderWidth: 1,
             },
-            ticks: {
-              color: 'rgba(255, 255, 255, 0.7)'
+          ],
+        };
+
+        // Count games by release year
+        const yearCounts = {};
+
+        gamesList.forEach((game) => {
+          if (game.year) {
+            const year = game.year.toString();
+            yearCounts[year] = (yearCounts[year] || 0) + 1;
+          }
+        });
+
+        // Sort years chronologically
+        const sortedYears = Object.keys(yearCounts).sort();
+
+        // Prepare release years chart data
+        const yearsChartData = {
+          labels: sortedYears,
+          datasets: [
+            {
+              label: "Número de juegos",
+              data: sortedYears.map((year) => yearCounts[year]),
+              backgroundColor: "rgba(54, 162, 235, 0.6)",
+              borderColor: "rgba(54, 162, 235, 1)",
+              borderWidth: 1,
+            },
+          ],
+        };
+
+        // Count games by played year
+        const playedYearCounts = {};
+
+        gamesList.forEach((game) => {
+          if (game.played) {
+            // Extract year from played date (format could be "DD/MM/YYYY" or other formats)
+            let playedYear;
+
+            // Try to extract year from different date formats
+            if (game.played.includes("/")) {
+              // Format: DD/MM/YYYY or MM/DD/YYYY
+              const parts = game.played.split("/");
+              if (parts.length === 3) {
+                // Get the last part which should be the year
+                playedYear = parts[2].trim();
+
+                // If it's a two-digit year, convert to four digits
+                if (playedYear.length === 2) {
+                  const century = parseInt(playedYear) < 50 ? "20" : "19";
+                  playedYear = century + playedYear;
+                }
+              }
+            } else if (game.played.match(/\d{4}/)) {
+              // If there's a 4-digit number anywhere, assume it's a year
+              playedYear = game.played.match(/\d{4}/)[0];
+            } else {
+              // Try to extract any year-like number
+              const yearMatch = game.played.match(/\d+/);
+              if (yearMatch) {
+                playedYear = yearMatch[0];
+
+                // If it's a two-digit year, convert to four digits
+                if (playedYear.length === 2) {
+                  const century = parseInt(playedYear) < 50 ? "20" : "19";
+                  playedYear = century + playedYear;
+                }
+              }
             }
+
+            if (playedYear && !isNaN(playedYear)) {
+              playedYearCounts[playedYear] =
+                (playedYearCounts[playedYear] || 0) + 1;
+            }
+          }
+        });
+
+        // Sort played years chronologically
+        const sortedPlayedYears = Object.keys(playedYearCounts).sort();
+
+        // Prepare played years chart data
+        const playedYearsChartData = {
+          labels: sortedPlayedYears,
+          datasets: [
+            {
+              label: "Juegos completados",
+              data: sortedPlayedYears.map((year) => playedYearCounts[year]),
+              backgroundColor: "rgba(75, 192, 192, 0.6)",
+              borderColor: "rgba(75, 192, 192, 1)",
+              borderWidth: 1,
+            },
+          ],
+        };
+
+        // Count games by editor
+        const editorCounts = {};
+
+        gamesList.forEach((game) => {
+          if (game.editor) {
+            editorCounts[game.editor] = (editorCounts[game.editor] || 0) + 1;
+          }
+        });
+
+        // Sort editors by count
+        const sortedEditors = Object.keys(editorCounts).sort(
+          (a, b) => editorCounts[b] - editorCounts[a]
+        );
+        const topEditors = sortedEditors.slice(0, 15); // Show top 15 editors
+
+        // Prepare editors chart data
+        const editorsChartData = {
+          labels: topEditors,
+          datasets: [
+            {
+              label: "Número de juegos",
+              data: topEditors.map((editor) => editorCounts[editor]),
+              backgroundColor: [
+                "rgba(255, 99, 132, 0.6)",
+                "rgba(54, 162, 235, 0.6)",
+                "rgba(255, 206, 86, 0.6)",
+                "rgba(75, 192, 192, 0.6)",
+                "rgba(153, 102, 255, 0.6)",
+                "rgba(255, 159, 64, 0.6)",
+                "rgba(199, 199, 199, 0.6)",
+                "rgba(83, 102, 255, 0.6)",
+                "rgba(78, 205, 196, 0.6)",
+                "rgba(255, 184, 108, 0.6)",
+                "rgba(153, 51, 255, 0.6)",
+                "rgba(255, 99, 71, 0.6)",
+                "rgba(144, 238, 144, 0.6)",
+                "rgba(255, 218, 185, 0.6)",
+                "rgba(170, 130, 180, 0.6)",
+              ],
+              borderColor: "rgba(255, 255, 255, 0.8)",
+              borderWidth: 1,
+            },
+          ],
+        };
+
+        // Destroy previous charts if they exist
+        if (genresChart) {
+          genresChart.destroy();
+        }
+
+        if (yearsChart) {
+          yearsChart.destroy();
+        }
+
+        if (playedYearsChart) {
+          playedYearsChart.destroy();
+        }
+
+        if (editorsChart) {
+          editorsChart.destroy();
+        }
+
+        // Create genres chart
+        const genresCtx = document
+          .getElementById("genresChart")
+          .getContext("2d");
+        genresChart = new Chart(genresCtx, {
+          type: "bar",
+          data: genresChartData,
+          options: {
+            indexAxis: "y",
+            responsive: true,
+            scales: {
+              x: {
+                beginAtZero: true,
+                grid: {
+                  color: "rgba(255, 255, 255, 0.1)",
+                },
+                ticks: {
+                  color: "rgba(255, 255, 255, 0.7)",
+                },
+              },
+              y: {
+                grid: {
+                  color: "rgba(255, 255, 255, 0.1)",
+                },
+                ticks: {
+                  color: "rgba(255, 255, 255, 0.7)",
+                },
+              },
+            },
+            plugins: {
+              legend: {
+                labels: {
+                  color: "rgba(255, 255, 255, 0.7)",
+                },
+              },
+            },
           },
-          y: {
-            grid: {
-              color: 'rgba(255, 255, 255, 0.1)'
+        });
+
+        // Create release years chart
+        const yearsCtx = document.getElementById("yearsChart").getContext("2d");
+        yearsChart = new Chart(yearsCtx, {
+          type: "bar",
+          data: yearsChartData,
+          options: {
+            responsive: true,
+            scales: {
+              x: {
+                grid: {
+                  color: "rgba(255, 255, 255, 0.1)",
+                },
+                ticks: {
+                  color: "rgba(255, 255, 255, 0.7)",
+                },
+              },
+              y: {
+                beginAtZero: true,
+                grid: {
+                  color: "rgba(255, 255, 255, 0.1)",
+                },
+                ticks: {
+                  color: "rgba(255, 255, 255, 0.7)",
+                },
+              },
             },
-            ticks: {
-              color: 'rgba(255, 255, 255, 0.7)'
-            }
-          }
-        },
-        plugins: {
-          legend: {
-            labels: {
-              color: 'rgba(255, 255, 255, 0.7)'
-            }
-          }
-        }
-      }
-    });
-    
-    // Create release years chart
-    const yearsCtx = document.getElementById('yearsChart').getContext('2d');
-    yearsChart = new Chart(yearsCtx, {
-      type: 'bar',
-      data: yearsChartData,
-      options: {
-        responsive: true,
-        scales: {
-          x: {
-            grid: {
-              color: 'rgba(255, 255, 255, 0.1)'
+            plugins: {
+              legend: {
+                labels: {
+                  color: "rgba(255, 255, 255, 0.7)",
+                },
+              },
             },
-            ticks: {
-              color: 'rgba(255, 255, 255, 0.7)'
-            }
           },
-          y: {
-            beginAtZero: true,
-            grid: {
-              color: 'rgba(255, 255, 255, 0.1)'
+        });
+
+        // Create played years chart
+        const playedYearsCtx = document
+          .getElementById("playedYearsChart")
+          .getContext("2d");
+        playedYearsChart = new Chart(playedYearsCtx, {
+          type: "bar",
+          data: playedYearsChartData,
+          options: {
+            responsive: true,
+            scales: {
+              x: {
+                grid: {
+                  color: "rgba(255, 255, 255, 0.1)",
+                },
+                ticks: {
+                  color: "rgba(255, 255, 255, 0.7)",
+                },
+              },
+              y: {
+                beginAtZero: true,
+                grid: {
+                  color: "rgba(255, 255, 255, 0.1)",
+                },
+                ticks: {
+                  color: "rgba(255, 255, 255, 0.7)",
+                },
+              },
             },
-            ticks: {
-              color: 'rgba(255, 255, 255, 0.7)'
-            }
-          }
-        },
-        plugins: {
-          legend: {
-            labels: {
-              color: 'rgba(255, 255, 255, 0.7)'
-            }
-          }
-        }
-      }
-    });
-    
-    // Create played years chart
-    const playedYearsCtx = document.getElementById('playedYearsChart').getContext('2d');
-    playedYearsChart = new Chart(playedYearsCtx, {
-      type: 'bar',
-      data: playedYearsChartData,
-      options: {
-        responsive: true,
-        scales: {
-          x: {
-            grid: {
-              color: 'rgba(255, 255, 255, 0.1)'
+            plugins: {
+              legend: {
+                labels: {
+                  color: "rgba(255, 255, 255, 0.7)",
+                },
+              },
             },
-            ticks: {
-              color: 'rgba(255, 255, 255, 0.7)'
-            }
           },
-          y: {
-            beginAtZero: true,
-            grid: {
-              color: 'rgba(255, 255, 255, 0.1)'
+        });
+
+        // Create editors chart
+        const editorsCtx = document
+          .getElementById("editorsChart")
+          .getContext("2d");
+        editorsChart = new Chart(editorsCtx, {
+          type: "bar",
+          data: editorsChartData,
+          options: {
+            indexAxis: "y",
+            responsive: true,
+            scales: {
+              x: {
+                beginAtZero: true,
+                grid: {
+                  color: "rgba(255, 255, 255, 0.1)",
+                },
+                ticks: {
+                  color: "rgba(255, 255, 255, 0.7)",
+                },
+              },
+              y: {
+                grid: {
+                  color: "rgba(255, 255, 255, 0.1)",
+                },
+                ticks: {
+                  color: "rgba(255, 255, 255, 0.7)",
+                },
+              },
             },
-            ticks: {
-              color: 'rgba(255, 255, 255, 0.7)'
-            }
-          }
-        },
-        plugins: {
-          legend: {
-            labels: {
-              color: 'rgba(255, 255, 255, 0.7)'
-            }
+            plugins: {
+              legend: {
+                labels: {
+                  color: "rgba(255, 255, 255, 0.7)",
+                },
+              },
+            },
+          },
+        });
+
+        // Show modal
+        statsModal.style.display = "block";
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal(modalId) {
+        document.getElementById(modalId).style.display = "none";
+        // Re-enable scrolling
+        document.body.style.overflow = "auto";
+      }
+
+      function filterGames() {
+        const searchInput = document
+          .getElementById("search")
+          .value.toLowerCase();
+        const filteredGames = gamesList.filter(
+          (game) =>
+            game.name.toLowerCase().includes(searchInput) ||
+            (game.editor && game.editor.toLowerCase().includes(searchInput)) ||
+            (game.year && game.year.toString().includes(searchInput)) ||
+            (game.genres &&
+              game.genres.some((genre) =>
+                genre.toLowerCase().includes(searchInput)
+              ))
+        );
+        renderGames(filteredGames);
+      }
+
+      // Close modal when clicking outside of it
+      window.onclick = function (event) {
+        if (event.target == videosModal) {
+          closeModal("videosModal");
+        } else if (event.target == statsModal) {
+          closeModal("statsModal");
+        }
+      };
+
+      // Close modal with Escape key
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          if (videosModal.style.display === "block") {
+            closeModal("videosModal");
+          } else if (statsModal.style.display === "block") {
+            closeModal("statsModal");
           }
         }
-      }
-    });
-    
-    // Show modal
-    statsModal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-  }
+      });
 
-  function closeModal(modalId) {
-    document.getElementById(modalId).style.display = 'none';
-    // Re-enable scrolling
-    document.body.style.overflow = 'auto';
-  }
-
-  function filterGames() {
-    const searchInput = document.getElementById('search').value.toLowerCase();
-    const filteredGames = gamesList.filter(game =>
-      game.name.toLowerCase().includes(searchInput) ||
-      (game.editor && game.editor.toLowerCase().includes(searchInput)) ||
-      (game.year && game.year.toString().includes(searchInput)) ||
-      (game.genres && game.genres.some(genre => genre.toLowerCase().includes(searchInput)))
-    );
-    renderGames(filteredGames);
-  }
-
-  // Close modal when clicking outside of it
-  window.onclick = function(event) {
-    if (event.target == videosModal) {
-      closeModal('videosModal');
-    } else if (event.target == statsModal) {
-      closeModal('statsModal');
-    }
-  };
-  
-  // Close modal with Escape key
-  document.addEventListener('keydown', function(event) {
-    if (event.key === "Escape") {
-      if (videosModal.style.display === 'block') {
-        closeModal('videosModal');
-      } else if (statsModal.style.display === 'block') {
-        closeModal('statsModal');
-      }
-    }
-  });
-
-  showGames();
-</script>
-</body>
+      showGames();
+    </script>
+  </body>
 </html>
