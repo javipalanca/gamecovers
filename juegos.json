@@ -7238,6 +7238,8 @@
     {
         "id": 119,
         "name": "Sherlock Holmes: Nemesis",
+        "editor": "Frogwares",
+        "year": "2007",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTzxZeaEyXJCjuzzl5dMGo8k",
             "title": "Sherlock Holmes: Nemesis"
@@ -7334,6 +7336,8 @@
     {
         "id": 120,
         "name": "Syberia: The World Before",
+        "editor": "Microïds",
+        "year": "2022",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTxwk5bv45n6xV7Kn5DSd7lx",
             "title": "Syberia: The World Before"
@@ -7410,6 +7414,8 @@
     {
         "id": 121,
         "name": "GTA Vice City",
+        "editor": "Rockstar Games",
+        "year": "2002",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTxv4UZLGjXN6dxrY-3X23gt",
             "title": "GTA Vice City"
@@ -7451,6 +7457,8 @@
     {
         "id": 122,
         "name": "Los Sims 2",
+        "editor": "Maxis/EA Games",
+        "year": "2004",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTxjJhOoVIrSW7oYUNa4HAI8",
             "title": "Los Sims 2"
@@ -7498,6 +7506,8 @@
     {
         "id": 123,
         "name": "Jurassic World Evolution 2",
+        "editor": "Frontier Developments",
+        "year": "2021",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTxymVTtgElp6VnjlPI_GmFn",
             "title": "Jurassic World Evolution 2"
@@ -7527,6 +7537,8 @@
     {
         "id": 124,
         "name": "Indiana Jones and the Fate of Atlantis (2)",
+        "editor": "LucasArts",
+        "year": "1992",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTyAvbmERI21QRB42kJEPR75",
             "title": "Indiana Jones and the Fate of Atlantis (2)"
@@ -7573,6 +7585,8 @@
     {
         "id": 125,
         "name": "Zack McKracken and the Alien Mindbenders",
+        "editor": "LucasArts",
+        "year": "1988",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTwiWoNKYtEKIqhX4bpCfy3w",
             "title": "Zack McKracken and the Alien Mindbenders"
@@ -7613,6 +7627,8 @@
     {
         "id": 126,
         "name": "Bus World",
+        "editor": "KishMish Games",
+        "year": "2021",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTyDROFpWqjdzNZAGRlxAEtK",
             "title": "Bus World"
@@ -7635,6 +7651,8 @@
     {
         "id": 127,
         "name": "Sea of Thieves",
+        "editor": "Rare/Microsoft Studios",
+        "year": "2018",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTwsNwrDNAJgePkKLbprU3Pn",
             "title": "Sea of Thieves"
@@ -7682,6 +7700,7 @@
     {
         "id": 128,
         "name": "ProfesLand",
+        "editor": "Los Profes de Ciencias",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTyi7VN1t6lSPxYMAia_2CcU",
             "title": "ProfesLand"
@@ -7759,6 +7778,8 @@
     {
         "id": 129,
         "name": "Tie Fighter",
+        "editor": "LucasArts",
+        "year": "1994",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTxkJYPOBaQr9f3GenWB_gXB",
             "title": "Tie Fighter"
@@ -7842,6 +7863,8 @@
     {
         "id": 130,
         "name": "Not For Broadcast",
+        "editor": "NotGames/tinyBuild",
+        "year": "2021",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTz1oOK5VHKs0w8OIrs5XaG7",
             "title": "Not For Broadcast"
@@ -7871,6 +7894,8 @@
     {
         "id": 131,
         "name": "Broforce",
+        "editor": "Free Lives/Devolver Digital",
+        "year": "2015",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTynQSQsYinatjAJHfN-eyOA",
             "title": "Broforce"
@@ -7906,6 +7931,8 @@
     {
         "id": 132,
         "name": "Blasphemous",
+        "editor": "The Game Kitchen/Team17",
+        "year": "2019",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTwjz2_7I4FH96YgQS8_HfqU",
             "title": "Blasphemous"
@@ -7929,6 +7956,8 @@
     {
         "id": 133,
         "name": "Snowrunner",
+        "editor": "Saber Interactive/Focus Home Interactive",
+        "year": "2020",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTycT-ihIGpIvZUwwb3L2EY_",
             "title": "Snowrunner"
@@ -7982,6 +8011,8 @@
     {
         "id": 134,
         "name": "Struggling",
+        "editor": "Frontier Foundry/Chasing Rats Games",
+        "year": "2020",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTyvDL-xhRxDBqSOkDqZPI7Q",
             "title": "Struggling"
@@ -8011,6 +8042,8 @@
     {
         "id": 135,
         "name": "Spore",
+        "editor": "Maxis/EA Games",
+        "year": "2008",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTzn11sbbtnqBTkfXOtSqizh",
             "title": "Spore"
@@ -8039,7 +8072,9 @@
     },
     {
         "id": 136,
-        "name": "PC Fútbol",
+        "name": "PC Fútbol 4.0",
+        "editor": "Dinamic Multimedia",
+        "year": "1992",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTxx_7uxKnkjaM9tIa83-jjR",
             "title": "PC Fútbol"
@@ -8081,6 +8116,8 @@
     {
         "id": 137,
         "name": "The Legend of Zelda",
+        "editor": "Nintendo",
+        "year": "1986",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTzvGxEiXAwVT3cEVDVczbED",
             "title": "The Legend of Zelda"
@@ -8109,6 +8146,8 @@
     {
         "id": 138,
         "name": "Wolfenstein 3D",
+        "editor": "id Software",
+        "year": "1992",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTyRjWaShCMXRpqC3KYAIVjJ",
             "title": "Wolfenstein 3D"
@@ -8131,6 +8170,8 @@
     {
         "id": 139,
         "name": "Farming Simulator 22",
+        "editor": "Giants Software/Focus Entertainment",
+        "year": "2021",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTzGkkGQ6kHAmhi4gkZovaC8",
             "title": "Farming Simulator 22"
@@ -8208,6 +8249,8 @@
     {
         "id": 140,
         "name": "Death Stranding",
+        "editor": "Kojima Productions/505 Games",
+        "year": "2019",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTw8A7Tj4GbBrPcFZ9P6FsJd",
             "title": "Death Stranding"
@@ -8255,6 +8298,8 @@
     {
         "id": 151,
         "name": "XCom",
+        "editor": "Firaxis Games/2K Games",
+        "year": "2012",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTzp3NNGAMWoLy0Gikamoecj",
             "title": "XCom"
@@ -8368,6 +8413,8 @@
     {
         "id": 141,
         "name": "Cities: Skylines",
+        "editor": "Colossal Order/Paradox Interactive",
+        "year": "2015",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTx6VK0MkObleCuumx0FcDXD",
             "title": "Cities: Skylines"
@@ -8391,6 +8438,8 @@
     {
         "id": 142,
         "name": "Portal",
+        "editor": "Valve",
+        "year": "2007",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTy0qkLI4bzscfAclf6BsVhm",
             "title": "Portal"
@@ -8414,6 +8463,8 @@
     {
         "id": 143,
         "name": "Assassin's Creed 2",
+        "editor": "Ubisoft",
+        "year": "2009",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTwunfIJWoIXlX-MSzkrimyz",
             "title": "Assassin's Creed 2"
@@ -8443,6 +8494,8 @@
     {
         "id": 144,
         "name": "Bus Simulator 16",
+        "editor": "stillalive studios/astragon Entertainment",
+        "year": "2016",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTyqiPjZ4xdiiSveXY7YE0yY",
             "title": "Bus Simulator 16"
@@ -8465,6 +8518,8 @@
     {
         "id": 145,
         "name": "Eurotruck simulator 2",
+        "editor": "SCS Software",
+        "year": "2012",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTyYCXM7w8bnyGIyyblXac3G",
             "title": "Eurotruck simulator 2"
@@ -8884,6 +8939,8 @@
     {
         "id": 146,
         "name": "Farming Simulator 19",
+        "editor": "Giants Software/Focus Home Interactive",
+        "year": "2018",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTy8kyqBiSbdJOjr-cmv5vHN",
             "title": "Farming Simulator 19"
@@ -8931,6 +8988,8 @@
     {
         "id": 147,
         "name": "Commandos",
+        "editor": "Pyro Studios/Eidos Interactive",
+        "year": "1998",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTztzoyRbJja7fOzM92_Z6Sp",
             "title": "Commandos"
@@ -8972,6 +9031,8 @@
     {
         "id": 148,
         "name": "Prince of Persia",
+        "editor": "Broderbund/Jordan Mechner",
+        "year": "1989",
         "lista_youtube": {
             "id": "PLPTCy7OVkjTyqNi8GY3VWnC4hxyWhaMpW",
             "title": "Prince of Persia"
@@ -9031,6 +9092,7 @@
         "id": 149,
         "name": "The Room Two",
         "editor": "Fireproof Games",
+        "year": "2016",
         "played": "2025-07",
         "cover": "https://m.media-amazon.com/images/M/MV5BYTUxMjViNzAtNDliNi00MjRlLTlhODktNjcxNjc0NmQ3NTliXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
         "genres": [
