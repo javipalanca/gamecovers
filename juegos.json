@@ -7246,6 +7246,12 @@
         },
         "videos": [
             {
+                "title": "Terminamos Sherlock Holmes!",
+                "url": "https://www.youtube.com/watch?v=AoG9gUqh8Ko",
+                "thumbnail": "https://i.ytimg.com/vi/AoG9gUqh8Ko/hqdefault.jpg",
+                "publishedAt": "2025-07-20T13:12:22Z"
+            },
+            {
                 "title": "Vamos terminando señor Holmes! (Intento fallido)",
                 "url": "https://www.youtube.com/watch?v=vaHZ4FzTwho",
                 "thumbnail": "https://i.ytimg.com/vi/vaHZ4FzTwho/hqdefault.jpg",
@@ -7316,12 +7322,6 @@
                 "url": "https://www.youtube.com/watch?v=SP4IezEIEIc",
                 "thumbnail": "https://i.ytimg.com/vi/SP4IezEIEIc/hqdefault.jpg",
                 "publishedAt": "2025-06-08T20:55:04Z"
-            },
-            {
-                "title": "Terminamos Sherlock Holmes!",
-                "url": "https://www.youtube.com/watch?v=AoG9gUqh8Ko",
-                "thumbnail": "https://i.ytimg.com/vi/AoG9gUqh8Ko/hqdefault.jpg",
-                "publishedAt": "2025-07-20T13:12:22Z"
             }
         ],
         "genres": [
@@ -8926,6 +8926,12 @@
                 "url": "https://www.youtube.com/watch?v=oDfs4WKlwdo",
                 "thumbnail": "https://i.ytimg.com/vi/oDfs4WKlwdo/hqdefault.jpg",
                 "publishedAt": "2025-07-20T13:17:41Z"
+            },
+            {
+                "title": "Sube que te llevo",
+                "url": "https://www.youtube.com/watch?v=xarquGnFhNg",
+                "thumbnail": "https://i.ytimg.com/vi/xarquGnFhNg/hqdefault.jpg",
+                "publishedAt": "2025-08-31T17:14:52Z"
             }
         ],
         "genres": [
@@ -9105,10 +9111,10 @@
         },
         "videos": [
             {
-                "title": "Rompamonos la cabeza",
-                "url": "https://www.youtube.com/watch?v=E9rZQEq-TTk",
-                "thumbnail": "https://i.ytimg.com/vi/E9rZQEq-TTk/hqdefault.jpg",
-                "publishedAt": "2025-07-20T13:19:03Z"
+                "title": "A ver si me funcionan las neuronas...",
+                "url": "https://www.youtube.com/watch?v=b7MIGqTne-E",
+                "thumbnail": "https://i.ytimg.com/vi/b7MIGqTne-E/hqdefault.jpg",
+                "publishedAt": "2025-07-20T13:21:29Z"
             },
             {
                 "title": "puzzleamos!",
@@ -9117,10 +9123,22 @@
                 "publishedAt": "2025-07-20T13:20:26Z"
             },
             {
-                "title": "A ver si me funcionan las neuronas...",
-                "url": "https://www.youtube.com/watch?v=b7MIGqTne-E",
-                "thumbnail": "https://i.ytimg.com/vi/b7MIGqTne-E/hqdefault.jpg",
-                "publishedAt": "2025-07-20T13:21:29Z"
+                "title": "Rompamonos la cabeza",
+                "url": "https://www.youtube.com/watch?v=E9rZQEq-TTk",
+                "thumbnail": "https://i.ytimg.com/vi/E9rZQEq-TTk/hqdefault.jpg",
+                "publishedAt": "2025-07-20T13:19:03Z"
+            },
+            {
+                "title": "Review de la nueva MicroHobby! y luego puzzles",
+                "url": "https://www.youtube.com/watch?v=vbkVkCme6zs",
+                "thumbnail": "https://i.ytimg.com/vi/vbkVkCme6zs/hqdefault.jpg",
+                "publishedAt": "2025-08-31T17:07:11Z"
+            },
+            {
+                "title": "Salimos de la habitacion? Terminamos The Room Two",
+                "url": "https://www.youtube.com/watch?v=FzBtq6nbBD8",
+                "thumbnail": "https://i.ytimg.com/vi/FzBtq6nbBD8/hqdefault.jpg",
+                "publishedAt": "2025-08-31T17:09:50Z"
             }
         ]
     },
@@ -9211,6 +9229,42 @@
                 "url": "https://www.youtube.com/watch?v=ddb74CWjwXg",
                 "thumbnail": "https://i.ytimg.com/vi/ddb74CWjwXg/hqdefault.jpg",
                 "publishedAt": "2025-07-20T13:23:12Z"
+            },
+            {
+                "title": "Moleculand #13",
+                "url": "https://www.youtube.com/watch?v=nHa-jSudlI4",
+                "thumbnail": "https://i.ytimg.com/vi/nHa-jSudlI4/hqdefault.jpg",
+                "publishedAt": "2025-08-31T17:12:51Z"
+            }
+        ]
+    },
+    {
+        "name": "Command & Conquer Remastered Collection",
+        "editor": "Petroglyph Games / Electronic Arts",
+        "year": "2020",
+        "played": "2025-07",
+        "cover": "https://upload.wikimedia.org/wikipedia/en/5/5b/Command_and_Conquer_Remastered_artwork.jpg",
+        "genres": [
+            "Estrategia",
+            "Real-Time Strategy (RTS)",
+        ],
+
+        "lista_youtube": {
+            "id": "PLPTCy7OVkjTx3oSVrSXoSli3vUcDY9Da2",
+            "title": "Command and Conquer (Remaster)"
+        },
+        "videos": [
+            {
+                "title": "Nos llaman para la mili!",
+                "url": "https://www.youtube.com/watch?v=wEpwpOzX_qY",
+                "thumbnail": "https://i.ytimg.com/vi/wEpwpOzX_qY/hqdefault.jpg",
+                "publishedAt": "2025-08-31T17:18:19Z"
+            },
+            {
+                "title": "Demuestro mis dotes militares",
+                "url": "https://www.youtube.com/watch?v=Dclr-PTSaeQ",
+                "thumbnail": "https://i.ytimg.com/vi/Dclr-PTSaeQ/hqdefault.jpg",
+                "publishedAt": "2025-08-31T17:19:45Z"
             }
         ]
     }
