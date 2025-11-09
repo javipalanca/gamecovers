@@ -7422,6 +7422,12 @@
         },
         "videos": [
             {
+                "title": "GTA Vice City y luego programamos",
+                "url": "https://www.youtube.com/watch?v=LVf-Pt-Fn3k",
+                "thumbnail": "https://i.ytimg.com/vi/LVf-Pt-Fn3k/hqdefault.jpg",
+                "publishedAt": "2025-09-30T11:20:02Z"
+            },
+            {
                 "title": "Tarde en ciudad del vicio",
                 "url": "https://www.youtube.com/watch?v=CEAfaCTCFCA",
                 "thumbnail": "https://i.ytimg.com/vi/CEAfaCTCFCA/hqdefault.jpg",
@@ -8932,6 +8938,12 @@
                 "url": "https://www.youtube.com/watch?v=xarquGnFhNg",
                 "thumbnail": "https://i.ytimg.com/vi/xarquGnFhNg/hqdefault.jpg",
                 "publishedAt": "2025-08-31T17:14:52Z"
+            },
+            {
+                "title": "Hacía tiempo que no hacíamos una ruta...",
+                "url": "https://www.youtube.com/watch?v=54vDQjwz-eE",
+                "thumbnail": "https://i.ytimg.com/vi/54vDQjwz-eE/hqdefault.jpg",
+                "publishedAt": "2025-10-30T18:02:54Z"
             }
         ],
         "genres": [
@@ -9111,6 +9123,18 @@
         },
         "videos": [
             {
+                "title": "Salimos de la habitacion? Terminamos The Room Two",
+                "url": "https://www.youtube.com/watch?v=FzBtq6nbBD8",
+                "thumbnail": "https://i.ytimg.com/vi/FzBtq6nbBD8/hqdefault.jpg",
+                "publishedAt": "2025-08-31T17:09:50Z"
+            },
+            {
+                "title": "Review de la nueva MicroHobby! y luego puzzles",
+                "url": "https://www.youtube.com/watch?v=vbkVkCme6zs",
+                "thumbnail": "https://i.ytimg.com/vi/vbkVkCme6zs/hqdefault.jpg",
+                "publishedAt": "2025-08-31T17:07:11Z"
+            },
+            {
                 "title": "A ver si me funcionan las neuronas...",
                 "url": "https://www.youtube.com/watch?v=b7MIGqTne-E",
                 "thumbnail": "https://i.ytimg.com/vi/b7MIGqTne-E/hqdefault.jpg",
@@ -9127,18 +9151,6 @@
                 "url": "https://www.youtube.com/watch?v=E9rZQEq-TTk",
                 "thumbnail": "https://i.ytimg.com/vi/E9rZQEq-TTk/hqdefault.jpg",
                 "publishedAt": "2025-07-20T13:19:03Z"
-            },
-            {
-                "title": "Review de la nueva MicroHobby! y luego puzzles",
-                "url": "https://www.youtube.com/watch?v=vbkVkCme6zs",
-                "thumbnail": "https://i.ytimg.com/vi/vbkVkCme6zs/hqdefault.jpg",
-                "publishedAt": "2025-08-31T17:07:11Z"
-            },
-            {
-                "title": "Salimos de la habitacion? Terminamos The Room Two",
-                "url": "https://www.youtube.com/watch?v=FzBtq6nbBD8",
-                "thumbnail": "https://i.ytimg.com/vi/FzBtq6nbBD8/hqdefault.jpg",
-                "publishedAt": "2025-08-31T17:09:50Z"
             }
         ]
     },
@@ -9246,25 +9258,375 @@
         "cover": "https://upload.wikimedia.org/wikipedia/en/5/5b/Command_and_Conquer_Remastered_artwork.jpg",
         "genres": [
             "Estrategia",
-            "Real-Time Strategy (RTS)",
+            "Real-Time Strategy (RTS)"
         ],
-
         "lista_youtube": {
             "id": "PLPTCy7OVkjTx3oSVrSXoSli3vUcDY9Da2",
             "title": "Command and Conquer (Remaster)"
         },
         "videos": [
             {
-                "title": "Nos llaman para la mili!",
-                "url": "https://www.youtube.com/watch?v=wEpwpOzX_qY",
-                "thumbnail": "https://i.ytimg.com/vi/wEpwpOzX_qY/hqdefault.jpg",
-                "publishedAt": "2025-08-31T17:18:19Z"
-            },
-            {
                 "title": "Demuestro mis dotes militares",
                 "url": "https://www.youtube.com/watch?v=Dclr-PTSaeQ",
                 "thumbnail": "https://i.ytimg.com/vi/Dclr-PTSaeQ/hqdefault.jpg",
                 "publishedAt": "2025-08-31T17:19:45Z"
+            },
+            {
+                "title": "Nos llaman para la mili!",
+                "url": "https://www.youtube.com/watch?v=wEpwpOzX_qY",
+                "thumbnail": "https://i.ytimg.com/vi/wEpwpOzX_qY/hqdefault.jpg",
+                "publishedAt": "2025-08-31T17:18:19Z"
+            }
+        ]
+    },
+    {
+        "name": "Tormentum: Dark Sorrow",
+        "editor": "OhNoo Studio",
+        "year": "2015",
+        "played": "2025-11",
+        "cover": "https://archive.org/download/tormentum-dark-sorrow/Tormentum%20Dark%20Sorrow.jpg",
+        "genres": [
+            "Adventure",
+            "Puzzle",
+            "Horror"
+        ],
+        "lista_youtube": {
+            "id": "PLPTCy7OVkjTwVdmP0UxItdjBq20Lh7qHV",
+            "title": "Tormentum"
+        },
+        "videos": [
+            {
+                "title": "Terminamos Tormentum",
+                "url": "https://www.youtube.com/watch?v=nSP5RiiF4fQ",
+                "thumbnail": "https://i.ytimg.com/vi/nSP5RiiF4fQ/hqdefault.jpg",
+                "publishedAt": "2025-11-05T23:09:19Z"
+            },
+            {
+                "title": "Seguimos un tormento?",
+                "url": "https://www.youtube.com/watch?v=4gnHMxAaw9k",
+                "thumbnail": "https://i.ytimg.com/vi/4gnHMxAaw9k/hqdefault.jpg",
+                "publishedAt": "2025-11-05T23:04:49Z"
+            },
+            {
+                "title": "Empezamos aventura!",
+                "url": "https://www.youtube.com/watch?v=iVAmYJtAaG4",
+                "thumbnail": "https://i.ytimg.com/vi/iVAmYJtAaG4/hqdefault.jpg",
+                "publishedAt": "2025-11-01T16:49:54Z"
+            }
+        ]
+    },
+    {
+        "name": "Blade Runner",
+        "editor": "Westwood Studios",
+        "year": "1997",
+        "played": "2025-10",
+        "cover": "https://upload.wikimedia.org/wikipedia/en/thumb/5/59/BladeRunner_PC_Game_%28Front_Cover%29.jpg/1024px-BladeRunner_PC_Game_%28Front_Cover%29.jpg",
+        "genres": [
+            "Adventure",
+            "Point-and-Click"
+        ],
+        "lista_youtube": {
+            "id": "PLPTCy7OVkjTx4tK1gYwoDtfI1o7qi4yaC",
+            "title": "Blade Runner"
+        },
+        "videos": [
+            {
+                "title": "Ovejas eléctricas. Terminamos Blade Runner",
+                "url": "https://www.youtube.com/watch?v=zs_JyCJGKmU",
+                "thumbnail": "https://i.ytimg.com/vi/zs_JyCJGKmU/hqdefault.jpg",
+                "publishedAt": "2025-10-30T18:09:01Z"
+            },
+            {
+                "title": "Bleidraner",
+                "url": "https://www.youtube.com/watch?v=B_W-xWG2CmE",
+                "thumbnail": "https://i.ytimg.com/vi/B_W-xWG2CmE/hqdefault.jpg",
+                "publishedAt": "2025-10-30T18:08:06Z"
+            },
+            {
+                "title": "Vuelven los replicantes!",
+                "url": "https://www.youtube.com/watch?v=3kRpimlrc3s",
+                "thumbnail": "https://i.ytimg.com/vi/3kRpimlrc3s/hqdefault.jpg",
+                "publishedAt": "2025-10-30T18:04:19Z"
+            },
+            {
+                "title": "Caña a los replicantes!",
+                "url": "https://www.youtube.com/watch?v=CM6jwy474vI",
+                "thumbnail": "https://i.ytimg.com/vi/CM6jwy474vI/hqdefault.jpg",
+                "publishedAt": "2025-10-30T17:59:14Z"
+            },
+            {
+                "title": "Empezamos BLADE RUNNER !!!",
+                "url": "https://www.youtube.com/watch?v=Zubuk4MX7Tk",
+                "thumbnail": "https://i.ytimg.com/vi/Zubuk4MX7Tk/hqdefault.jpg",
+                "publishedAt": "2025-10-30T17:56:18Z"
+            }
+        ]
+    },
+    {
+        "name": "Valencia Vice RP",
+        "editor": "Rockstar Games",
+        "year": "2013",
+        "played": "2025-09",
+        "cover": "https://media.discordapp.net/attachments/1084475595993382962/1417564200825262110/image0.jpg?ex=6912220a&is=6910d08a&hm=4f70823954defeb1d0610fb79b88c44314c4616f4dff4724be1cfeb9087bd927&=&format=webp",
+        "genres": [
+            "Open World",
+            "Action",
+            "Roleplay"
+        ],
+        "lista_youtube": {
+            "id": "PLPTCy7OVkjTzsQX55jveUHJw-nHNnKcQ-",
+            "title": "Valencia Vice RP"
+        },
+        "videos": [
+            {
+                "title": "Carles el triunfador en VALENCIA VICE RP+18",
+                "url": "https://www.youtube.com/watch?v=FFeYTiduHSo",
+                "thumbnail": "https://i.ytimg.com/vi/FFeYTiduHSo/hqdefault.jpg",
+                "publishedAt": "2025-11-03T15:19:14Z"
+            },
+            {
+                "title": "Cositas en VALENCIA VICE RP+18",
+                "url": "https://www.youtube.com/watch?v=hr5h8wnXvFg",
+                "thumbnail": "https://i.ytimg.com/vi/hr5h8wnXvFg/hqdefault.jpg",
+                "publishedAt": "2025-11-03T15:17:18Z"
+            },
+            {
+                "title": "Especial Halloween en VALENCIA VICE RP+18",
+                "url": "https://www.youtube.com/watch?v=W1443yF630M",
+                "thumbnail": "https://i.ytimg.com/vi/W1443yF630M/hqdefault.jpg",
+                "publishedAt": "2025-11-01T16:52:03Z"
+            },
+            {
+                "title": "Taxi! VALENCIA VICE RP+18",
+                "url": "https://www.youtube.com/watch?v=g6AOpiOV2FA",
+                "thumbnail": "https://i.ytimg.com/vi/g6AOpiOV2FA/hqdefault.jpg",
+                "publishedAt": "2025-10-30T18:07:06Z"
+            },
+            {
+                "title": "Carles tiene nuevo curro!",
+                "url": "https://www.youtube.com/watch?v=eXLTleSKri0",
+                "thumbnail": "https://i.ytimg.com/vi/eXLTleSKri0/hqdefault.jpg",
+                "publishedAt": "2025-10-30T18:05:59Z"
+            },
+            {
+                "title": "Hoy toca robar un furgón (y acabar en la cárcel)",
+                "url": "https://www.youtube.com/watch?v=W5zqSdviLtQ",
+                "thumbnail": "https://i.ytimg.com/vi/W5zqSdviLtQ/hqdefault.jpg",
+                "publishedAt": "2025-10-30T18:01:53Z"
+            },
+            {
+                "title": "Camino de convertir a Carles en el amo de VALENCIA VICE",
+                "url": "https://www.youtube.com/watch?v=NaN87vlVgbE",
+                "thumbnail": "https://i.ytimg.com/vi/NaN87vlVgbE/hqdefault.jpg",
+                "publishedAt": "2025-10-30T18:00:50Z"
+            },
+            {
+                "title": "Vuelve el malo más malo!",
+                "url": "https://www.youtube.com/watch?v=pB-txBYBbLI",
+                "thumbnail": "https://i.ytimg.com/vi/pB-txBYBbLI/hqdefault.jpg",
+                "publishedAt": "2025-10-30T18:00:01Z"
+            },
+            {
+                "title": "Hoy roleo poco rato que estoy enfermo... VALENCIA VICE RP+18",
+                "url": "https://www.youtube.com/watch?v=CFKbAmtN_6A",
+                "thumbnail": "https://i.ytimg.com/vi/CFKbAmtN_6A/hqdefault.jpg",
+                "publishedAt": "2025-10-30T17:54:58Z"
+            },
+            {
+                "title": "Roleando que es gerundio",
+                "url": "https://www.youtube.com/watch?v=oitTu8TYEyo",
+                "thumbnail": "https://i.ytimg.com/vi/oitTu8TYEyo/hqdefault.jpg",
+                "publishedAt": "2025-10-30T17:54:02Z"
+            },
+            {
+                "title": "Cita con la mafia en  VALENCIA VICE RP+18",
+                "url": "https://www.youtube.com/watch?v=aJ7oB2TiVNI",
+                "thumbnail": "https://i.ytimg.com/vi/aJ7oB2TiVNI/hqdefault.jpg",
+                "publishedAt": "2025-10-30T17:49:08Z"
+            },
+            {
+                "title": "Despierto en el hospital La Fe de VALENCIA VICE RP+18",
+                "url": "https://www.youtube.com/watch?v=_kPLjPxiKOo",
+                "thumbnail": "https://i.ytimg.com/vi/_kPLjPxiKOo/hqdefault.jpg",
+                "publishedAt": "2025-10-30T17:48:15Z"
+            },
+            {
+                "title": "Vuelve el bandido mas torpe de la ciudad!",
+                "url": "https://www.youtube.com/watch?v=iU0hC_PTyY4",
+                "thumbnail": "https://i.ytimg.com/vi/iU0hC_PTyY4/hqdefault.jpg",
+                "publishedAt": "2025-10-30T17:47:00Z"
+            },
+            {
+                "title": "5 aniversario del canal! Celebramos de jardineros",
+                "url": "https://www.youtube.com/watch?v=0IxRZ4vyYB0",
+                "thumbnail": "https://i.ytimg.com/vi/0IxRZ4vyYB0/hqdefault.jpg",
+                "publishedAt": "2025-09-30T11:20:47Z"
+            },
+            {
+                "title": "Carles vuelve a la ciudad VALENCIA VICE RP+18 (2/2)",
+                "url": "https://www.youtube.com/watch?v=GUzwZmQIXtY",
+                "thumbnail": "https://i.ytimg.com/vi/GUzwZmQIXtY/hqdefault.jpg",
+                "publishedAt": "2025-09-30T11:19:00Z"
+            },
+            {
+                "title": "Carles vuelve a la ciudad VALENCIA VICE RP+18 (1/2)",
+                "url": "https://www.youtube.com/watch?v=nPlTdLVuzoA",
+                "thumbnail": "https://i.ytimg.com/vi/nPlTdLVuzoA/hqdefault.jpg",
+                "publishedAt": "2025-09-30T11:18:04Z"
+            },
+            {
+                "title": "Carles estrena deportivo! VALENCIA VICE RP+18",
+                "url": "https://www.youtube.com/watch?v=Mwp4PIQGpsM",
+                "thumbnail": "https://i.ytimg.com/vi/Mwp4PIQGpsM/hqdefault.jpg",
+                "publishedAt": "2025-09-30T11:12:10Z"
+            },
+            {
+                "title": "Roleito en VALENCIA VICE RP+18",
+                "url": "https://www.youtube.com/watch?v=zXX_dwnTDmY",
+                "thumbnail": "https://i.ytimg.com/vi/zXX_dwnTDmY/hqdefault.jpg",
+                "publishedAt": "2025-09-21T10:19:46Z"
+            },
+            {
+                "title": "Carles Angulo sale del Casino en VALENCIA RP+18",
+                "url": "https://www.youtube.com/watch?v=mpQcpxnd5zQ",
+                "thumbnail": "https://i.ytimg.com/vi/mpQcpxnd5zQ/hqdefault.jpg",
+                "publishedAt": "2025-09-21T10:18:48Z"
+            },
+            {
+                "title": "Iniciamos rol en VALENCIA VICE RP+18 !!!",
+                "url": "https://www.youtube.com/watch?v=VkCmE35ZaIY",
+                "thumbnail": "https://i.ytimg.com/vi/VkCmE35ZaIY/hqdefault.jpg",
+                "publishedAt": "2025-09-21T10:15:43Z"
+            }
+        ]
+    },
+    {
+        "name": "Subnautica",
+        "editor": "Unknown Worlds Entertainment",
+        "year": "2014",
+        "played": "2025-09",
+        "cover": "https://store-images.s-microsoft.com/image/apps.24838.63409341877910445.4fd452e1-c3ee-4448-a0f8-ac6eb6bdaabf.d531d87c-d1b7-497f-b802-baabfb728090",
+        "genres": [
+            "Adventure",
+            "Survival",
+            "Open World"
+        ],
+        "lista_youtube": {
+            "id": "PLPTCy7OVkjTysLtaTUCWVROclFbHCK5w-",
+            "title": "Subnautica"
+        },
+        "videos": [
+            {
+                "title": "A mojarse los pies",
+                "url": "https://www.youtube.com/watch?v=XJuAN0pV5XE",
+                "thumbnail": "https://i.ytimg.com/vi/XJuAN0pV5XE/hqdefault.jpg",
+                "publishedAt": "2025-09-21T10:12:14Z"
+            }
+        ]
+    },
+    {
+        "name": "Broken Sword 3: The Sleeping Dragon",
+        "editor": "Revolution Software",
+        "year": "2003",
+        "played": "2025-10",
+        "cover": "https://upload.wikimedia.org/wikipedia/en/thumb/3/37/Broken_Sword_-The_Sleeping_DragonCover.jpg/1024px-Broken_Sword_-The_Sleeping_DragonCover.jpg",
+        "genres": [
+            "Adventure",
+            "Point-and-Click"
+        ],
+        "lista_youtube": {
+            "id": "PLPTCy7OVkjTyiT1MaIgCoMDP67fkLNtwP",
+            "title": "Broken Sword 3: The Sleeping Dragon"
+        },
+        "videos": [
+            {
+                "title": "Terminamos hoy BS3",
+                "url": "https://www.youtube.com/watch?v=LjjHLH2FF00",
+                "thumbnail": "https://i.ytimg.com/vi/LjjHLH2FF00/hqdefault.jpg",
+                "publishedAt": "2025-10-30T17:52:35Z"
+            },
+            {
+                "title": "Para nada miro la guia",
+                "url": "https://www.youtube.com/watch?v=IEcXDFpRQuc",
+                "thumbnail": "https://i.ytimg.com/vi/IEcXDFpRQuc/hqdefault.jpg",
+                "publishedAt": "2025-10-30T17:51:08Z"
+            },
+            {
+                "title": "Vuelve el carismático George",
+                "url": "https://www.youtube.com/watch?v=EVjIGOQsbaw",
+                "thumbnail": "https://i.ytimg.com/vi/EVjIGOQsbaw/hqdefault.jpg",
+                "publishedAt": "2025-10-30T17:50:15Z"
+            },
+            {
+                "title": "Broken Sword no está tan mal...",
+                "url": "https://www.youtube.com/watch?v=a8wdGh59CjA",
+                "thumbnail": "https://i.ytimg.com/vi/a8wdGh59CjA/hqdefault.jpg",
+                "publishedAt": "2025-10-30T17:45:26Z"
+            },
+            {
+                "title": "Seguimos la \"diversión\"!",
+                "url": "https://www.youtube.com/watch?v=C5gLhPnxDNY",
+                "thumbnail": "https://i.ytimg.com/vi/C5gLhPnxDNY/hqdefault.jpg",
+                "publishedAt": "2025-10-25T08:41:41Z"
+            },
+            {
+                "title": "Al menos George no habla en castellano...",
+                "url": "https://www.youtube.com/watch?v=R_yImaA3Dio",
+                "thumbnail": "https://i.ytimg.com/vi/R_yImaA3Dio/hqdefault.jpg",
+                "publishedAt": "2025-09-30T11:17:04Z"
+            },
+            {
+                "title": "Broken Sword 3, o la emoción a flor de piel...",
+                "url": "https://www.youtube.com/watch?v=O_4TQ2lknlU",
+                "thumbnail": "https://i.ytimg.com/vi/O_4TQ2lknlU/hqdefault.jpg",
+                "publishedAt": "2025-09-30T11:13:22Z"
+            },
+            {
+                "title": "Señor George, no nos maltrate...",
+                "url": "https://www.youtube.com/watch?v=TawR-mzetU0",
+                "thumbnail": "https://i.ytimg.com/vi/TawR-mzetU0/hqdefault.jpg",
+                "publishedAt": "2025-09-21T10:17:38Z"
+            },
+            {
+                "title": "Volvemos a Broken Sword 3!",
+                "url": "https://www.youtube.com/watch?v=lSG5ebpf4JI",
+                "thumbnail": "https://i.ytimg.com/vi/lSG5ebpf4JI/hqdefault.jpg",
+                "publishedAt": "2025-09-21T10:16:32Z"
+            },
+            {
+                "title": "Volvemos a probar si broken está broken",
+                "url": "https://www.youtube.com/watch?v=wtRhgkv4VgE",
+                "thumbnail": "https://i.ytimg.com/vi/wtRhgkv4VgE/hqdefault.jpg",
+                "publishedAt": "2025-09-07T13:09:14Z"
+            }
+        ]
+    },
+    {
+        "name": "Day of the Tentacle (2)",
+        "editor": "LucasArts",
+        "year": "1993",
+        "played": "2025-09",
+        "cover": "https://thumbnails.pcgamingwiki.com/4/46/Day_of_the_Tentacle_cover.jpg/300px-Day_of_the_Tentacle_cover.jpg",
+        "genres": [
+            "Adventure",
+            "Point-and-Click"
+        ],
+        "lista_youtube": {
+            "id": "PLPTCy7OVkjTyNCo0c5rBpJ1mWmCBME7OB",
+            "title": "Day of the Tentacle (2)"
+        },
+        "videos": [
+            {
+                "title": "A las cron-o-letrinas!!! Terminamos Day of the Tentacle",
+                "url": "https://www.youtube.com/watch?v=sBZjZJv3Vv8",
+                "thumbnail": "https://i.ytimg.com/vi/sBZjZJv3Vv8/hqdefault.jpg",
+                "publishedAt": "2025-09-07T13:06:53Z"
+            },
+            {
+                "title": "Unboxing y... Volvemos a los orígenes!",
+                "url": "https://www.youtube.com/watch?v=P0WNO67UxKE",
+                "thumbnail": "https://i.ytimg.com/vi/P0WNO67UxKE/hqdefault.jpg",
+                "publishedAt": "2025-09-07T13:05:39Z"
             }
         ]
     }
