@@ -9367,7 +9367,7 @@
         "editor": "Rockstar Games",
         "year": "2013",
         "played": "2025-09",
-        "cover": "https://media.discordapp.net/attachments/1084475595993382962/1417564200825262110/image0.jpg?ex=6912220a&is=6910d08a&hm=4f70823954defeb1d0610fb79b88c44314c4616f4dff4724be1cfeb9087bd927&=&format=webp",
+        "cover": "https://p77-sign-va.tiktokcdn.com/tos-maliva-avt-0068/2b16565f2b90d68d0bd182a37e1335d9~tplv-tiktokx-cropcenter:1080:1080.jpeg?dr=10399&refresh_token=f3de83be&x-expires=1763586000&x-signature=6X4scMx3fBpvH9D4Si%2FDMzIkank%3D",
         "genres": [
             "Open World",
             "Action",
@@ -9497,6 +9497,42 @@
                 "url": "https://www.youtube.com/watch?v=VkCmE35ZaIY",
                 "thumbnail": "https://i.ytimg.com/vi/VkCmE35ZaIY/hqdefault.jpg",
                 "publishedAt": "2025-09-21T10:15:43Z"
+            },
+            {
+                "title": "Unboxing! Después Carles despierta en VALENCIA VICE RP+18",
+                "url": "https://www.youtube.com/watch?v=Ja32xW-DPRU",
+                "thumbnail": "https://i.ytimg.com/vi/Ja32xW-DPRU/hqdefault.jpg",
+                "publishedAt": "2025-11-17T21:17:19Z"
+            },
+            {
+                "title": "Poliempleado en VALENCIA VICE RP+18",
+                "url": "https://www.youtube.com/watch?v=AVH5uPmMyh0",
+                "thumbnail": "https://i9.ytimg.com/vi/AVH5uPmMyh0/maxresdefault.jpg?sqp=CISq7sgG&rs=AOn4CLDqQSfW5XJvSdGe_N7xsYqPqLf2vw",
+                "publishedAt": "2025-11-17T21:18:15Z"
+            },
+            {
+                "title": "Roleamos con Carles en VALENCIA VICE RP+18",
+                "url": "https://www.youtube.com/watch?v=dvAKToQ4ddg",
+                "thumbnail": "https://i.ytimg.com/vi/dvAKToQ4ddg/hqdefault.jpg",
+                "publishedAt": "2025-11-17T21:20:42Z"
+            },
+            {
+                "title": "Carles Angulo vuelve a darte por el ... VALENCIA VICE",
+                "url": "https://www.youtube.com/watch?v=Cih_f-d0vHE",
+                "thumbnail": "https://i.ytimg.com/vi/Cih_f-d0vHE/hqdefault.jpg",
+                "publishedAt": "2025-11-17T21:24:43Z"
+            },
+            {
+                "title": "Hoy tenemos evento en VALENCIA VICE",
+                "url": "https://www.youtube.com/watch?v=W9PzfE8LKjk",
+                "thumbnail": "https://i.ytimg.com/vi/W9PzfE8LKjk/hqdefault.jpg",
+                "publishedAt": "2025-11-17T21:26:01Z"
+            },
+            {
+                "title": "Carles in love en VALENCIA VICE RP+18",
+                "url": "https://www.youtube.com/watch?v=Wd6zBLIR3aQ",
+                "thumbnail": "https://i.ytimg.com/vi/Wd6zBLIR3aQ/hqdefault.jpg",
+                "publishedAt": "2025-11-17T21:26:58Z"
             }
         ]
     },
@@ -9627,6 +9663,35 @@
                 "url": "https://www.youtube.com/watch?v=P0WNO67UxKE",
                 "thumbnail": "https://i.ytimg.com/vi/P0WNO67UxKE/hqdefault.jpg",
                 "publishedAt": "2025-09-07T13:05:39Z"
+            }
+        ]
+    },
+    {
+        "name": "Detective Gallo",
+        "editor": "Footprints Games",
+        "year": "2028",
+        "played": "2025-11",
+        "cover": "https://thumbnails.pcgamingwiki.com/3/3e/Detective_Gallo_cover.jpg/300px-Detective_Gallo_cover.jpg",
+        "genres": [
+            "Adventure",
+            "Point-and-Click"
+        ],
+        "lista_youtube": {
+            "id": "PLPTCy7OVkjTwZSqNabk9jV61Hiz5twJRX",
+            "title": "Detective Gallo"
+        },
+        "videos": [
+            {
+                "title": "Empezamos Detective Gallo",
+                "url": "https://www.youtube.com/watch?v=5Ugx9YsCAeo",
+                "thumbnail": "https://i.ytimg.com/vi/5Ugx9YsCAeo/hqdefault.jpg",
+                "publishedAt": "2025-11-17T21:22:46Z"
+            },
+            {
+                "title": "Vuelve el más gallito del corral",
+                "url": "https://www.youtube.com/watch?v=3fVPPn5OMxQ",
+                "thumbnail": "https://i.ytimg.com/vi/3fVPPn5OMxQ/hqdefault.jpg",
+                "publishedAt": "2025-11-17T21:27:54Z"
             }
         ]
     }
