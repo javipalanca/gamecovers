@@ -9385,6 +9385,30 @@
         },
         "videos": [
             {
+                "title": "Un ratito de VALENCIA VICE RP",
+                "url": "https://www.youtube.com/watch?v=B-S0q8b_J3A",
+                "thumbnail": "https://i.ytimg.com/vi/B-S0q8b_J3A/hqdefault.jpg",
+                "publishedAt": "2026-01-04T12:32:36Z"
+            },
+            {
+                "title": "El Sargento Carles Angulo llega a VALENCIA VICE",
+                "url": "https://www.youtube.com/watch?v=w8GTOyG3UxQ",
+                "thumbnail": "https://i.ytimg.com/vi/w8GTOyG3UxQ/hqdefault.jpg",
+                "publishedAt": "2026-01-04T12:29:18Z"
+            },
+            {
+                "title": "Carles Angulo os desea Feliz Año Nuevo",
+                "url": "https://www.youtube.com/watch?v=9E4sQFr9hh0",
+                "thumbnail": "https://i.ytimg.com/vi/9E4sQFr9hh0/hqdefault.jpg",
+                "publishedAt": "2026-01-04T12:28:09Z"
+            },
+            {
+                "title": "Entramos un rato a VALENCIA VICE",
+                "url": "https://www.youtube.com/watch?v=W6LtIQJXBPI",
+                "thumbnail": "https://i.ytimg.com/vi/W6LtIQJXBPI/maxresdefault.jpg",
+                "publishedAt": "2026-01-04T12:07:19Z"
+            },
+            {
                 "title": "Carles despierta de su letargo en VALENCIA VICE",
                 "url": "https://www.youtube.com/watch?v=DsCaIwxdN6U",
                 "thumbnail": "https://i.ytimg.com/vi/DsCaIwxdN6U/maxresdefault.jpg",
@@ -9601,28 +9625,10 @@
                 "publishedAt": "2025-09-21T10:15:43Z"
             },
             {
-                "title": "Entramos un rato a VALENCIA VICE",
-                "url": "https://www.youtube.com/watch?v=W6LtIQJXBPI",
-                "thumbnail": "https://i.ytimg.com/vi/W6LtIQJXBPI/maxresdefault.jpg",
-                "publishedAt": "2026-01-04T12:07:19Z"
-            },
-            {
-                "title": "Carles Angulo os desea Feliz Año Nuevo",
-                "url": "https://www.youtube.com/watch?v=9E4sQFr9hh0",
-                "thumbnail": "https://i.ytimg.com/vi/9E4sQFr9hh0/hqdefault.jpg",
-                "publishedAt": "2026-01-04T12:28:09Z"
-            },
-            {
-                "title": "El Sargento Carles Angulo llega a VALENCIA VICE",
-                "url": "https://www.youtube.com/watch?v=w8GTOyG3UxQ",
-                "thumbnail": "https://i.ytimg.com/vi/w8GTOyG3UxQ/hqdefault.jpg",
-                "publishedAt": "2026-01-04T12:29:18Z"
-            },
-            {
-                "title": "Un ratito de VALENCIA VICE RP",
-                "url": "https://www.youtube.com/watch?v=B-S0q8b_J3A",
-                "thumbnail": "https://i.ytimg.com/vi/B-S0q8b_J3A/hqdefault.jpg",
-                "publishedAt": "2026-01-04T12:32:36Z"
+                "title": "Vienen los Reyes Magos a VALENCIA VICE",
+                "url": "https://www.youtube.com/watch?v=kYeNS9qkYUg",
+                "thumbnail": "https://i.ytimg.com/vi/kYeNS9qkYUg/hqdefault.jpg",
+                "publishedAt": "2026-01-06T09:16:43Z"
             }
         ]
     },
