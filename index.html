@@ -1180,11 +1180,15 @@
 
         // Check if we have videos
         if (videos && videos.length > 0) {
-          // Clone the videos array to avoid modifying the original
-          const reversedVideos = [...videos]; //.reverse();
+          // Clone and sort videos by publishedAt (newest first)
+          const sortedVideos = [...videos].sort((a, b) => {
+            const dateA = a.publishedAt ? new Date(a.publishedAt) : new Date(0);
+            const dateB = b.publishedAt ? new Date(b.publishedAt) : new Date(0);
+            return dateB - dateA;
+          });
 
           // Create video elements
-          for (const video of reversedVideos) {
+          for (const video of sortedVideos) {
             const { title, url, thumbnail } = video;
 
             const videoItem = document.createElement("div");
@@ -1212,6 +1216,21 @@
             videoTitle.textContent = title;
 
             videoInfo.appendChild(videoTitle);
+
+            // Mostrar fecha de publicación en formato compacto (DD/MM/YYYY)
+            if (video.publishedAt) {
+              const pubDate = new Date(video.publishedAt);
+              const dateEl = document.createElement("div");
+              dateEl.style.fontSize = "12px";
+              dateEl.style.color = "rgba(255, 255, 255, 0.75)";
+              dateEl.style.marginTop = "6px";
+              dateEl.textContent = pubDate.toLocaleDateString("es-ES", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+              });
+              videoInfo.appendChild(dateEl);
+            }
 
             // Make the whole item clickable
             videoItem.appendChild(thumbnailDiv);
