@@ -8950,6 +8950,12 @@
                 "url": "https://www.youtube.com/watch?v=88DL3kPGJTg",
                 "thumbnail": "https://i.ytimg.com/vi/88DL3kPGJTg/maxresdefault.jpg",
                 "publishedAt": "2025-12-27T15:22:39Z"
+            },
+            {
+                "title": "Retomamos las rutas por Europa!",
+                "url": "https://www.youtube.com/watch?v=FwzFTVvypxc",
+                "thumbnail": "https://i.ytimg.com/vi/FwzFTVvypxc/maxresdefault.jpg",
+                "publishedAt": "2026-02-15T14:29:51Z"
             }
         ],
         "genres": [
@@ -9385,6 +9391,36 @@
         },
         "videos": [
             {
+                "title": "Buscando aventuras en VALENCIA VICE",
+                "url": "https://www.youtube.com/watch?v=Hhul2lP1NHU",
+                "thumbnail": "https://i.ytimg.com/vi/Hhul2lP1NHU/hqdefault.jpg",
+                "publishedAt": "2026-01-23T19:48:34Z"
+            },
+            {
+                "title": "Jota por la carretera!",
+                "url": "https://www.youtube.com/watch?v=G_woeMfSRx0",
+                "thumbnail": "https://i.ytimg.com/vi/G_woeMfSRx0/hqdefault.jpg",
+                "publishedAt": "2026-01-23T19:47:14Z"
+            },
+            {
+                "title": "J rueda por VALENCIA VICE",
+                "url": "https://www.youtube.com/watch?v=8zSQr6Gp4rM",
+                "thumbnail": "https://i.ytimg.com/vi/8zSQr6Gp4rM/hqdefault.jpg",
+                "publishedAt": "2026-01-12T22:00:09Z"
+            },
+            {
+                "title": "Nuevo personaje. J.",
+                "url": "https://www.youtube.com/watch?v=OoY1ey9xbUQ",
+                "thumbnail": "https://i.ytimg.com/vi/OoY1ey9xbUQ/hqdefault.jpg",
+                "publishedAt": "2026-01-12T21:59:05Z"
+            },
+            {
+                "title": "Vienen los Reyes Magos a VALENCIA VICE",
+                "url": "https://www.youtube.com/watch?v=kYeNS9qkYUg",
+                "thumbnail": "https://i.ytimg.com/vi/kYeNS9qkYUg/hqdefault.jpg",
+                "publishedAt": "2026-01-06T09:16:43Z"
+            },
+            {
                 "title": "Un ratito de VALENCIA VICE RP",
                 "url": "https://www.youtube.com/watch?v=B-S0q8b_J3A",
                 "thumbnail": "https://i.ytimg.com/vi/B-S0q8b_J3A/hqdefault.jpg",
@@ -9623,12 +9659,6 @@
                 "url": "https://www.youtube.com/watch?v=VkCmE35ZaIY",
                 "thumbnail": "https://i.ytimg.com/vi/VkCmE35ZaIY/hqdefault.jpg",
                 "publishedAt": "2025-09-21T10:15:43Z"
-            },
-            {
-                "title": "Vienen los Reyes Magos a VALENCIA VICE",
-                "url": "https://www.youtube.com/watch?v=kYeNS9qkYUg",
-                "thumbnail": "https://i.ytimg.com/vi/kYeNS9qkYUg/hqdefault.jpg",
-                "publishedAt": "2026-01-06T09:16:43Z"
             }
         ]
     },
@@ -9649,16 +9679,16 @@
         },
         "videos": [
             {
-                "title": "A mojarse los pies",
-                "url": "https://www.youtube.com/watch?v=XJuAN0pV5XE",
-                "thumbnail": "https://i.ytimg.com/vi/XJuAN0pV5XE/hqdefault.jpg",
-                "publishedAt": "2025-09-21T10:12:14Z"
-            },
-            {
                 "title": "Despedimos el año bajo el mar",
                 "url": "https://www.youtube.com/watch?v=Px-gWTKUftI",
                 "thumbnail": "https://i.ytimg.com/vi/Px-gWTKUftI/hqdefault.jpg",
                 "publishedAt": "2026-01-04T12:13:11Z"
+            },
+            {
+                "title": "A mojarse los pies",
+                "url": "https://www.youtube.com/watch?v=XJuAN0pV5XE",
+                "thumbnail": "https://i.ytimg.com/vi/XJuAN0pV5XE/hqdefault.jpg",
+                "publishedAt": "2025-09-21T10:12:14Z"
             }
         ]
     },
@@ -9878,16 +9908,117 @@
         },
         "videos": [
             {
-                "title": "Empezamos aventura gráfica clásica",
-                "url": "https://www.youtube.com/watch?v=iPghgMRc80E",
-                "thumbnail": "https://i.ytimg.com/vi/iPghgMRc80E/hqdefault.jpg",
-                "publishedAt": "2026-01-04T12:09:32Z"
+                "title": "Hoy decompilamos el script de Lure en ScummVM",
+                "url": "https://www.youtube.com/watch?v=mIfWdQOU9yA",
+                "thumbnail": "https://i.ytimg.com/vi/mIfWdQOU9yA/hqdefault.jpg",
+                "publishedAt": "2026-01-23T19:51:56Z"
+            },
+            {
+                "title": "SCUMMVM Ya compila!!!",
+                "url": "https://www.youtube.com/watch?v=4_5xaa_lsmA",
+                "thumbnail": "https://i.ytimg.com/vi/4_5xaa_lsmA/hqdefault.jpg",
+                "publishedAt": "2026-01-23T19:51:00Z"
+            },
+            {
+                "title": "Seguimos destripando SCUMMVM",
+                "url": "https://www.youtube.com/watch?v=Y_ZRIZQuPIw",
+                "thumbnail": "https://i.ytimg.com/vi/Y_ZRIZQuPIw/hqdefault.jpg",
+                "publishedAt": "2026-01-23T19:49:43Z"
+            },
+            {
+                "title": "Programamos SCUMMVM",
+                "url": "https://www.youtube.com/watch?v=rRs_HZgtsJc",
+                "thumbnail": "https://i.ytimg.com/vi/rRs_HZgtsJc/hqdefault.jpg",
+                "publishedAt": "2026-01-23T19:45:52Z"
+            },
+            {
+                "title": "Va que vamos tarde!",
+                "url": "https://www.youtube.com/watch?v=wWlM4zTzK8o",
+                "thumbnail": "https://i.ytimg.com/vi/wWlM4zTzK8o/hqdefault.jpg",
+                "publishedAt": "2026-01-23T19:42:20Z"
+            },
+            {
+                "title": "Con mapa el Lure será otra cosa!",
+                "url": "https://www.youtube.com/watch?v=LWzy8sC3m28",
+                "thumbnail": "https://i.ytimg.com/vi/LWzy8sC3m28/hqdefault.jpg",
+                "publishedAt": "2026-01-12T22:01:29Z"
+            },
+            {
+                "title": "Volvemos a Lure",
+                "url": "https://www.youtube.com/watch?v=VEpwD3Kivmc",
+                "thumbnail": "https://i.ytimg.com/vi/VEpwD3Kivmc/hqdefault.jpg",
+                "publishedAt": "2026-01-12T21:56:54Z"
             },
             {
                 "title": "Acaba el año!",
                 "url": "https://www.youtube.com/watch?v=ezIfifxQthQ",
                 "thumbnail": "https://i.ytimg.com/vi/ezIfifxQthQ/hqdefault.jpg",
                 "publishedAt": "2026-01-04T12:10:56Z"
+            },
+            {
+                "title": "Empezamos aventura gráfica clásica",
+                "url": "https://www.youtube.com/watch?v=iPghgMRc80E",
+                "thumbnail": "https://i.ytimg.com/vi/iPghgMRc80E/hqdefault.jpg",
+                "publishedAt": "2026-01-04T12:09:32Z"
+            },
+            {
+                "title": "Más ingeniería inversa a SCUMMVM!",
+                "url": "https://www.youtube.com/watch?v=Khiq38Ahh6k",
+                "thumbnail": "https://i.ytimg.com/vi/Khiq38Ahh6k/hqdefault.jpg",
+                "publishedAt": "2026-02-15T14:31:44Z"
+            },
+            {
+                "title": "Que tripa le tocamos hoy a  SCUMMVM?",
+                "url": "https://www.youtube.com/watch?v=g5TgT8O7J8w",
+                "thumbnail": "https://i.ytimg.com/vi/g5TgT8O7J8w/hqdefault.jpg",
+                "publishedAt": "2026-02-15T14:35:01Z"
+            },
+            {
+                "title": "Terminamos el juego!",
+                "url": "https://www.youtube.com/watch?v=Q6bRNm_yQwk",
+                "thumbnail": "https://i.ytimg.com/vi/Q6bRNm_yQwk/hqdefault.jpg",
+                "publishedAt": "2026-02-15T14:38:16Z"
+            }
+        ]
+    },
+    {
+        "name": "Hercules Poirot: The First Cases",
+        "editor": "Blazing Griffin",
+        "year": "2021",
+        "played": "2026-02",
+        "cover": "https://agathachristie.imgix.net/news/Thumbnail_HPTFC_KeyArt.jpg?auto=compress,format&fit=crop&w=800&h=800",
+        "genres": [
+            "Adventure",
+            "Point-and-Click"
+        ],
+        "lista_youtube": {
+            "id": "PLPTCy7OVkjTyei9TPwvJkVvwKZe9n3o4l",
+            "title": "Hercules Poirot: The First Cases"
+        },
+        "videos": [
+            {
+                "title": "Empezamos aventura con Poirot!",
+                "url": "https://www.youtube.com/watch?v=31sOgaoVVoQ",
+                "thumbnail": "https://i.ytimg.com/vi/31sOgaoVVoQ/hqdefault.jpg",
+                "publishedAt": "2026-02-15T14:40:19Z"
+            },
+            {
+                "title": "Hercule Poirot al aparato!",
+                "url": "https://www.youtube.com/watch?v=dmznV3KD9QE",
+                "thumbnail": "https://i.ytimg.com/vi/dmznV3KD9QE/maxresdefault.jpg",
+                "publishedAt": "2026-02-15T14:41:54Z"
+            },
+            {
+                "title": "Elemental querido Poirot!",
+                "url": "https://www.youtube.com/watch?v=OBVuCn5KOrw",
+                "thumbnail": "https://i.ytimg.com/vi/OBVuCn5KOrw/hqdefault.jpg",
+                "publishedAt": "2026-02-15T14:43:11Z"
+            },
+            {
+                "title": "Mitad de semana, Poirot que te gana!",
+                "url": "https://www.youtube.com/watch?v=uOiV8FX7fxE",
+                "thumbnail": "https://i.ytimg.com/vi/uOiV8FX7fxE/hqdefault.jpg",
+                "publishedAt": "2026-02-15T14:44:11Z"
             }
         ]
     }
