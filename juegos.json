@@ -10133,5 +10133,28 @@
                 "publishedAt": "2026-03-17T22:06:59Z"
             }
         ]
+    },
+    {
+        "name": "The Walking Dead: Season 2",
+        "editor": "Telltale Games",
+        "year": "2013",
+        "played": "2026-03",
+        "cover": "https://clickymuseum.com/images/si/I2024%20-%20PC%20DVD%20Case%20(DVD)%20-%2001.jpg",
+        "genres": [
+            "Adventure",
+            "Graphic Adventure"
+        ],
+        "lista_youtube": {
+            "id": "PLPTCy7OVkjTz1z07AxhBoyF9d6hbaGnhe",
+            "title": "The Walking Dead: Season 2"
+        },
+        "videos": [
+            {
+                "title": "Volvemos al mundo zombie",
+                "url": "https://www.youtube.com/watch?v=CbqLOYGwfKk",
+                "thumbnail": "https://i.ytimg.com/vi/CbqLOYGwfKk/hqdefault.jpg",
+                "publishedAt": "2026-03-18T08:06:44Z"
+            }
+        ]
     }
 ]
