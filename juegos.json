@@ -7422,6 +7422,12 @@
         },
         "videos": [
             {
+                "title": "Volvemos a GTA! Vice City",
+                "url": "https://www.youtube.com/watch?v=8EpdvyJngKE",
+                "thumbnail": "https://i.ytimg.com/vi/8EpdvyJngKE/hqdefault.jpg",
+                "publishedAt": "2026-03-17T22:06:00Z"
+            },
+            {
                 "title": "GTA Vice City y luego programamos",
                 "url": "https://www.youtube.com/watch?v=LVf-Pt-Fn3k",
                 "thumbnail": "https://i.ytimg.com/vi/LVf-Pt-Fn3k/hqdefault.jpg",
@@ -7452,10 +7458,10 @@
                 "publishedAt": "2025-05-11T17:15:37Z"
             },
             {
-                "title": "Volvemos a GTA! Vice City",
-                "url": "https://www.youtube.com/watch?v=8EpdvyJngKE",
-                "thumbnail": "https://i.ytimg.com/vi/8EpdvyJngKE/hqdefault.jpg",
-                "publishedAt": "2026-03-17T22:06:00Z"
+                "title": "Ciudad Viciosilla",
+                "url": "https://www.youtube.com/watch?v=rRychEQ8Rk0",
+                "thumbnail": "https://i.ytimg.com/vi/rRychEQ8Rk0/hqdefault.jpg",
+                "publishedAt": "2026-04-10T07:51:55Z"
             }
         ],
         "genres": [
@@ -8968,6 +8974,12 @@
                 "url": "https://www.youtube.com/watch?v=TnVejyiE8Eg",
                 "thumbnail": "https://i.ytimg.com/vi/TnVejyiE8Eg/hqdefault.jpg",
                 "publishedAt": "2026-03-17T21:49:58Z"
+            },
+            {
+                "title": "No se que me pasa que no me apetece jugar a nada...",
+                "url": "https://www.youtube.com/watch?v=3_xgOkp7pJo",
+                "thumbnail": "https://i.ytimg.com/vi/3_xgOkp7pJo/hqdefault.jpg",
+                "publishedAt": "2026-04-10T07:59:38Z"
             }
         ],
         "genres": [
@@ -10009,6 +10021,36 @@
         },
         "videos": [
             {
+                "title": "Hoy sí que sí Poirot termina el caso",
+                "url": "https://www.youtube.com/watch?v=zW5Tl_nDl7M",
+                "thumbnail": "https://i.ytimg.com/vi/zW5Tl_nDl7M/hqdefault.jpg",
+                "publishedAt": "2026-03-17T21:54:20Z"
+            },
+            {
+                "title": "Poirot espabila y descubre al asesino!",
+                "url": "https://www.youtube.com/watch?v=LqLB7rUAknk",
+                "thumbnail": "https://i.ytimg.com/vi/LqLB7rUAknk/hqdefault.jpg",
+                "publishedAt": "2026-03-17T21:52:39Z"
+            },
+            {
+                "title": "Poirot termina su investigación...",
+                "url": "https://www.youtube.com/watch?v=LB4pYQK4C10",
+                "thumbnail": "https://i.ytimg.com/vi/LB4pYQK4C10/hqdefault.jpg",
+                "publishedAt": "2026-03-17T21:51:16Z"
+            },
+            {
+                "title": "Investigando el muerte-asesinato",
+                "url": "https://www.youtube.com/watch?v=lxafdqBM_rs",
+                "thumbnail": "https://i.ytimg.com/vi/lxafdqBM_rs/hqdefault.jpg",
+                "publishedAt": "2026-03-17T21:46:11Z"
+            },
+            {
+                "title": "Es lunes y Poirot está ready",
+                "url": "https://www.youtube.com/watch?v=W3oMopDv8M8",
+                "thumbnail": "https://i.ytimg.com/vi/W3oMopDv8M8/hqdefault.jpg",
+                "publishedAt": "2026-03-17T21:41:38Z"
+            },
+            {
                 "title": "Mitad de semana, Poirot que te gana!",
                 "url": "https://www.youtube.com/watch?v=uOiV8FX7fxE",
                 "thumbnail": "https://i.ytimg.com/vi/uOiV8FX7fxE/hqdefault.jpg",
@@ -10031,36 +10073,6 @@
                 "url": "https://www.youtube.com/watch?v=31sOgaoVVoQ",
                 "thumbnail": "https://i.ytimg.com/vi/31sOgaoVVoQ/hqdefault.jpg",
                 "publishedAt": "2026-02-15T14:40:19Z"
-            },
-            {
-                "title": "Es lunes y Poirot está ready",
-                "url": "https://www.youtube.com/watch?v=W3oMopDv8M8",
-                "thumbnail": "https://i.ytimg.com/vi/W3oMopDv8M8/hqdefault.jpg",
-                "publishedAt": "2026-03-17T21:41:38Z"
-            },
-            {
-                "title": "Investigando el muerte-asesinato",
-                "url": "https://www.youtube.com/watch?v=lxafdqBM_rs",
-                "thumbnail": "https://i.ytimg.com/vi/lxafdqBM_rs/hqdefault.jpg",
-                "publishedAt": "2026-03-17T21:46:11Z"
-            },
-            {
-                "title": "Poirot termina su investigación...",
-                "url": "https://www.youtube.com/watch?v=LB4pYQK4C10",
-                "thumbnail": "https://i.ytimg.com/vi/LB4pYQK4C10/hqdefault.jpg",
-                "publishedAt": "2026-03-17T21:51:16Z"
-            },
-            {
-                "title": "Poirot espabila y descubre al asesino!",
-                "url": "https://www.youtube.com/watch?v=LqLB7rUAknk",
-                "thumbnail": "https://i.ytimg.com/vi/LqLB7rUAknk/hqdefault.jpg",
-                "publishedAt": "2026-03-17T21:52:39Z"
-            },
-            {
-                "title": "Hoy sí que sí Poirot termina el caso",
-                "url": "https://www.youtube.com/watch?v=zW5Tl_nDl7M",
-                "thumbnail": "https://i.ytimg.com/vi/zW5Tl_nDl7M/hqdefault.jpg",
-                "publishedAt": "2026-03-17T21:54:20Z"
             }
         ]
     },
@@ -10103,22 +10115,10 @@
         },
         "videos": [
             {
-                "title": "Vamos a un club de lucecitas rojas...",
-                "url": "https://www.youtube.com/watch?v=qZI0RUsjlpg",
-                "thumbnail": "https://i.ytimg.com/vi/qZI0RUsjlpg/hqdefault.jpg",
-                "publishedAt": "2026-03-17T21:55:54Z"
-            },
-            {
-                "title": "Cyberpunk pixelado",
-                "url": "https://www.youtube.com/watch?v=Qai-iBguuxI",
-                "thumbnail": "https://i.ytimg.com/vi/Qai-iBguuxI/hqdefault.jpg",
-                "publishedAt": "2026-03-17T21:57:09Z"
-            },
-            {
-                "title": "Aventura valenciana y pixelada",
-                "url": "https://www.youtube.com/watch?v=fnw0-TZAmxQ",
-                "thumbnail": "https://i.ytimg.com/vi/fnw0-TZAmxQ/hqdefault.jpg",
-                "publishedAt": "2026-03-17T22:00:43Z"
+                "title": "Uniendo los hilos rojos",
+                "url": "https://www.youtube.com/watch?v=wfnSCn_ttoQ",
+                "thumbnail": "https://i.ytimg.com/vi/wfnSCn_ttoQ/hqdefault.jpg",
+                "publishedAt": "2026-03-17T22:06:59Z"
             },
             {
                 "title": "Servimos unos copazos!",
@@ -10127,10 +10127,22 @@
                 "publishedAt": "2026-03-17T22:01:37Z"
             },
             {
-                "title": "Uniendo los hilos rojos",
-                "url": "https://www.youtube.com/watch?v=wfnSCn_ttoQ",
-                "thumbnail": "https://i.ytimg.com/vi/wfnSCn_ttoQ/hqdefault.jpg",
-                "publishedAt": "2026-03-17T22:06:59Z"
+                "title": "Aventura valenciana y pixelada",
+                "url": "https://www.youtube.com/watch?v=fnw0-TZAmxQ",
+                "thumbnail": "https://i.ytimg.com/vi/fnw0-TZAmxQ/hqdefault.jpg",
+                "publishedAt": "2026-03-17T22:00:43Z"
+            },
+            {
+                "title": "Cyberpunk pixelado",
+                "url": "https://www.youtube.com/watch?v=Qai-iBguuxI",
+                "thumbnail": "https://i.ytimg.com/vi/Qai-iBguuxI/hqdefault.jpg",
+                "publishedAt": "2026-03-17T21:57:09Z"
+            },
+            {
+                "title": "Vamos a un club de lucecitas rojas...",
+                "url": "https://www.youtube.com/watch?v=qZI0RUsjlpg",
+                "thumbnail": "https://i.ytimg.com/vi/qZI0RUsjlpg/hqdefault.jpg",
+                "publishedAt": "2026-03-17T21:55:54Z"
             }
         ]
     },
@@ -10150,10 +10162,69 @@
         },
         "videos": [
             {
+                "title": "Capítulo 3 de TWD Season 2",
+                "url": "https://www.youtube.com/watch?v=sjGWWJKEopA",
+                "thumbnail": "https://i.ytimg.com/vi/sjGWWJKEopA/hqdefault.jpg",
+                "publishedAt": "2026-03-21T10:45:49Z"
+            },
+            {
+                "title": "Capítulo 2 de TWD Season 2",
+                "url": "https://www.youtube.com/watch?v=9P8A3LKPv-Y",
+                "thumbnail": "https://i.ytimg.com/vi/9P8A3LKPv-Y/hqdefault.jpg",
+                "publishedAt": "2026-03-21T10:45:03Z"
+            },
+            {
                 "title": "Volvemos al mundo zombie",
                 "url": "https://www.youtube.com/watch?v=CbqLOYGwfKk",
                 "thumbnail": "https://i.ytimg.com/vi/CbqLOYGwfKk/hqdefault.jpg",
                 "publishedAt": "2026-03-18T08:06:44Z"
+            },
+            {
+                "title": "TWD S02E04",
+                "url": "https://www.youtube.com/watch?v=HYyonUpcjuE",
+                "thumbnail": "https://i.ytimg.com/vi/HYyonUpcjuE/hqdefault.jpg",
+                "publishedAt": "2026-04-10T07:52:58Z"
+            },
+            {
+                "title": "Terminamos TWD",
+                "url": "https://www.youtube.com/watch?v=Q3DH0ujt0e8",
+                "thumbnail": "https://i.ytimg.com/vi/Q3DH0ujt0e8/hqdefault.jpg",
+                "publishedAt": "2026-04-10T07:54:05Z"
+            }
+        ]
+    },
+    {
+        "name": "Discworld",
+        "editor": "Perfect Entertainment",
+        "year": "1994",
+        "played": "2026-04",
+        "cover": "https://clickymuseum.com/images/si/I1254%20-%20PC%20Big%20Box%20(3.5)%20-%2001.jpg",
+        "genres": [
+            "Adventure",
+            "Graphic Adventure"
+        ],
+        "lista_youtube": {
+            "id": "PLPTCy7OVkjTxU_gQC9N63Oy6ufbre2OXA",
+            "title": "Discworld"
+        },
+        "videos": [
+            {
+                "title": "Mi mundo se sostiene sobre una tortuga...",
+                "url": "https://www.youtube.com/watch?v=XE_Kv-LbznM",
+                "thumbnail": "https://i.ytimg.com/vi/XE_Kv-LbznM/hqdefault.jpg",
+                "publishedAt": "2026-04-10T07:57:36Z"
+            },
+            {
+                "title": "Volvemos a mundos discales...",
+                "url": "https://www.youtube.com/watch?v=SD267cMTqpw",
+                "thumbnail": "https://i.ytimg.com/vi/SD267cMTqpw/hqdefault.jpg",
+                "publishedAt": "2026-04-10T08:01:12Z"
+            },
+            {
+                "title": "Me persigue un baul con patas...",
+                "url": "https://www.youtube.com/watch?v=GZQ7JJsStBc",
+                "thumbnail": "https://i.ytimg.com/vi/GZQ7JJsStBc/hqdefault.jpg",
+                "publishedAt": "2026-04-10T08:02:54Z"
             }
         ]
     }
