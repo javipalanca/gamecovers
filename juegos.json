@@ -41,7 +41,7 @@
         "name": "Indiana Jones & the Last Crusade",
         "editor": "LucasArts",
         "year": "1989",
-        "cover": "https://clickymuseum.com/images/si/I896%20-%20PC%20Big%20Box%20(3.5)%20-%2001.jpg",
+        "cover": "https://clickymuseum.com/images/si/I900%20-%20PC%20Big%20Box%20(Version%20Original%20-%205.25)%20-%2001.jpg",
         "played": "2020-09",
         "videos": [
             {
@@ -7422,6 +7422,12 @@
         },
         "videos": [
             {
+                "title": "Ciudad Viciosilla",
+                "url": "https://www.youtube.com/watch?v=rRychEQ8Rk0",
+                "thumbnail": "https://i.ytimg.com/vi/rRychEQ8Rk0/hqdefault.jpg",
+                "publishedAt": "2026-04-10T07:51:55Z"
+            },
+            {
                 "title": "Volvemos a GTA! Vice City",
                 "url": "https://www.youtube.com/watch?v=8EpdvyJngKE",
                 "thumbnail": "https://i.ytimg.com/vi/8EpdvyJngKE/hqdefault.jpg",
@@ -7458,10 +7464,16 @@
                 "publishedAt": "2025-05-11T17:15:37Z"
             },
             {
-                "title": "Ciudad Viciosilla",
-                "url": "https://www.youtube.com/watch?v=rRychEQ8Rk0",
-                "thumbnail": "https://i.ytimg.com/vi/rRychEQ8Rk0/hqdefault.jpg",
-                "publishedAt": "2026-04-10T07:51:55Z"
+                "title": "Let's go vice city!!!",
+                "url": "https://www.youtube.com/watch?v=6_MF_CloHs4",
+                "thumbnail": "https://i.ytimg.com/vi/6_MF_CloHs4/hqdefault.jpg",
+                "publishedAt": "2026-05-16T08:42:44Z"
+            },
+            {
+                "title": "Unboxing y Pasamos ya de misión",
+                "url": "https://www.youtube.com/watch?v=XeoyGFI4B3c",
+                "thumbnail": "https://i.ytimg.com/vi/XeoyGFI4B3c/hqdefault.jpg",
+                "publishedAt": "2026-05-16T08:47:15Z"
             }
         ],
         "genres": [
@@ -8980,6 +8992,12 @@
                 "url": "https://www.youtube.com/watch?v=3_xgOkp7pJo",
                 "thumbnail": "https://i.ytimg.com/vi/3_xgOkp7pJo/hqdefault.jpg",
                 "publishedAt": "2026-04-10T07:59:38Z"
+            },
+            {
+                "title": "Conducción para nada temeraria",
+                "url": "https://www.youtube.com/watch?v=y37EvILWseQ",
+                "thumbnail": "https://i.ytimg.com/vi/y37EvILWseQ/hqdefault.jpg",
+                "publishedAt": "2026-05-16T08:44:01Z"
             }
         ],
         "genres": [
@@ -9301,6 +9319,12 @@
             "title": "Command and Conquer (Remaster)"
         },
         "videos": [
+            {
+                "title": "Hoy sesión de estrategia con Command&Conquer",
+                "url": "https://www.youtube.com/watch?v=eZhocJg0auc",
+                "thumbnail": "https://i.ytimg.com/vi/eZhocJg0auc/hqdefault.jpg",
+                "publishedAt": "2026-05-10T21:00:31Z"
+            },
             {
                 "title": "Demuestro mis dotes militares",
                 "url": "https://www.youtube.com/watch?v=Dclr-PTSaeQ",
@@ -10162,6 +10186,18 @@
         },
         "videos": [
             {
+                "title": "Terminamos TWD",
+                "url": "https://www.youtube.com/watch?v=Q3DH0ujt0e8",
+                "thumbnail": "https://i.ytimg.com/vi/Q3DH0ujt0e8/hqdefault.jpg",
+                "publishedAt": "2026-04-10T07:54:05Z"
+            },
+            {
+                "title": "TWD S02E04",
+                "url": "https://www.youtube.com/watch?v=HYyonUpcjuE",
+                "thumbnail": "https://i.ytimg.com/vi/HYyonUpcjuE/hqdefault.jpg",
+                "publishedAt": "2026-04-10T07:52:58Z"
+            },
+            {
                 "title": "Capítulo 3 de TWD Season 2",
                 "url": "https://www.youtube.com/watch?v=sjGWWJKEopA",
                 "thumbnail": "https://i.ytimg.com/vi/sjGWWJKEopA/hqdefault.jpg",
@@ -10178,18 +10214,6 @@
                 "url": "https://www.youtube.com/watch?v=CbqLOYGwfKk",
                 "thumbnail": "https://i.ytimg.com/vi/CbqLOYGwfKk/hqdefault.jpg",
                 "publishedAt": "2026-03-18T08:06:44Z"
-            },
-            {
-                "title": "TWD S02E04",
-                "url": "https://www.youtube.com/watch?v=HYyonUpcjuE",
-                "thumbnail": "https://i.ytimg.com/vi/HYyonUpcjuE/hqdefault.jpg",
-                "publishedAt": "2026-04-10T07:52:58Z"
-            },
-            {
-                "title": "Terminamos TWD",
-                "url": "https://www.youtube.com/watch?v=Q3DH0ujt0e8",
-                "thumbnail": "https://i.ytimg.com/vi/Q3DH0ujt0e8/hqdefault.jpg",
-                "publishedAt": "2026-04-10T07:54:05Z"
             }
         ]
     },
@@ -10209,10 +10233,16 @@
         },
         "videos": [
             {
-                "title": "Mi mundo se sostiene sobre una tortuga...",
-                "url": "https://www.youtube.com/watch?v=XE_Kv-LbznM",
-                "thumbnail": "https://i.ytimg.com/vi/XE_Kv-LbznM/hqdefault.jpg",
-                "publishedAt": "2026-04-10T07:57:36Z"
+                "title": "Seguimos con los truquitos de magia",
+                "url": "https://www.youtube.com/watch?v=EHnTmjr7ADw",
+                "thumbnail": "https://i.ytimg.com/vi/EHnTmjr7ADw/hqdefault.jpg",
+                "publishedAt": "2026-05-10T21:02:17Z"
+            },
+            {
+                "title": "Me persigue un baul con patas...",
+                "url": "https://www.youtube.com/watch?v=GZQ7JJsStBc",
+                "thumbnail": "https://i.ytimg.com/vi/GZQ7JJsStBc/hqdefault.jpg",
+                "publishedAt": "2026-04-10T08:02:54Z"
             },
             {
                 "title": "Volvemos a mundos discales...",
@@ -10221,10 +10251,46 @@
                 "publishedAt": "2026-04-10T08:01:12Z"
             },
             {
-                "title": "Me persigue un baul con patas...",
-                "url": "https://www.youtube.com/watch?v=GZQ7JJsStBc",
-                "thumbnail": "https://i.ytimg.com/vi/GZQ7JJsStBc/hqdefault.jpg",
-                "publishedAt": "2026-04-10T08:02:54Z"
+                "title": "Mi mundo se sostiene sobre una tortuga...",
+                "url": "https://www.youtube.com/watch?v=XE_Kv-LbznM",
+                "thumbnail": "https://i.ytimg.com/vi/XE_Kv-LbznM/hqdefault.jpg",
+                "publishedAt": "2026-04-10T07:57:36Z"
+            },
+            {
+                "title": "Vuelven los directos de aventuras gráficas!",
+                "url": "https://www.youtube.com/watch?v=Ayekf49bgaI",
+                "thumbnail": "https://i.ytimg.com/vi/Ayekf49bgaI/hqdefault.jpg",
+                "publishedAt": "2026-05-16T08:41:27Z"
+            },
+            {
+                "title": "Aventura con guía? Aventura con guía.",
+                "url": "https://www.youtube.com/watch?v=cQ85f5CI3cs",
+                "thumbnail": "https://i.ytimg.com/vi/cQ85f5CI3cs/hqdefault.jpg",
+                "publishedAt": "2026-05-16T08:45:11Z"
+            },
+            {
+                "title": "Pedazo aventura gráfica (y difícil...)",
+                "url": "https://www.youtube.com/watch?v=UgcnbhsAngk",
+                "thumbnail": "https://i.ytimg.com/vi/UgcnbhsAngk/hqdefault.jpg",
+                "publishedAt": "2026-05-16T08:46:14Z"
+            },
+            {
+                "title": "A por el dragon",
+                "url": "https://www.youtube.com/watch?v=nR9j8YOApyE",
+                "thumbnail": "https://i.ytimg.com/vi/nR9j8YOApyE/hqdefault.jpg",
+                "publishedAt": "2026-05-16T08:48:06Z"
+            },
+            {
+                "title": "Mundodisco Acto 3",
+                "url": "https://www.youtube.com/watch?v=8W9l7wPByeU",
+                "thumbnail": "https://i.ytimg.com/vi/8W9l7wPByeU/hqdefault.jpg",
+                "publishedAt": "2026-05-16T08:49:08Z"
+            },
+            {
+                "title": "Terry Pratchett en el canal",
+                "url": "https://www.youtube.com/watch?v=v4MBPopRE9Q",
+                "thumbnail": "https://i.ytimg.com/vi/v4MBPopRE9Q/hqdefault.jpg",
+                "publishedAt": "2026-05-16T08:49:41Z"
             }
         ]
     }
