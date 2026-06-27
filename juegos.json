@@ -7422,6 +7422,18 @@
         },
         "videos": [
             {
+                "title": "Unboxing y Pasamos ya de misión",
+                "url": "https://www.youtube.com/watch?v=XeoyGFI4B3c",
+                "thumbnail": "https://i.ytimg.com/vi/XeoyGFI4B3c/hqdefault.jpg",
+                "publishedAt": "2026-05-16T08:47:15Z"
+            },
+            {
+                "title": "Let's go vice city!!!",
+                "url": "https://www.youtube.com/watch?v=6_MF_CloHs4",
+                "thumbnail": "https://i.ytimg.com/vi/6_MF_CloHs4/hqdefault.jpg",
+                "publishedAt": "2026-05-16T08:42:44Z"
+            },
+            {
                 "title": "Ciudad Viciosilla",
                 "url": "https://www.youtube.com/watch?v=rRychEQ8Rk0",
                 "thumbnail": "https://i.ytimg.com/vi/rRychEQ8Rk0/hqdefault.jpg",
@@ -7464,16 +7476,16 @@
                 "publishedAt": "2025-05-11T17:15:37Z"
             },
             {
-                "title": "Let's go vice city!!!",
-                "url": "https://www.youtube.com/watch?v=6_MF_CloHs4",
-                "thumbnail": "https://i.ytimg.com/vi/6_MF_CloHs4/hqdefault.jpg",
-                "publishedAt": "2026-05-16T08:42:44Z"
+                "title": "Que carro robamos hoy?",
+                "url": "https://www.youtube.com/watch?v=mWtz79iuTOs",
+                "thumbnail": "https://i.ytimg.com/vi/mWtz79iuTOs/hqdefault.jpg",
+                "publishedAt": "2026-06-27T12:05:09Z"
             },
             {
-                "title": "Unboxing y Pasamos ya de misión",
-                "url": "https://www.youtube.com/watch?v=XeoyGFI4B3c",
-                "thumbnail": "https://i.ytimg.com/vi/XeoyGFI4B3c/hqdefault.jpg",
-                "publishedAt": "2026-05-16T08:47:15Z"
+                "title": "Viciamos en vice city",
+                "url": "https://www.youtube.com/watch?v=sEKE1hTG5dM",
+                "thumbnail": "https://i.ytimg.com/vi/sEKE1hTG5dM/hqdefault.jpg",
+                "publishedAt": "2026-06-27T12:19:29Z"
             }
         ],
         "genres": [
@@ -8133,6 +8145,12 @@
                 "url": "https://www.youtube.com/watch?v=jDNvbpp6Uk8",
                 "thumbnail": "https://i.ytimg.com/vi/jDNvbpp6Uk8/hqdefault.jpg",
                 "publishedAt": "2024-06-16T22:05:58Z"
+            },
+            {
+                "title": "Ya queda poco para el mundial (y me da igual...)",
+                "url": "https://www.youtube.com/watch?v=WQ70jApGCo4",
+                "thumbnail": "https://i.ytimg.com/vi/WQ70jApGCo4/hqdefault.jpg",
+                "publishedAt": "2026-06-27T12:08:43Z"
             }
         ],
         "genres": [
@@ -10225,13 +10243,49 @@
         "cover": "https://clickymuseum.com/images/si/I1254%20-%20PC%20Big%20Box%20(3.5)%20-%2001.jpg",
         "genres": [
             "Adventure",
-            "Graphic Adventure"
+            "Point-and-Click"
         ],
         "lista_youtube": {
             "id": "PLPTCy7OVkjTxU_gQC9N63Oy6ufbre2OXA",
             "title": "Discworld"
         },
         "videos": [
+            {
+                "title": "Terry Pratchett en el canal",
+                "url": "https://www.youtube.com/watch?v=v4MBPopRE9Q",
+                "thumbnail": "https://i.ytimg.com/vi/v4MBPopRE9Q/hqdefault.jpg",
+                "publishedAt": "2026-05-16T08:49:41Z"
+            },
+            {
+                "title": "Mundodisco Acto 3",
+                "url": "https://www.youtube.com/watch?v=8W9l7wPByeU",
+                "thumbnail": "https://i.ytimg.com/vi/8W9l7wPByeU/hqdefault.jpg",
+                "publishedAt": "2026-05-16T08:49:08Z"
+            },
+            {
+                "title": "A por el dragon",
+                "url": "https://www.youtube.com/watch?v=nR9j8YOApyE",
+                "thumbnail": "https://i.ytimg.com/vi/nR9j8YOApyE/hqdefault.jpg",
+                "publishedAt": "2026-05-16T08:48:06Z"
+            },
+            {
+                "title": "Pedazo aventura gráfica (y difícil...)",
+                "url": "https://www.youtube.com/watch?v=UgcnbhsAngk",
+                "thumbnail": "https://i.ytimg.com/vi/UgcnbhsAngk/hqdefault.jpg",
+                "publishedAt": "2026-05-16T08:46:14Z"
+            },
+            {
+                "title": "Aventura con guía? Aventura con guía.",
+                "url": "https://www.youtube.com/watch?v=cQ85f5CI3cs",
+                "thumbnail": "https://i.ytimg.com/vi/cQ85f5CI3cs/hqdefault.jpg",
+                "publishedAt": "2026-05-16T08:45:11Z"
+            },
+            {
+                "title": "Vuelven los directos de aventuras gráficas!",
+                "url": "https://www.youtube.com/watch?v=Ayekf49bgaI",
+                "thumbnail": "https://i.ytimg.com/vi/Ayekf49bgaI/hqdefault.jpg",
+                "publishedAt": "2026-05-16T08:41:27Z"
+            },
             {
                 "title": "Seguimos con los truquitos de magia",
                 "url": "https://www.youtube.com/watch?v=EHnTmjr7ADw",
@@ -10257,40 +10311,109 @@
                 "publishedAt": "2026-04-10T07:57:36Z"
             },
             {
-                "title": "Vuelven los directos de aventuras gráficas!",
-                "url": "https://www.youtube.com/watch?v=Ayekf49bgaI",
-                "thumbnail": "https://i.ytimg.com/vi/Ayekf49bgaI/hqdefault.jpg",
-                "publishedAt": "2026-05-16T08:41:27Z"
+                "title": "Alguien me \"guía\"? ;P",
+                "url": "https://www.youtube.com/watch?v=9x4VWng7i3g",
+                "thumbnail": "https://i.ytimg.com/vi/9x4VWng7i3g/hqdefault.jpg",
+                "publishedAt": "2026-06-27T12:07:19Z"
             },
             {
-                "title": "Aventura con guía? Aventura con guía.",
-                "url": "https://www.youtube.com/watch?v=cQ85f5CI3cs",
-                "thumbnail": "https://i.ytimg.com/vi/cQ85f5CI3cs/hqdefault.jpg",
-                "publishedAt": "2026-05-16T08:45:11Z"
+                "title": "Terminamos mundodisco! (por fin)",
+                "url": "https://www.youtube.com/watch?v=Y5aAOeugFh8",
+                "thumbnail": "https://i.ytimg.com/vi/Y5aAOeugFh8/hqdefault.jpg",
+                "publishedAt": "2026-06-27T12:12:33Z"
+            }
+        ]
+    },
+    {
+        "name": "Kathy Rain - Director's Cut",
+        "editor": "Clifftop Games",
+        "cover": "https://cdn.dekudeals.com/images/75202df8e40fe12e4e5f8db4882e3fc1840e0bc9/w500.jpg",
+        "genres": [
+            "Adventure",
+            "Point-and-Click"
+        ],
+        "year": "2021",
+        "played": "2026-06",
+        "lista_youtube": {
+            "id": "PLbwYwYugmWHg",
+            "title": "Kathy Rain - Director's Cut"
+        },
+        "videos": [
+            {
+                "title": "Kathy comienza con nosotros hoy...",
+                "url": "https://www.youtube.com/watch?v=mZIVR8L23ho",
+                "thumbnail": "https://i.ytimg.com/vi/mZIVR8L23ho/hqdefault.jpg",
+                "publishedAt": "2026-06-27T12:18:01Z"
             },
             {
-                "title": "Pedazo aventura gráfica (y difícil...)",
-                "url": "https://www.youtube.com/watch?v=UgcnbhsAngk",
-                "thumbnail": "https://i.ytimg.com/vi/UgcnbhsAngk/hqdefault.jpg",
-                "publishedAt": "2026-05-16T08:46:14Z"
+                "title": "Hoy vamos con Kathy Rain",
+                "url": "https://www.youtube.com/watch?v=YygcA19gFDs",
+                "thumbnail": "https://i.ytimg.com/vi/YygcA19gFDs/hqdefault.jpg",
+                "publishedAt": "2026-06-27T12:23:01Z"
             },
             {
-                "title": "A por el dragon",
-                "url": "https://www.youtube.com/watch?v=nR9j8YOApyE",
-                "thumbnail": "https://i.ytimg.com/vi/nR9j8YOApyE/hqdefault.jpg",
-                "publishedAt": "2026-05-16T08:48:06Z"
+                "title": "Kathy sigue investigando",
+                "url": "https://www.youtube.com/watch?v=6wGOyUXtiTI",
+                "thumbnail": "https://i.ytimg.com/vi/6wGOyUXtiTI/hqdefault.jpg",
+                "publishedAt": "2026-06-27T12:23:54Z"
             },
             {
-                "title": "Mundodisco Acto 3",
-                "url": "https://www.youtube.com/watch?v=8W9l7wPByeU",
-                "thumbnail": "https://i.ytimg.com/vi/8W9l7wPByeU/hqdefault.jpg",
-                "publishedAt": "2026-05-16T08:49:08Z"
+                "title": "Let's goooooooo",
+                "url": "https://www.youtube.com/watch?v=HCrobFYO9gQ",
+                "thumbnail": "https://i.ytimg.com/vi/HCrobFYO9gQ/hqdefault.jpg",
+                "publishedAt": "2026-06-27T12:25:27Z"
             },
             {
-                "title": "Terry Pratchett en el canal",
-                "url": "https://www.youtube.com/watch?v=v4MBPopRE9Q",
-                "thumbnail": "https://i.ytimg.com/vi/v4MBPopRE9Q/hqdefault.jpg",
-                "publishedAt": "2026-05-16T08:49:41Z"
+                "title": "Kathy salvanos del calor...",
+                "url": "https://www.youtube.com/watch?v=C66cUF5VnZA",
+                "thumbnail": "https://i.ytimg.com/vi/C66cUF5VnZA/hqdefault.jpg",
+                "publishedAt": "2026-06-27T12:26:25Z"
+            }
+        ]
+    },
+    {
+        "name": "Mesektet",
+        "editor": "Point & Pixel Adventures",
+        "cover": "https://cdn.devuego.es/portadas/min/mesektet-min.jpg",
+        "genres": [
+            "Adventure",
+            "Point-and-Click"
+        ],
+        "year": "2026",
+        "played": "2026-05",
+        "lista_youtube": {
+            "id": "PLNfxmRSZ-_Jo",
+            "title": "Mesektet"
+        },
+        "videos": [
+            {
+                "title": "Demo de Mesektet",
+                "url": "https://www.youtube.com/watch?v=dOi7vbCnApo",
+                "thumbnail": "https://i.ytimg.com/vi/dOi7vbCnApo/hqdefault.jpg",
+                "publishedAt": "2026-06-27T12:14:41Z"
+            }
+        ]
+    },
+    {
+        "name": "Luna's Room",
+        "editor": "DonutDroid",
+        "cover": "https://cdn.devuego.es/portadas/min/luna-s-room-min.jpg",
+        "genres": [
+            "Adventure",
+            "Point-and-Click"
+        ],
+        "year": "2026",
+        "played": "2026-05",
+        "lista_youtube": {
+            "id": "PLVuqDcJujY5g",
+            "title": "Luna's Room"
+        },
+        "videos": [
+            {
+                "title": "Probamos aventura nueva! Luna's Room",
+                "url": "https://www.youtube.com/watch?v=7DD8bB4lWxk",
+                "thumbnail": "https://i.ytimg.com/vi/7DD8bB4lWxk/hqdefault.jpg",
+                "publishedAt": "2026-06-27T12:10:19Z"
             }
         ]
     }
