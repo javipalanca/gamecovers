@@ -2822,7 +2822,9 @@
         },
         "genres": [
             "Point-and-Click",
-            "Adventure"
+            "Adventure",
+            "Mistery",
+            "Puzzle"
         ]
     },
     {
@@ -4401,7 +4403,8 @@
         "genres": [
             "Adventure",
             "Puzzle",
-            "Mystery"
+            "Mystery",
+            "Point-and-Click"
         ]
     },
     {
@@ -6297,7 +6300,9 @@
         },
         "genres": [
             "Adventure",
-            "Point-and-Click"
+            "Point-and-Click",
+            "Puzzle",
+            "Mystery"
         ]
     },
     {
@@ -7498,6 +7503,12 @@
                 "url": "https://www.youtube.com/watch?v=kgYasyVEevI",
                 "thumbnail": "https://i.ytimg.com/vi/kgYasyVEevI/hqdefault.jpg",
                 "publishedAt": "2025-05-11T17:15:37Z"
+            },
+            {
+                "title": "Viciamos en la city",
+                "url": "https://www.youtube.com/watch?v=Vdrvunl7Nmk",
+                "thumbnail": "https://i.ytimg.com/vi/Vdrvunl7Nmk/hqdefault.jpg",
+                "publishedAt": "2026-10-03T09:19:09Z"
             }
         ],
         "genres": [
@@ -9034,6 +9045,12 @@
                 "url": "https://www.youtube.com/watch?v=d9e8ABlxrmA",
                 "thumbnail": "https://i.ytimg.com/vi/d9e8ABlxrmA/hqdefault.jpg",
                 "publishedAt": "2026-08-21T09:30:47Z"
+            },
+            {
+                "title": "Hacemos Km camionáceos",
+                "url": "https://www.youtube.com/watch?v=Xlt2s4480PY",
+                "thumbnail": "https://i.ytimg.com/vi/Xlt2s4480PY/hqdefault.jpg",
+                "publishedAt": "2026-10-03T09:56:31Z"
             }
         ],
         "genres": [
@@ -10459,22 +10476,10 @@
         },
         "videos": [
             {
-                "title": "He roto mis gafas. Cuidamos animales?",
-                "url": "https://www.youtube.com/watch?v=FSwBGyNPxiA",
-                "thumbnail": "https://i.ytimg.com/vi/FSwBGyNPxiA/hqdefault.jpg",
-                "publishedAt": "2026-08-21T09:52:55Z"
-            },
-            {
-                "title": "Unboxing con IA!!! y Luego al Zoo",
-                "url": "https://www.youtube.com/watch?v=dTCALALxx0U",
-                "thumbnail": "https://i.ytimg.com/vi/dTCALALxx0U/hqdefault.jpg",
-                "publishedAt": "2026-08-21T09:54:08Z"
-            },
-            {
-                "title": "A cuidar de las mascotas.",
-                "url": "https://www.youtube.com/watch?v=DhNM0RdnN4E",
-                "thumbnail": "https://i.ytimg.com/vi/DhNM0RdnN4E/hqdefault.jpg",
-                "publishedAt": "2026-08-21T09:55:19Z"
+                "title": "Oficialmente de vacaciones!",
+                "url": "https://www.youtube.com/watch?v=54A9TfkPfJ0",
+                "thumbnail": "https://i.ytimg.com/vi/54A9TfkPfJ0/hqdefault.jpg",
+                "publishedAt": "2026-08-21T09:59:03Z"
             },
             {
                 "title": "Construir es más dificil que destruir...",
@@ -10489,10 +10494,28 @@
                 "publishedAt": "2026-08-21T09:57:54Z"
             },
             {
-                "title": "Oficialmente de vacaciones!",
-                "url": "https://www.youtube.com/watch?v=54A9TfkPfJ0",
-                "thumbnail": "https://i.ytimg.com/vi/54A9TfkPfJ0/hqdefault.jpg",
-                "publishedAt": "2026-08-21T09:59:03Z"
+                "title": "A cuidar de las mascotas.",
+                "url": "https://www.youtube.com/watch?v=DhNM0RdnN4E",
+                "thumbnail": "https://i.ytimg.com/vi/DhNM0RdnN4E/hqdefault.jpg",
+                "publishedAt": "2026-08-21T09:55:19Z"
+            },
+            {
+                "title": "Unboxing con IA!!! y Luego al Zoo",
+                "url": "https://www.youtube.com/watch?v=dTCALALxx0U",
+                "thumbnail": "https://i.ytimg.com/vi/dTCALALxx0U/hqdefault.jpg",
+                "publishedAt": "2026-08-21T09:54:08Z"
+            },
+            {
+                "title": "He roto mis gafas. Cuidamos animales?",
+                "url": "https://www.youtube.com/watch?v=FSwBGyNPxiA",
+                "thumbnail": "https://i.ytimg.com/vi/FSwBGyNPxiA/hqdefault.jpg",
+                "publishedAt": "2026-08-21T09:52:55Z"
+            },
+            {
+                "title": "Se acabaron las vacaciones. estoy devastado...",
+                "url": "https://www.youtube.com/watch?v=Y01bjiUOG40",
+                "thumbnail": "https://i.ytimg.com/vi/Y01bjiUOG40/hqdefault.jpg",
+                "publishedAt": "2026-10-03T09:13:40Z"
             }
         ]
     },
@@ -10558,6 +10581,112 @@
                 "url": "https://www.youtube.com/watch?v=MsoKCIiMcVw",
                 "thumbnail": "https://i.ytimg.com/vi/MsoKCIiMcVw/hqdefault.jpg",
                 "publishedAt": "2026-08-21T09:39:37Z"
+            }
+        ]
+    },
+    {
+        "name": "The Room 3",
+        "editor": "Fireproof Games",
+        "year": "2018",
+        "cover": "https://m.media-amazon.com/images/M/MV5BMTY1NjlkODEtN2U1Ny00ODJmLWJhYTktYTRiZTQzN2RjYmYxXkEyXkFqcGc@._V1_.jpg",
+        "played": "2026-09",
+        "genres": [
+            "Puzzle"
+        ],
+        "lista_youtube": {
+            "id": "PLZ8vMxj-cN18",
+            "title": "The Room 3"
+        },
+        "videos": [
+            {
+                "title": "Empezamos The Room 3",
+                "url": "https://www.youtube.com/watch?v=BsK9vQZScP8",
+                "thumbnail": "https://i.ytimg.com/vi/BsK9vQZScP8/hqdefault.jpg",
+                "publishedAt": "2026-10-03T10:07:52Z"
+            },
+            {
+                "title": "Sigo enfermo...",
+                "url": "https://www.youtube.com/watch?v=IWNWYE-97IY",
+                "thumbnail": "https://i.ytimg.com/vi/IWNWYE-97IY/hqdefault.jpg",
+                "publishedAt": "2026-10-03T10:14:59Z"
+            },
+            {
+                "title": "Resolviendo puzzles a saco!",
+                "url": "https://www.youtube.com/watch?v=Y6b5fGTsndc",
+                "thumbnail": "https://i.ytimg.com/vi/Y6b5fGTsndc/hqdefault.jpg",
+                "publishedAt": "2026-10-03T10:48:33Z"
+            },
+            {
+                "title": "Alerta puzzle",
+                "url": "https://www.youtube.com/watch?v=_jznlvou8iI",
+                "thumbnail": "https://i.ytimg.com/vi/_jznlvou8iI/hqdefault.jpg",
+                "publishedAt": "2026-10-03T10:50:50Z"
+            }
+        ]
+    },
+    {
+        "name": "Sherlock Holmes: El sabueso de los Baskerville",
+        "editor": "Frogwares",
+        "year": "2010",
+        "cover": "https://static.tvtropes.org/pmwiki/pub/images/uwgzhmvdncx4vhuj2xsl3eo1c4rb6tcrqquaim0ucto_350x200_3x_0.png",
+        "played": "2026-09",
+        "genres": [
+            "Adventure",
+            "Point-and-Click",
+            "Mistery",
+            "Puzzle"
+        ],
+        "lista_youtube": {
+            "id": "PLX7FkeWiFZbE",
+            "title": "Sherlock Holmes: El sabueso de los Baskerville"
+        },
+        "videos": [
+            {
+                "title": "Decidimos juntos la aventura gráfica",
+                "url": "https://www.youtube.com/watch?v=KeGC1Q8GAJw",
+                "thumbnail": "https://i.ytimg.com/vi/KeGC1Q8GAJw/hqdefault.jpg",
+                "publishedAt": "2026-10-03T10:00:08Z"
+            },
+            {
+                "title": "El Sabueso está olfateando...",
+                "url": "https://www.youtube.com/watch?v=tczGGGga5pI",
+                "thumbnail": "https://i.ytimg.com/vi/tczGGGga5pI/hqdefault.jpg",
+                "publishedAt": "2026-10-03T10:01:54Z"
+            },
+            {
+                "title": "Terminamos Sherlock Holmes?",
+                "url": "https://www.youtube.com/watch?v=dMkgqlRnIjs",
+                "thumbnail": "https://i.ytimg.com/vi/dMkgqlRnIjs/hqdefault.jpg",
+                "publishedAt": "2026-10-03T10:05:55Z"
+            }
+        ]
+    },
+    {
+        "name": "Loom (modo experto)",
+        "editor": "LucasArts",
+        "year": "1990",
+        "cover": "https://clickymuseum.com/images/si/I1111%20-%20PC%20Big%20Box%20(5.25)%20-%2001.jpg",
+        "played": "2026-09",
+        "genres": [
+            "Adventure",
+            "Point-and-Click"
+        ],
+        "lista_youtube": {
+            "id": "PLA3CmwCvILLg",
+            "title": "Loom (modo experto)"
+        },
+        "videos": [
+            {
+                "title": "Loom en modo experto",
+                "url": "https://www.youtube.com/watch?v=fIuEAAHS5Xw",
+                "thumbnail": "https://i.ytimg.com/vi/fIuEAAHS5Xw/hqdefault.jpg",
+                "publishedAt": "2026-10-03T09:55:01Z"
+            },
+            {
+                "title": "Volvemos al modo hardcore musical de Loom",
+                "url": "https://www.youtube.com/watch?v=-dv93ciHTSg",
+                "thumbnail": "https://i.ytimg.com/vi/-dv93ciHTSg/hqdefault.jpg",
+                "publishedAt": "2026-10-03T09:57:58Z"
             }
         ]
     }
